@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertical:
-    max: 0
-    min: 0
+    max: 5.5
+    min: -5.5
   horizontal:
-    max: 0
-    min: 0
-  speedRange: {x: 0, y: 0}
-  verticalSpeed: 0
-  horizontalSpeed: 0
+    max: 2
+    min: -2
+  speedRange: {x: 0, y: 10}
+  verticalSpeed: 3
+  horizontalSpeed: 3
 --- !u!60 &1545026230480755857
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -186,4 +186,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
