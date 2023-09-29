@@ -18,6 +18,12 @@ public class UIPlayScene : MonoBehaviour
 			m_GameOverUI.SetActive(false);
 	}
 
+	public void GameOver()
+	{
+		m_GameOverUI.SetActive(true);
+	}
+
+	/////////////////////////////// For buttons ///////////////////////////////
 	public void Invoke_Replay()
 	{
 		SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
