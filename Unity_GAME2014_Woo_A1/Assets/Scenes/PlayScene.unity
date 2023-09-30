@@ -1139,8 +1139,8 @@ MonoBehaviour:
   - name: GamePlayBGM
     clip: {fileID: 8300000, guid: 4c6a01ab10bc0774a9dfca1cb30d8813, type: 3}
   m_SFX: []
-  m_BGMSource: {fileID: 0}
-  m_SFXSource: {fileID: 0}
+  m_BGMSource: {fileID: 1753293231}
+  m_SFXSource: {fileID: 811282505}
 --- !u!1 &955119927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,7 +3185,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -46,6 +46,11 @@ public class SoundManager : MonoBehaviour
 			Debug.LogWarning("BGM not found: " + name);
 		}
 	}
+	public void StopBGM()
+	{
+		if (m_BGMSource != null) 
+			m_BGMSource.Stop();
+	}
 
 	public void PlaySFX(string name)
 	{

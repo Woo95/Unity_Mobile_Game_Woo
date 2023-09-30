@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 		gameState = eGameState.GameOver;
 
 		m_UIPlayScene.GameOver();
+		SoundManager.instance.StopBGM();
 	}
 	void ModifyGameOver()
 	{
