@@ -20,7 +20,8 @@ public class UIPlayScene : MonoBehaviour
 
 	public void GameOver()
 	{
-		m_GameOverUI.SetActive(true);
+		if (!m_GameOverUI.activeInHierarchy)
+			m_GameOverUI.SetActive(true);
 	}
 
 	/////////////////////////////// For buttons ///////////////////////////////

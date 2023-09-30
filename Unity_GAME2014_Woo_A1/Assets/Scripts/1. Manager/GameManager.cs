@@ -13,6 +13,7 @@ public enum eGameState
 public class GameManager : MonoBehaviour
 {
 	public eGameState gameState = eGameState.None;
+	public UIPlayScene m_UIPlayScene;
 
 	void Start()
 	{
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
+
+		SoundManager.instance.PlayBGM("GamePlayBGM");
 	}
 	void ModifyPlay()
 	{
@@ -57,6 +60,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("InGameOver");
 		gameState = eGameState.GameOver;
+
+		m_UIPlayScene.GameOver();
 	}
 	void ModifyGameOver()
 	{

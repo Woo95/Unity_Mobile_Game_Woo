@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public struct Sound
+{
+	public string name;
+	public AudioClip clip;
+}
+
+
+public class SoundManager : MonoBehaviour
+{
+	#region singletone
+	public static SoundManager instance;
+	public void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else
+		{
+			Destroy(gameObject);
+			return;
+		}
+	}
+	#endregion
+
+	public Sound[] m_BGM, m_SFX;
+	public AudioSource m_BGMSource, m_SFXSource;
+
+	public void PlayBGM(string name)
+	{
+		// Find the Sound object with the matching name
+		Sound bgmToPlay = System.Array.Find(m_BGM, sound => sound.name == name);
+
+		if (bgmToPlay.clip != null)
+		{
+			// Set the AudioClip of the AudioSource to the matched BGM
+			m_BGMSource.clip = bgmToPlay.clip;
+			// Play the BGM
+			m_BGMSource.Play();
+		}
+		else
+		{
+			Debug.LogWarning("BGM not found: " + name);
+		}
+	}
+
+	public void PlaySFX(string name)
+	{
+		// Find the Sound object with the matching name
+		Sound sfxToPlay = System.Array.Find(m_SFX, sound => sound.name == name);
+
+		if (sfxToPlay.clip != null)
+		{
+			// Set the AudioClip of the AudioSource to the matched SFX
+			m_SFXSource.clip = sfxToPlay.clip;
+			// Play the SFX
+			m_SFXSource.Play();
+		}
+		else
+		{
+			Debug.LogWarning("SFX not found: " + name);
+		}
+	}
+}
