@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
 
-		SoundManager.instance.PlayBGM("GamePlayBGM");
+		SoundManager.instance.PlayBGM("GamePlayBGM", 0.25f);
 	}
 	void ModifyPlay()
 	{

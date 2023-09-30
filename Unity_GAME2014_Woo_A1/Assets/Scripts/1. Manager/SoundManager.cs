@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
 	public Sound[] m_BGM, m_SFX;
 	public AudioSource m_BGMSource, m_SFXSource;
 
-	public void PlayBGM(string name)
+	public void PlayBGM(string name, float volume = 1.0f)
 	{
 		// Find the Sound object with the matching name
 		Sound bgmToPlay = System.Array.Find(m_BGM, sound => sound.name == name);
@@ -38,6 +38,8 @@ public class SoundManager : MonoBehaviour
 		{
 			// Set the AudioClip of the AudioSource to the matched BGM
 			m_BGMSource.clip = bgmToPlay.clip;
+			// Adjust volume
+			m_BGMSource.volume = volume;
 			// Play the BGM
 			m_BGMSource.Play();
 		}
@@ -52,7 +54,7 @@ public class SoundManager : MonoBehaviour
 			m_BGMSource.Stop();
 	}
 
-	public void PlaySFX(string name)
+	public void PlaySFX(string name, float volume = 1.0f)
 	{
 		// Find the Sound object with the matching name
 		Sound sfxToPlay = System.Array.Find(m_SFX, sound => sound.name == name);
@@ -61,6 +63,8 @@ public class SoundManager : MonoBehaviour
 		{
 			// Set the AudioClip of the AudioSource to the matched SFX
 			m_SFXSource.clip = sfxToPlay.clip;
+			// Adjust volume
+			m_SFXSource.volume = volume;
 			// Play the SFX
 			m_SFXSource.Play();
 		}
