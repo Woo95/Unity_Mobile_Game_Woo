@@ -901,18 +901,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d8dfa868227bce5468079c9bc58e4947, type: 3}
-    m_FontSize: 25
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 2
-    m_MaxSize: 75
+    m_MinSize: 55
+    m_MaxSize: 55
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tower Defense
+  m_Text: 'Tower Defender: Waves of War'
 --- !u!222 &939858383
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1257,10 +1257,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d8dfa868227bce5468079c9bc58e4947, type: 3}
-    m_FontSize: 20
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 2
+    m_MinSize: 20
     m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1268,38 +1268,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Welcome to Tower Defense!
-
-
-
-    Objective:
-
-    Survive for 10 waves
-    of enemy attacks to win the game.
-
-
-
-    How to Play:
-
-    1. Build and upgrade
-    towers strategically to defend your base.
-
-    2. Earn money by defeating enemies.
-    Use it to build more towers or upgrade existing ones.
-
-    3. Plan your tower
-    placement carefully to cover all enemy paths.
-
-    4. Keep an eye on your base''s
-    health. If it reaches zero, you lose!
-
-    5. Your goal is to survive until the
-    10th wave to achieve victory.
-
-
-
-    Good luck, Commander! Defend your base and
-    emerge victorious!'
+  m_Text: "Welcome Defender!\n\n<Objective>\nSurvive for 10 waves of enemy attacks
+    to win the game.\n\n<How to Play>\n1. Build and upgrade towers strategically
+    to defend your \"main tower\", or you will lose!\r\n\n2. Earn resources by tapping
+    on objects and defeating enemies. \n\n3. Use resources to place towers and hire
+    player units to defend the main tower.\r\n\r\n\nGood luck, Commander! Defend
+    your base and emerge victorious!"
 --- !u!222 &1162215505
 CanvasRenderer:
   m_ObjectHideFlags: 0
