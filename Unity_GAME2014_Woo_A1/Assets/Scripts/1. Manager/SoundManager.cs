@@ -1,3 +1,16 @@
+/*
+FileName: SoundManager.cs
+Name: Chaewan Woo
+Student #101354291
+Last Modified: Sept 30
+
+About Script:
+This is a sound manager.
+
+Revision History:
+- Added Sound Manager to the game.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
