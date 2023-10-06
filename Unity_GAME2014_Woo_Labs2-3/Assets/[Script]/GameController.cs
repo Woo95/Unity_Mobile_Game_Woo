@@ -25,18 +25,17 @@ public class GameController : MonoBehaviour
 
     GameObject _enemyParent;
 
-    GameObject[] EnemyPool;
-    // Start is called before the first frame update
-    void Start()
+	List<GameObject> EnemyPool = new List<GameObject>();
+	// Start is called before the first frame update
+	void Start()
     {
-        EnemyPool = new GameObject[_enemyNumber];
-
         _enemyPrefab = Resources.Load<GameObject>("Prefabs/Enemy");
         _enemyParent = GameObject.Find("Enemies");
         for(int i = 0; i < _enemyNumber; i++)
         {
-			EnemyPool[i] = Instantiate(_enemyPrefab, _enemyParent.transform);
-        }
+			GameObject enemy = Instantiate(_enemyPrefab, _enemyParent.transform);
+			EnemyPool.Add(enemy);
+		}
 
         _timer = Random.Range(5, 10);
     }
@@ -47,17 +46,30 @@ public class GameController : MonoBehaviour
         if (_score != _previousScore)
             UpdateScoreUI();
 
-/*        _seconds += Time.deltaTime;    // Timer enemy spawn system
+        _seconds += Time.deltaTime;    // Timer enemy spawn system
 
         if(_seconds > _timer)
         {
             _seconds = 0;
-            Instantiate(_enemyPrefab, _enemyParent.transform);
-        }*/
+            SpawnEnemy();
+		}
 
     }
 
-    public void ChangeScore(int scoreChangingAmount)
+    public void SpawnEnemy()
+    {
+        foreach (GameObject enemy in EnemyPool)
+        {
+            if (enemy.activeSelf == false)
+            {
+                enemy.SetActive(true);
+                enemy.GetComponent<EnemyBehavior>().Reset();
+                Debug.Log("Spawn");
+			}
+        }
+	}
+
+	public void ChangeScore(int scoreChangingAmount)
     {
         _score += scoreChangingAmount;
 

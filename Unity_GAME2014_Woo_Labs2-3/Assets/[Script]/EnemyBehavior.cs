@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
@@ -55,13 +54,18 @@ public class EnemyBehavior : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.red;
 
             if (_dyingCounter > _timer)
-                Destroy(gameObject);
+            {
+                Debug.Log("Dying");
+                gameObject.SetActive(false);
+                _isDying = false;
+                _dyingCounter = 0;
+			}
 
         }
 
     }
 
-    void Reset()
+    public void Reset()
     {
         Color[] _colorList = { Color.blue, Color.green, Color.red, Color.yellow, Color.white, Color.cyan, Color.magenta };
 
@@ -73,8 +77,10 @@ public class EnemyBehavior : MonoBehaviour
         _horizontalSpeed = Random.Range(_speedRange.x, _speedRange.y);
         transform.position = new Vector2(Random.Range(_horizontalBoundries.min, _horizontalBoundries.max), _verticalBoundries.max);
 
-        transform.localScale = new Vector3(_defaultSize.x + Random.Range(-.6f, .6f), _defaultSize.y + Random.Range(-.6f, .6f), _defaultSize.z + Random.Range(-.6f, .6f));
-    }
+        transform.localScale = new Vector3(_defaultSize.x + Random.Range(-.6f, .6f), _defaultSize.y + Random.Range(-.6f, .6f), _defaultSize.z + Random.Range(-.6f, .6f));        
+		transform.rotation = Quaternion.identity;
+
+	}
 
     public void DyingSequence()
     {
