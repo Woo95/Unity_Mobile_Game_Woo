@@ -24,15 +24,18 @@ public class GameController : MonoBehaviour
     int _timer = 0;
 
     GameObject _enemyParent;
+
+    GameObject[] EnemyPool;
     // Start is called before the first frame update
     void Start()
     {
+        EnemyPool = new GameObject[_enemyNumber];
+
         _enemyPrefab = Resources.Load<GameObject>("Prefabs/Enemy");
         _enemyParent = GameObject.Find("Enemies");
         for(int i = 0; i < _enemyNumber; i++)
         {
-
-            Instantiate(_enemyPrefab, _enemyParent.transform);
+			EnemyPool[i] = Instantiate(_enemyPrefab, _enemyParent.transform);
         }
 
         _timer = Random.Range(5, 10);
