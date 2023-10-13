@@ -20,12 +20,10 @@ public class EnemyManager : MonoBehaviour
 	public float END_WAVE_TIME = 600.0f;
 	public float SPAWN_INTERVAL = 2.0f;
 
-	public float playTime;
 	public float nextSpawnTime;
 	public int currentWave;
 
 	public List<Enemy> enemyPrefabList = new List<Enemy>();
-	public List<Enemy> enemies = new List<Enemy>();
 
 	public Transform topLeft, bottomRight;
 	Vector3 p00, p01, p11, p10;
@@ -60,7 +58,6 @@ public class EnemyManager : MonoBehaviour
 
 		currentWave = 1;
 		nextSpawnTime = Time.time;
-		playTime = 0;
 }
 	public void ModifySpawning()
 	{
@@ -85,11 +82,15 @@ public class EnemyManager : MonoBehaviour
 	#region SpawnEnemy
 	public void SpawnEnemy()
 	{
-		int enemyIndex = Random.Range(0, enemyPrefabList.Count);
-		Vector3 pos = GetPosition();
-		Quaternion rotation = Quaternion.identity;
+		if (enemyPrefabList.Count > 0)
+		{
+			int enemyIndex = Random.Range(0, enemyPrefabList.Count);
+			Vector3 pos = GetPosition();
+			Quaternion rotation = Quaternion.identity;
 
-		Enemy enemy = Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
+			if (enemyPrefabList[enemyIndex] != null)
+				Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
+		}
 	}
 	public Vector3 GetPosition()
 	{
