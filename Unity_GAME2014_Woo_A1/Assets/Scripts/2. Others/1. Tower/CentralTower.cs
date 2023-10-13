@@ -11,4 +11,9 @@ public class CentralTower : Tower
 		instance = this;
 	}
 	#endregion
+
+	public float m_playTime;
+	public int m_Score;
+	public int m_Gold;
+	public int m_Resource;
 }

@@ -13,9 +13,9 @@ public class Enemy : MonoBehaviour
 	private float m_damage;
 	private int m_gold;
 
-	private float m_searchRadius;
-	private float m_releaseRadius;
-	private float m_attackRadius;
+	public float m_searchRadius;
+	public float m_releaseRadius;
+	public float m_attackRadius;
 	private float m_ATTACK_TIME;
 
 	public eEnemyType m_EnemyType;
@@ -38,8 +38,8 @@ public class Enemy : MonoBehaviour
 				m_damage = 1.0f;
 				m_gold = 1;
 				m_searchRadius = 3.0f;
-				m_releaseRadius = 5.0f;
-				m_attackRadius = 0.3f;
+				m_releaseRadius = 4.0f;
+				m_attackRadius = 0.5f;
 				m_ATTACK_TIME = 1.5f;
 				break;
 			case eEnemyType.BEE:
