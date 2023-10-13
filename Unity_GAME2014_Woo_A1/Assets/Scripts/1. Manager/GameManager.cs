@@ -22,9 +22,16 @@ public enum eGameState
 	Play,
 	GameOver
 }
+public enum eTypeResult 
+{ 
+	None, 
+	Won, 
+	Lost 
+}
 
 public class GameManager : MonoBehaviour
 {
+	private eTypeResult typeResult = eTypeResult.None;
 	public eGameState gameState = eGameState.None;
 	public UIPlayScene m_UIPlayScene;
 
@@ -59,8 +66,15 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("ModifyPlay");
 
-		if (Input.GetKeyUp(KeyCode.Alpha0))
+		if (CentralTower.instance == null)
 		{
+			typeResult = eTypeResult.Lost;
+			InGameOver();
+			return;
+		}
+		if (EnemyManager.instance.enemyManagerState == EnemyManager.eEnemyManagerState.END)
+		{
+			typeResult = eTypeResult.Won;
 			InGameOver();
 			return;
 		}
@@ -79,6 +93,14 @@ public class GameManager : MonoBehaviour
 	}
 	void ModifyGameOver()
 	{
+		if (typeResult == eTypeResult.Lost)
+		{
+			Debug.Log("@@Lost@@");
+		}
+		else if (typeResult == eTypeResult.Won)
+		{
+			Debug.Log("@@Won@@");
+		}
 		Debug.Log("ModifyGameOver");
 		return;
 	}
