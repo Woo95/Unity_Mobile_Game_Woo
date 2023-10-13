@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 	private float m_health;
 	private float m_speed;
 	private float m_damage;
+	private int m_gold;
 
 	private float m_searchRadius;
 	private float m_releaseRadius;
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
 	public CentralTower m_target3;
 	public LayerMask layerMask;
 
+	#region Enemy Data
 	public void SetEnemyOptions()
 	{
 		switch (m_EnemyType)
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
 				m_health = 50.0f;
 				m_speed = 0.25f;
 				m_damage = 1.0f;
+				m_gold = 1;
 				m_searchRadius = 3.0f;
 				m_releaseRadius = 5.0f;
 				m_attackRadius = 0.3f;
@@ -44,6 +47,7 @@ public class Enemy : MonoBehaviour
 				m_health = 70.0f;
 				m_speed = 1.0f;
 				m_damage = 3.0f;
+				m_gold = 2;
 				m_searchRadius = 7.0f;
 				m_releaseRadius = 9.0f;
 				m_attackRadius = 0.7f;
@@ -53,6 +57,7 @@ public class Enemy : MonoBehaviour
 				m_health = 120.0f;
 				m_speed = 0.5f;
 				m_damage = 5.0f;
+				m_gold = 3;
 				m_searchRadius = 4.0f;
 				m_releaseRadius = 6.0f;
 				m_attackRadius = 0.6f;
@@ -62,6 +67,7 @@ public class Enemy : MonoBehaviour
 				m_health = 90.0f;
 				m_speed = 0.75f;
 				m_damage = 4.0f;
+				m_gold = 4;
 				m_searchRadius = 6.0f;
 				m_releaseRadius = 8.0f;
 				m_attackRadius = 0.8f;
@@ -77,6 +83,7 @@ public class Enemy : MonoBehaviour
 		trans = transform;
 		m_target3 = CentralTower.instance;
 	}
+	#endregion
 
 	void Start()
 	{
@@ -183,7 +190,6 @@ public class Enemy : MonoBehaviour
 		Debug.Log("@@Attack@@");
 	}
 	#endregion
-
 
 	void Update()
 	{

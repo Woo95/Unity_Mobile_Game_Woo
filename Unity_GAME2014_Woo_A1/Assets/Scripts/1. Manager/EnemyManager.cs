@@ -79,34 +79,6 @@ public class EnemyManager : MonoBehaviour
 			}
 		}
 	}
-	#region SpawnEnemy
-	public void SpawnEnemy()
-	{
-		if (enemyPrefabList.Count > 0)
-		{
-			int enemyIndex = Random.Range(0, enemyPrefabList.Count);
-			Vector3 pos = GetPosition();
-			Quaternion rotation = Quaternion.identity;
-
-			if (enemyPrefabList[enemyIndex] != null)
-				Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
-		}
-	}
-	public Vector3 GetPosition()
-	{
-		Vector3 spawnPosition = Vector3.zero;
-		int randomSide = Random.Range(0, 4);
-		float interval = Random.Range(0f, 1f);
-		switch (randomSide)
-		{
-			case 0: spawnPosition = Vector3.Lerp(p00, p10, interval); break;
-			case 1: spawnPosition = Vector3.Lerp(p01, p11, interval); break;
-			case 2: spawnPosition = Vector3.Lerp(p00, p01, interval); break;
-			case 3: spawnPosition = Vector3.Lerp(p10, p11, interval); break;
-		}
-		return spawnPosition;
-	}
-	#endregion
 	#endregion
 
 	#region FSM End
@@ -137,4 +109,35 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 
+	#region SpawnEnemy
+	public void SpawnEnemy()
+	{
+		if (enemyPrefabList.Count > 0)
+		{
+			int enemyIndex = Random.Range(0, enemyPrefabList.Count);
+			Vector3 pos = GetPosition();
+			Quaternion rotation = Quaternion.identity;
+
+			if (enemyPrefabList[enemyIndex] != null)
+			{
+				Enemy enemy = Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
+				enemy.transform.SetParent(transform);
+			}
+		}
+	}
+	public Vector3 GetPosition()
+	{
+		Vector3 spawnPosition = Vector3.zero;
+		int randomSide = Random.Range(0, 4);
+		float interval = Random.Range(0f, 1f);
+		switch (randomSide)
+		{
+			case 0: spawnPosition = Vector3.Lerp(p00, p10, interval); break;
+			case 1: spawnPosition = Vector3.Lerp(p01, p11, interval); break;
+			case 2: spawnPosition = Vector3.Lerp(p00, p01, interval); break;
+			case 3: spawnPosition = Vector3.Lerp(p10, p11, interval); break;
+		}
+		return spawnPosition;
+	}
+	#endregion
 }
