@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class GuardianTower : Tower
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Guardian prefabGuardian;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void OnMouseDown()
+	{
+		Debug.Log(">>Guardian UI Call");
+	}
 }
