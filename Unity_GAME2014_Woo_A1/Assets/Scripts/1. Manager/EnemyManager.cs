@@ -1,18 +1,139 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enemy;
 
 public class EnemyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	#region singletone;
+	public static EnemyManager instance;
+	public void Awake()
+	{
+		instance = this;
+	}
+	#endregion
+	public enum eEnemyManagerState { NONE, WAIT, SPAWNING, END }
+	public eEnemyManagerState enemyManagerState;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	
+	public float EACH_WAVE_TIME = 60.0f;
+	public float END_WAVE_TIME = 600.0f;
+	public float SPAWN_INTERVAL = 2.0f;
+
+	public float playTime;
+	public float nextSpawnTime;
+	public int currentWave;
+
+	public List<Enemy> enemyPrefabList = new List<Enemy>();
+	public List<Enemy> enemies = new List<Enemy>();
+
+	public Transform topLeft, bottomRight;
+	Vector3 p00, p01, p11, p10;
+	/*	p01		p11
+	 	p00		p10
+	*/
+	private void Start()
+	{
+		p01 = topLeft.position;
+		p10 = bottomRight.position;
+		p00 = new Vector3(p01.x, p10.y);
+		p11 = new Vector3(p10.x, p01.y);
+		InitWait();
+	}
+
+	#region FSM Wait
+	public void InitWait()
+	{
+		enemyManagerState = eEnemyManagerState.WAIT;
+	}
+	public void ModifyWait()
+	{
+		InitSpawning();
+		return;
+	}
+	#endregion
+
+	#region FSM Spawning
+	public void InitSpawning()
+	{
+		enemyManagerState = eEnemyManagerState.SPAWNING;
+
+		currentWave = 1;
+		nextSpawnTime = Time.time;
+		playTime = 0;
+}
+	public void ModifySpawning()
+	{
+		if (Time.time >= nextSpawnTime)
+		{
+			SpawnEnemy();
+			nextSpawnTime = Time.time + SPAWN_INTERVAL;
+		}
+		
+		if (Time.time > EACH_WAVE_TIME)
+		{
+			currentWave++;
+			EACH_WAVE_TIME = Time.time + 60.0f;
+
+			if (currentWave > 10)
+			{
+				InitEnd();
+				return;
+			}
+		}
+	}
+	#region SpawnEnemy
+	public void SpawnEnemy()
+	{
+		int enemyIndex = Random.Range(0, enemyPrefabList.Count);
+		Vector3 pos = GetPosition();
+		Quaternion rotation = Quaternion.identity;
+
+		Enemy enemy = Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
+	}
+	public Vector3 GetPosition()
+	{
+		Vector3 spawnPosition = Vector3.zero;
+		int randomSide = Random.Range(0, 4);
+		float interval = Random.Range(0f, 1f);
+		switch (randomSide)
+		{
+			case 0: spawnPosition = Vector3.Lerp(p00, p10, interval); break;
+			case 1: spawnPosition = Vector3.Lerp(p01, p11, interval); break;
+			case 2: spawnPosition = Vector3.Lerp(p00, p01, interval); break;
+			case 3: spawnPosition = Vector3.Lerp(p10, p11, interval); break;
+		}
+		return spawnPosition;
+	}
+	#endregion
+	#endregion
+
+	#region FSM End
+	public void InitEnd()
+	{
+		enemyManagerState = eEnemyManagerState.END;
+	}
+	public void ModifyEnd()
+	{
+	}
+	#endregion
+
+	void Update()
+	{
+		switch (enemyManagerState)
+		{
+			case eEnemyManagerState.WAIT:
+				ModifyWait();
+				break;
+
+			case eEnemyManagerState.SPAWNING:
+				ModifySpawning();
+				break;
+
+			case eEnemyManagerState.END:
+				ModifyEnd();
+				break;
+		}
+	}
+
 }

@@ -2,109 +2,192 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum eEnemyType { SLIME, BEE, GOBLIN, WOLF }
 public class Enemy : MonoBehaviour
 {
-	public enum eEnemyState
-	{ NONE, MOVE, ATTACK }
+	public enum eEnemyState { NONE, MOVE, ATTACK }
 	public eEnemyState enemyState;
 
-	public float health = 100.0f;
-	public float speed = 2.0f;
-	public float damage = 2.0f;
+	public float m_health = 100.0f;
+	public float m_speed = 2.0f;
+	public float m_damage = 2.0f;
 
-	public float searchRadius = 5.0f;
-	public float attackRadius = 0.5f;
-	public float attackTime = 2.0f;
+	public float m_searchRadius = 5.0f;
+	public float m_releaseRadius = 7.0f;
+	public float m_attackRadius = 0.5f;
+	public float ATTACK_TIME = 2.0f;
 
-	//Transform trans;
-	//void Start()
-	//{
-	//	trans = transform;
-	//	InitMove();
-	//}
+	public eEnemyType m_EnemyType;
+	SpriteRenderer m_SpriteRenderer;
+	Transform trans;
 
-	//public Tower target;
-	//public LayerMask layerMask;
+	public Guardian m_target1;
+	public GuardianTower m_target2;
+	public CentralTower m_target3;
+	public LayerMask layerMask;
 
-
-	//public void InitMove()
-	//{
-	//	enemyState = eEnemyState.MOVE;
-	//}
-	//public void ModifyMove()
-	//{
-	//	if (target != null)
-	//	{
-	//		InitChase();
-	//		return;
-	//	}
-	//	else if (target == null) // no target around.
-	//	{
-	//		if (trans.position == worldPosition[positionIndex].position)
-	//		{
-	//			positionIndex = (positionIndex + 1) % 4;
-	//		}
-	//		trans.position = Vector3.MoveTowards(trans.position, worldPosition[positionIndex].position, speed * Time.deltaTime);
-	//	}
-	//	CheckPlayer();
-	//}
-	//public void InitChase()
-	//{
-	//	enemyState = eEnemyState.CHASE;
+	public void SetData()
+	{
+		m_SpriteRenderer = GetComponent<SpriteRenderer>();
+		trans = transform;
+		m_target3 = CentralTower.instance;
+	}
 
 
-	//}
-	//public void ModifyChase()
-	//{
+	void Start()
+	{
+		SetData();
+		InitMove();
+	}
 
-	//}
-	//public void InitAttack()
-	//{
-	//	enemyState = eEnemyState.ATTACK;
+	#region FSM Move
+	bool isAttacking;
+	public void InitMove()
+	{
+		enemyState = eEnemyState.MOVE;
+		isAttacking = false;
+	}
+	public void ModifyMove()
+	{
+		if (isAttacking)
+		{
+			isAttacking = false;
+			InitAttack();
+			return;
+		}
 
+		float distance;
+		if (m_target1 != null)
+		{
+			distance = Vector3.Distance(trans.position, m_target1.transform.position);
+			if (distance > m_releaseRadius)
+			{
+				m_target1 = null;
+			}
+			else if (distance < m_attackRadius)
+			{
+				isAttacking = true;
+			}
+			else
+			{
+				trans.position =
+				Vector3.MoveTowards(trans.position, m_target1.transform.position, m_speed * Time.deltaTime);
+			}
+		}
+		else if (m_target2 != null)
+		{
+			distance = Vector3.Distance(trans.position, m_target2.transform.position);
+			if (distance > m_releaseRadius)
+			{
+				m_target2 = null;
+			}
+			else if (distance < m_attackRadius)
+			{
+				isAttacking = true;
+			}
+			else
+			{
+				trans.position =
+				Vector3.MoveTowards(trans.position, m_target2.transform.position, m_speed * Time.deltaTime);
+			}
+		}
+		else if (m_target3 != null)
+		{
+			distance = Vector3.Distance(trans.position, m_target3.transform.position);
+			if (distance < m_attackRadius)
+			{
+				isAttacking = true;
+			}
+			else
+			{
+				trans.position =
+				Vector3.MoveTowards(trans.position, m_target3.transform.position, m_speed * Time.deltaTime);
+			}
+		}
 
-	//}
-	//public void ModifyAttack()
-	//{
+		SearchPlayer();
+	}
+	#endregion
 
-	//}
+	#region FSM Attack
+	public void InitAttack()
+	{
+		enemyState = eEnemyState.ATTACK;
+	}
+	public void ModifyAttack()
+	{
+		if (m_target1 != null)
+		{
+			if (Vector3.Distance(trans.position, m_target1.transform.position) > m_attackRadius)
+			{
+				InitMove();
+			}
+		}
+		else if (m_target2 != null)
+		{
+			if (Vector3.Distance(trans.position, m_target2.transform.position) > m_attackRadius)
+			{
+				InitMove();
+			}
+		}
+		else if (m_target3 != null)
+		{
+			if (Vector3.Distance(trans.position, m_target3.transform.position) > m_attackRadius)
+			{
+				InitMove();
+			}
+		}
+		Debug.Log("@@Attack@@");
+	}
+	#endregion
 
-	//void Update()
-	//{
-	//	switch (enemyState)
-	//	{
-	//		case eEnemyState.MOVE:
-	//			ModifyMove();
-	//			break;
+	float checkTime = 0.0f;
+	float CONST_CHECKTIME = 0.5f;
+	void SearchPlayer()
+	{
+		if (Time.time < checkTime) return;
+		checkTime = Time.time + CONST_CHECKTIME;
+		Debug.Log("1");
+		Collider[] collider = Physics.OverlapSphere(trans.position, m_searchRadius, layerMask);
 
-	//		case eEnemyState.CHASE:
-	//			ModifyChase();
-	//			break;
+		for (int i = 0; i < collider.Length; i++)
+		{
+			Guardian target1 = collider[i].GetComponent<Guardian>();
+			if (target1 != null)
+			{
+				m_target1 = target1;
+				return;
+			}
 
-	//		case eEnemyState.ATTACK:
-	//			ModifyAttack();
-	//			break;
-	//	}
-	//}
+			GuardianTower target2 = collider[i].GetComponent<GuardianTower>();
+			if (target2 != null)
+			{
+				m_target2 = target2;
+				return;
+			}
+		}
+	}
 
-	//float checkTime = 0.0f;
-	//float CONST_CHECKTIME = 0.5f;
-	//void CheckPlayer()
-	//{
-	//	if (Time.time < checkTime) return;
-	//	checkTime = Time.time + CONST_CHECKTIME;
+	void Update()
+	{
+		switch (enemyState)
+		{
+			case eEnemyState.MOVE:
+				ModifyMove();
+				break;
 
-	//	Collider[] collider = Physics.OverlapSphere(trans.position, searchRadius, layerMask);
+			case eEnemyState.ATTACK:
+				ModifyAttack();
+				break;
+		}
+		m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
+	}
 
-	//	for (int i = 0; i < collider.Length; i++)
-	//	{
-	//		Player scp = collider[i].GetComponent<Player>();
-	//		if (scp != null)
-	//		{
-	//			target = scp;
-	//			return;
-	//		}
-	//	}
-	//}
-
+	private void OnDrawGizmos()
+	{
+		Gizmos2.DrawCircle2(transform.position, Color.grey, m_releaseRadius);
+		Gizmos2.DrawCircle2(transform.position, Color.yellow, m_searchRadius);
+		Gizmos2.DrawCircle2(transform.position, Color.red, m_attackRadius);
+	}
+	/**/
 }
