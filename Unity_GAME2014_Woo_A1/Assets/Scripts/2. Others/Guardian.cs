@@ -2,19 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum eGuaridanType { G1, G2, G3 }
+public enum eGuardianType { G1, G2, G3 }
 public class Guardian : MonoBehaviour
 {
-    public eGuardianType type;
-    // Start is called before the first frame update
+    public eGuardianType m_GuardianType;
+    SpriteRenderer m_SpriteRenderer;
+	Transform trans;
+
+	public void SetData(eGuardianType guardianType)
+    {
+        m_GuardianType = guardianType;
+		m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        trans = transform;
+	}
+
     void Start()
     {
-        
-    }
+        SetData(eGuardianType.G1);
+	}
 
-    // Update is called once per frame
     void Update()
     {
-        
+        m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
     }
 }

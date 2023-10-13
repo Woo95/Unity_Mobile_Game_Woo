@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Guardian
+  - GuardianTower
+  - CentralTower
+  - Enemy
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround/Floor
+    uniqueID: 583177785
+    locked: 0
+  - name: BackGround/Shadow
+    uniqueID: 528606807
+    locked: 0
+  - name: BackGround/Decor
+    uniqueID: 1961642315
+    locked: 0
+  - name: Guardian
+    uniqueID: 2811472713
+    locked: 0
+  - name: ForwardGround
+    uniqueID: 30354567
     locked: 0
