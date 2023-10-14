@@ -24550,6 +24550,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -24632,6 +24633,22 @@ Transform:
   - {fileID: 1873588882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dfc5873f3e3e44e9262a348f985431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomOutMin: 3
+  zoomOutMax: 10
+  topLeft: {fileID: 343298705}
+  bottomRight: {fileID: 57058745}
 --- !u!1 &520893846
 GameObject:
   m_ObjectHideFlags: 0
@@ -29893,6 +29910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 0
   m_BuildManager: {fileID: 1472890710}
+  m_CameraManager: {fileID: 519420033}
   m_UIPlayScene: {fileID: 1147290760}
 --- !u!1 &1655690685
 GameObject:
@@ -30162,7 +30180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1707397964
 Transform:
   m_ObjectHideFlags: 0
@@ -30202,6 +30220,7 @@ MonoBehaviour:
   - {fileID: 1791965400}
   - {fileID: 2146571948}
   - {fileID: 1493415144}
+  enemySpawnedList: []
   topLeft: {fileID: 343298705}
   bottomRight: {fileID: 57058745}
 --- !u!1 &1711364359

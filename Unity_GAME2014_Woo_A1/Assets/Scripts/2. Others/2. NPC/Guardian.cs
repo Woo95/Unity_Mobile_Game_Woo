@@ -11,6 +11,7 @@ public class Guardian : MonoBehaviour
 
 	public void SetData(eGuardianType guardianType)
     {
+        gameObject.SetActive(true);
         m_GuardianType = guardianType;
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
         trans = transform;
@@ -18,9 +19,9 @@ public class Guardian : MonoBehaviour
         //UnitSelections.Instance.unitList.Add(this.gameObject);
 	}
 
-    void Start()
+    void Start() // ¼öÁ¤
     {
-        SetData(eGuardianType.G1);
+        SetData(m_GuardianType);
 	}
 
     void Update()
