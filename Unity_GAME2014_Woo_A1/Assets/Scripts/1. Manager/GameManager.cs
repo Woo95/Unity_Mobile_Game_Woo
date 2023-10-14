@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 	private eTypeResult typeResult = eTypeResult.None;
 	public eGameState gameState = eGameState.None;
 	public BuildManager m_BuildManager;
+	public FieldManager m_FieldManager;
 	public CameraManager m_CameraManager;
 	public UIPlayScene m_UIPlayScene;
 
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
 		gameState = eGameState.Play;
 
 		m_BuildManager.Init();
+		m_FieldManager.Init();
 		m_CameraManager.Init();
 
 		SoundManager.instance.PlayBGM("GamePlayBGM", 0.25f);
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("ModifyPlay");
 
 		m_BuildManager.PlaceTower();
+		m_FieldManager.PlaceObject();
 		m_CameraManager.Play();
 
 		if (CentralTower.instance == null)
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("InGameOver");
 		gameState = eGameState.GameOver;
 
+		m_FieldManager.End();
 		m_UIPlayScene.GameOver();
 
 		SoundManager.instance.StopBGM();

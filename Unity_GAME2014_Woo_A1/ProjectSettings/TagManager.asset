@@ -50,14 +50,8 @@ TagManager:
   - name: BackGround/Decor
     uniqueID: 1961642315
     locked: 0
-  - name: Player/Guardian
+  - name: PlayGround
     uniqueID: 2811472713
-    locked: 0
-  - name: Player/GuardianTower
-    uniqueID: 583508793
-    locked: 0
-  - name: Player/CentralTower
-    uniqueID: 3291914697
     locked: 0
   - name: ForwardGround
     uniqueID: 30354567
