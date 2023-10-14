@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8997347325273980567}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: 6.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,8 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef1b35f582adb8418fc75333cfdffce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnemyData:
+    EnemyType: 1
+    health: 70
+    speed: 1
+    damage: 3
+    gold: 2
+    searchRadius: 7
+    releaseRadius: 9
+    attackRadius: 0.7
+    ATTACK_TIME: 2.5
+  m_SpriteRenderer: {fileID: 0}
   enemyState: 0
-  m_EnemyType: 1
   m_target1: {fileID: 0}
   m_target2: {fileID: 0}
   m_target3: {fileID: 0}
