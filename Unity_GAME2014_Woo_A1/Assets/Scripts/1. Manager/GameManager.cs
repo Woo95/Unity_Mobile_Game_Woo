@@ -13,8 +13,8 @@ Revision History:
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum eGameState
 {
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
 {
 	private eTypeResult typeResult = eTypeResult.None;
 	public eGameState gameState = eGameState.None;
+	public BuildManager m_BuildManager;
 	public UIPlayScene m_UIPlayScene;
-	public GameObject m_GuardianTowerPrefab;
 
 	void Start()
 	{
@@ -62,17 +62,15 @@ public class GameManager : MonoBehaviour
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
 
+		m_BuildManager.Init();
+
 		SoundManager.instance.PlayBGM("GamePlayBGM", 0.25f);
 	}
 	void ModifyPlay()
 	{
 		Debug.Log("ModifyPlay");
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log("clicked");
-			PlaceTower();
-		}
+		m_BuildManager.PlaceTower();
 
 		if (CentralTower.instance == null)
 		{
@@ -131,29 +129,4 @@ public class GameManager : MonoBehaviour
 		}
 
 	}
-
-	public bool isTowerPlacable = false;
-	public void CreateGuardianTowerButton()
-	{
-		isTowerPlacable = !isTowerPlacable;
-
-		//Color color = Tower.GetComponent<SpriteRenderer>().color;
-		//color.a = 0.5f;
-		//Tower.GetComponent<SpriteRenderer>().color = color;
-	}
-
-
-	void PlaceTower()
-	{
-		if (isTowerPlacable)
-		{
-			Vector3 mousePosition = Input.mousePosition;
-			Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-			Instantiate(m_GuardianTowerPrefab, worldPosition, Quaternion.identity);
-
-			isTowerPlacable = false;
-		}
-	}
-
 }
