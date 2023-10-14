@@ -7,7 +7,7 @@ public class FieldManager : MonoBehaviour
 	public List<PickUp> pickUpPrefabList = new List<PickUp>();
 	public List<PickUp> pickUpSpawnedList = new List<PickUp>();
 
-	public int SPAWN_OBJECT_MAX = 35;
+	public int SPAWN_OBJECT_MAX = 100;
 
 	public Transform topLeft, bottomRight;
 	Vector3 p00, p01, p11, p10;
@@ -24,8 +24,12 @@ public class FieldManager : MonoBehaviour
 		PlaceObject(SPAWN_OBJECT_MAX);
 	}
 
+	public LayerMask layer;
+	Vector3 boxSize = new Vector3(1.0f, 1.2f, 0.1f);
 	public void PlaceObject(int generateAmount)
 	{
+		Collider[] colliderList;
+
 		PickUp pickUp;
 		Vector3 pos = Vector3.zero;
 		Quaternion rotation = Quaternion.identity;
@@ -37,6 +41,13 @@ public class FieldManager : MonoBehaviour
 
 			pos = Vector3Int.FloorToInt(pos * 2.0f);	// to around decimal by 0.5
 			pos *= 0.5f;
+			
+			colliderList = Physics.OverlapBox(pos, boxSize, rotation, layer);
+			if (colliderList != null && colliderList.Length >= 1)
+			{
+				i--;
+				continue;
+			}
 
 			index = Random.Range(0, pickUpPrefabList.Count);
 			pickUp = Instantiate(pickUpPrefabList[index], pos, rotation, transform);
@@ -51,6 +62,20 @@ public class FieldManager : MonoBehaviour
 		if (pickUpSpawnedList.Contains(destroyObj))
 		{
 			pickUpSpawnedList.Remove(destroyObj);
+		}
+	}
+
+	public void ChopTree(PickUp tree, PickUp treeChopped)
+	{
+		Vector3 pos = tree.transform.position; 
+		Quaternion rotation = Quaternion.identity;
+		if (pickUpSpawnedList.Contains(tree))
+		{
+			pickUpSpawnedList.Remove(tree);
+
+			tree = Instantiate(treeChopped, pos, rotation, transform);
+			tree.InitData(this);
+			pickUpSpawnedList.Add(tree);
 		}
 	}
 
