@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour
 	public int currentWave;
 
 	public List<Enemy> enemyPrefabList = new List<Enemy>();
+	public List<Enemy> enemySpawnedList = new List<Enemy>();
 
 	public Transform topLeft, bottomRight;
 	Vector3 p00, p01, p11, p10;
@@ -120,7 +121,8 @@ public class EnemyManager : MonoBehaviour
 			if (enemyPrefabList[enemyIndex] != null)
 			{
 				Enemy enemy = Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
-				enemy.transform.SetParent(transform);
+				enemy.SetData(transform);
+				enemySpawnedList.Add(enemy);
 			}
 		}
 	}

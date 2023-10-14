@@ -19,16 +19,14 @@ public class Enemy : MonoBehaviour
 	private CentralTower m_target3;
 	public LayerMask layerMask;
 
-	public void SetData()
+	public void SetData(Transform parent = null)
 	{
+		transform.SetParent(parent);
+		gameObject.SetActive(true);
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
 		trans = transform;
 		m_target3 = CentralTower.instance;
-	}
 
-	void Start()
-	{
-		SetData();
 		InitMove();
 	}
 
@@ -159,11 +157,11 @@ public class Enemy : MonoBehaviour
 	float CONST_CHECKTIME = 0.5f;
 	void SearchPlayer()
 	{
-		if (Time.time < checkTime) return;
+		if (Time.time < checkTime) return; 
+		if (m_target1) return;
+		if (m_target1 == null && m_target2) return;
 		checkTime = Time.time + CONST_CHECKTIME;
 
-		if (m_target1)
-			return;
 
 		Collider[] collider = Physics.OverlapSphere(trans.position, m_EnemyData.searchRadius, layerMask);
 
