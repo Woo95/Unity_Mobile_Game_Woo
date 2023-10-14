@@ -14,6 +14,8 @@ public class Guardian : MonoBehaviour
         m_GuardianType = guardianType;
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
         trans = transform;
+
+        UnitSelections.Instance.unitList.Add(this.gameObject);
 	}
 
     void Start()
@@ -24,5 +26,10 @@ public class Guardian : MonoBehaviour
     void Update()
     {
         m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
+    }
+
+    private void OnDestroy()
+    {
+        UnitSelections.Instance.unitList.Remove(this.gameObject);
     }
 }
