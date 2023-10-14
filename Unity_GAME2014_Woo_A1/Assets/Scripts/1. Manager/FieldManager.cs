@@ -7,7 +7,7 @@ public class FieldManager : MonoBehaviour
 	public List<PickUp> pickUpPrefabList = new List<PickUp>();
 	public List<PickUp> pickUpSpawnedList = new List<PickUp>();
 
-	public int SPAWN_OBJECT_MAX = 100;
+	private int SPAWN_OBJECT_MAX = 100;
 
 	public Transform topLeft, bottomRight;
 	Vector3 p00, p01, p11, p10;
@@ -21,7 +21,7 @@ public class FieldManager : MonoBehaviour
 
 		pickUpSpawnedList.Clear();
 
-		PlaceObject(SPAWN_OBJECT_MAX);
+		PlaceObject(SPAWN_OBJECT_MAX + 200);
 	}
 
 	public LayerMask layer;
