@@ -200,7 +200,7 @@ public class EnemyData
 	public float ATTACK_TIME;
 
 	/*
-	case eEnemyType.SLIME:
+	eEnemyType.SLIME:
 				m_health = 50.0f;
 				m_speed = 0.25f;
 				m_damage = 1.0f;
@@ -209,8 +209,7 @@ public class EnemyData
 				m_releaseRadius = 4.0f;
 				m_attackRadius = 0.5f;
 				m_ATTACK_TIME = 1.5f;
-				break;
-			case eEnemyType.BEE:
+	eEnemyType.BEE:
 				m_health = 70.0f;
 				m_speed = 1.0f;
 				m_damage = 3.0f;
@@ -219,8 +218,7 @@ public class EnemyData
 				m_releaseRadius = 9.0f;
 				m_attackRadius = 0.7f;
 				m_ATTACK_TIME = 2.5f;
-				break;
-			case eEnemyType.GOBLIN:
+	eEnemyType.GOBLIN:
 				m_health = 120.0f;
 				m_speed = 0.5f;
 				m_damage = 5.0f;
@@ -229,8 +227,7 @@ public class EnemyData
 				m_releaseRadius = 6.0f;
 				m_attackRadius = 0.6f;
 				m_ATTACK_TIME = 2.0f;
-				break;
-			case eEnemyType.WOLF:
+	eEnemyType.WOLF:
 				m_health = 90.0f;
 				m_speed = 0.75f;
 				m_damage = 4.0f;
@@ -239,6 +236,5 @@ public class EnemyData
 				m_releaseRadius = 8.0f;
 				m_attackRadius = 0.8f;
 				m_ATTACK_TIME = 2.0f;
-				break;
 	 */
 }

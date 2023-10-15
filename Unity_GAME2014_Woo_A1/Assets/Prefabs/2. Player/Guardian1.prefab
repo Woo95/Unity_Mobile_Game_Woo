@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646214707363943053}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.53, y: -1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,7 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3eef9315df55ba4583e18995849ec76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GuardianType: 0
+  m_GuardianData:
+    guardianType: 0
+    health: 100
+    speed: 5
+    damage: 20
+    cost: 50
+    searchRadius: 10
+    releaseRadius: 5
+    attackRadius: 2
+    ATTACK_TIME: 1.5
 --- !u!65 &7938659296125311005
 BoxCollider:
   m_ObjectHideFlags: 0

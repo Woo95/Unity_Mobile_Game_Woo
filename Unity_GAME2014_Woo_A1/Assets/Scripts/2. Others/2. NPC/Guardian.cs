@@ -5,26 +5,25 @@ using UnityEngine;
 public enum eGuardianType { G1, G2, G3 }
 public class Guardian : MonoBehaviour
 {
-    public eGuardianType m_GuardianType;
+    public GuardianData m_GuardianData;
     SpriteRenderer m_SpriteRenderer;
 	Transform trans;
 
-	public void SetData(eGuardianType guardianType)
+	public void SetData()
     {
         gameObject.SetActive(true);
-        m_GuardianType = guardianType;
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
         trans = transform;
 
         //UnitSelections.Instance.unitList.Add(this.gameObject);
 	}
 
-    void Start() // ¼öÁ¤
-    {
-        SetData(m_GuardianType);
+	private void Start()
+	{
+		SetData();
 	}
 
-    void Update()
+	void Update()
     {
         m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
     }
@@ -33,4 +32,19 @@ public class Guardian : MonoBehaviour
     //{
     //    UnitSelections.Instance.unitList.Remove(this.gameObject);
     //}
+}
+
+[System.Serializable]
+public class GuardianData
+{
+    public eGuardianType guardianType;
+
+	public float    health;
+	public float    speed;
+	public float    damage;
+	public int      cost;
+	public float    searchRadius;
+	public float    releaseRadius;
+	public float    attackRadius;
+	public float    ATTACK_TIME;
 }
