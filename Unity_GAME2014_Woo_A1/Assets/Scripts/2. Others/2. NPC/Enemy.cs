@@ -163,18 +163,18 @@ public class Enemy : MonoBehaviour
 		checkTime = Time.time + CONST_CHECKTIME;
 
 
-		Collider[] collider = Physics.OverlapSphere(trans.position, m_EnemyData.searchRadius, layerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(trans.position, m_EnemyData.searchRadius, layerMask);
 
-		for (int i = 0; i < collider.Length; i++)
+		for (int i = 0; i < colliders.Length; i++)
 		{
-			Guardian target1 = collider[i].GetComponent<Guardian>();
+			Guardian target1 = colliders[i].GetComponent<Guardian>();
 			if (target1 != null)
 			{
 				m_target1 = target1;
 				return;
 			}
 
-			GuardianTower target2 = collider[i].GetComponent<GuardianTower>();
+			GuardianTower target2 = colliders[i].GetComponent<GuardianTower>();
 			if (target2 != null)
 			{
 				m_target2 = target2;

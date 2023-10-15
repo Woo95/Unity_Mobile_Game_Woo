@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 1224021206946219459}
   - component: {fileID: 3557312119055194078}
   - component: {fileID: 3401579518616695732}
-  - component: {fileID: 4776334462296831228}
+  - component: {fileID: 4452069206663457390}
   m_Layer: 7
   m_Name: GuardianTower
   m_TagString: Untagged
@@ -563,21 +563,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714477006fba8984b84b6061681a3ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardianPrefabs:
-  - {fileID: 7204411482613173119, guid: 89bf809b25735b54f861ef69ee69bb8c, type: 3}
-  - {fileID: 2536318078026747266, guid: 5f6c1b0a2fb45bf4182cae62155f20aa, type: 3}
-  - {fileID: 8402792684858049529, guid: 7ab3a73800569fa4d901f429ee934da2, type: 3}
+  guardianPrefabList: []
   m_PurchaseCanvas: {fileID: 5968070799687292718}
   m_BuyGold: 0
   m_GoldExp: 0
   m_Health: 0
---- !u!65 &4776334462296831228
-BoxCollider:
+--- !u!61 &4452069206663457390
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3944685884302152608}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -586,12 +585,34 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 3, z: 0.2}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.1875, y: 4.0625}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &4876631035522577537
 GameObject:
   m_ObjectHideFlags: 0

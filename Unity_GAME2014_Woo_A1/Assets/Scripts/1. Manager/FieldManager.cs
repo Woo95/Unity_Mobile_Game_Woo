@@ -28,7 +28,7 @@ public class FieldManager : MonoBehaviour
 	Vector3 boxSize = new Vector3(1.0f, 1.2f, 0.1f);
 	public void PlaceObject(int generateAmount)
 	{
-		Collider[] colliderList;
+		Collider2D[] colliderList;
 
 		PickUp pickUp;
 		Vector3 pos = Vector3.zero;
@@ -42,7 +42,7 @@ public class FieldManager : MonoBehaviour
 			pos = Vector3Int.FloorToInt(pos * 2.0f);	// to around decimal by 0.5
 			pos *= 0.5f;
 			
-			colliderList = Physics.OverlapBox(pos, boxSize, rotation, layer);
+            colliderList = Physics2D.OverlapBoxAll(pos, boxSize, 0, layer);
 			if (colliderList != null && colliderList.Length >= 1)
 			{
 				i--;
