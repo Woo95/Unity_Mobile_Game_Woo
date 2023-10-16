@@ -22,13 +22,15 @@ public class Tower : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-		if (EventSystem.current.IsPointerOverGameObject())
-			return;
-
 		if (m_PurchaseCanvas.gameObject.activeInHierarchy)
 			m_PurchaseCanvas.gameObject.SetActive(false);
 		else
 			m_PurchaseCanvas.gameObject.SetActive(true);
+	}
+
+	public void Invoke_PurchaseUIClose()
+	{
+		m_PurchaseCanvas.gameObject.SetActive(false);
 	}
 
 	public void Invoke_PurchaseG1()
