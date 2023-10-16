@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
@@ -22,6 +22,9 @@ public class Tower : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		if (EventSystem.current.IsPointerOverGameObject())
+			return;
+
 		if (m_PurchaseCanvas.gameObject.activeInHierarchy)
 			m_PurchaseCanvas.gameObject.SetActive(false);
 		else

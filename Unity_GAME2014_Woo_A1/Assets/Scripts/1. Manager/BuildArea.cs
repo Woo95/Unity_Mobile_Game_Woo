@@ -6,17 +6,17 @@ public class BuildArea : MonoBehaviour
 {
     public bool m_Collision;
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
 		m_Collision = true;
 	}
 
-	private void OnTriggerStay(Collider other)
+	private void OnTriggerStay2D(Collider2D other)
 	{
 		m_Collision = true;
 	}
 
-	private void OnTriggerExit(Collider other)
+	private void OnTriggerExit2D(Collider2D other)
 	{
 		m_Collision = false;
 	}
