@@ -9,18 +9,23 @@ public class Guardian : MonoBehaviour
     SpriteRenderer m_SpriteRenderer;
 	Transform trans;
 
+	public bool m_isSelected;
+
 	public void SetData()
     {
         gameObject.SetActive(true);
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
         trans = transform;
+		m_isSelected = false;
 
-        UnitSelections.Instance.unitList.Add(this.gameObject);
+		Debug.Log("Add");
+        //UnitSelections.Instance.unitList.Add(this.gameObject);
 	}
 
-	private void Start()
+	public void SetSelect(bool isSelected)
 	{
-		SetData();
+		m_isSelected = isSelected;
+		m_SpriteRenderer.color = m_isSelected ? Color.gray : Color.white;
 	}
 
 	void Update()
@@ -28,9 +33,15 @@ public class Guardian : MonoBehaviour
         m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
     }
 
+	public void OnMouseDown()
+	{
+		if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
+		GrabManager.instance.ClickSelect(gameObject);
+	}
+
 	private void OnDestroy()
 	{
-		UnitSelections.Instance.unitList.Remove(this.gameObject);
+		GrabManager.instance.Deselect(gameObject);
 	}
 }
 

@@ -75,9 +75,9 @@ public class Tower : MonoBehaviour
 			float xOffset = Random.Range(-2.0f, 2.0f);
 			float yOffset = Random.Range(3.0f, 4.0f);
 			Vector3 spawnPosition = m_CastleTrans.position + new Vector3(xOffset, -yOffset, 0);
-
-			Instantiate(guardianToBuy, spawnPosition, Quaternion.identity);
-
+			
+			Guardian purchasedGuardian = Instantiate(guardianToBuy, spawnPosition, Quaternion.identity);
+			purchasedGuardian.SetData();
 
 			m_PurchaseCanvas.gameObject.SetActive(false);
 		}

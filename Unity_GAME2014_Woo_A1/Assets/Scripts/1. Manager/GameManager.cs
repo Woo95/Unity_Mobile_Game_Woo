@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 	public EnemyManager m_EnemyManager;
 	public FieldManager m_FieldManager;
 	public CameraManager m_CameraManager;
+	public GrabManager m_GrabManager;
 	public UIPlayScene m_UIPlayScene;
 
 	void Start()
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 		m_EnemyManager.Init();
 		m_FieldManager.Init();
 		m_CameraManager.Init();
+		m_GrabManager.Init();
 
 		SoundManager.instance.PlayBGM("GamePlayBGM", 0.25f);
 	}
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
 		m_FieldManager.PlaceObject();
 		m_EnemyManager.Run();
 		m_CameraManager.Play();
+		m_GrabManager.Play();
 
 		if (CentralTower.instance == null)
 		{
