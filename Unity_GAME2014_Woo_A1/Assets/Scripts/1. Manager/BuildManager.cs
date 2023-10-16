@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
@@ -38,7 +39,7 @@ public class BuildManager : MonoBehaviour
 
 		m_BuildArea.transform.position = worldPosition;
 
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
 		{
 			if (m_BuildArea.m_Collision == false)
 			{
