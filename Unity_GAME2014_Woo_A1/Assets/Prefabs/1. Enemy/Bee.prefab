@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7822549109376937336}
   - component: {fileID: 758217801878545861}
   - component: {fileID: -3455754195933357555}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}

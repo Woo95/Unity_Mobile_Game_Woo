@@ -14,7 +14,6 @@ public class CameraManager : MonoBehaviour
 	public Transform topLeft, bottomRight;
 	Vector3 p00, p01, p11, p10;
 
-
 	public void Init()
 	{
 		camera = Camera.main;

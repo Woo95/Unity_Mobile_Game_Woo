@@ -16,14 +16,8 @@ public class UnitSelections : MonoBehaviour
 
 	public void ClickSelect(GameObject unitToAdd)
 	{
-		DeselectAll();
-		unitSelected.Add(unitToAdd);
-		unitToAdd.GetComponent<SpriteRenderer>().color = Color.gray;
-	}
-
-	public void ShiftClickSelect(GameObject unitToAdd)
-	{
-		if(!unitSelected.Contains(unitToAdd))
+		Debug.Log("Clicked");
+		if (!unitSelected.Contains(unitToAdd))
 		{
 			unitSelected.Add(unitToAdd);
 			unitToAdd.GetComponent<SpriteRenderer>().color = Color.gray;
@@ -32,15 +26,6 @@ public class UnitSelections : MonoBehaviour
 		{
 			unitSelected.Remove(unitToAdd);
 			unitToAdd.GetComponent<SpriteRenderer>().color = Color.white;
-		}
-	}
-
-	public void DragSelect(GameObject unitToAdd)
-	{
-		if(!unitSelected.Contains(unitToAdd))
-		{
-			unitSelected.Add(unitToAdd);
-			unitToAdd.GetComponent<SpriteRenderer>().color = Color.gray;
 		}
 	}
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7034157381725998894}
   - component: {fileID: 8419437119813382928}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TreeShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 234472192020275236}
   - component: {fileID: 1741316848180229199}
   - component: {fileID: 3009573451190215520}
-  - component: {fileID: 9083399171613695529}
-  m_Layer: 0
+  - component: {fileID: 1498590599600623655}
+  m_Layer: 10
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1483494583
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 50c207430c540d448947766deec77885, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -183,11 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702252032bb2cc4e9f68a549d098087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchCount: 0
+  touchCount: 5
   type: 1
   m_SubSpriteRenderer: {fileID: 8419437119813382928}
   nextTree: {fileID: 5282411473977414253, guid: ee72116c860516e4ba9414a5258336a1, type: 3}
---- !u!61 &9083399171613695529
+--- !u!61 &1498590599600623655
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

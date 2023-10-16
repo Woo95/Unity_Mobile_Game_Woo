@@ -2,43 +2,38 @@ using UnityEngine;
 
 public class UnitClick : MonoBehaviour
 {
-    private Camera myCam;
+	private Camera myCam;
 
-    public LayerMask guardians;
-    public LayerMask backGroud;
-    // Start is called before the first frame update
-    void Start()
-    {
-        myCam = Camera.main;
-    }
+	public LayerMask guardians;
+	public LayerMask others;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            RaycastHit hit;
-            Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
+	void Start()
+	{
+		myCam = Camera.main;
+	}
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, guardians))
-            {
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    UnitSelections.Instance.ShiftClickSelect(hit.collider.gameObject);
-                }
-				else
+
+	void Update()
+	{
+		if (Input.GetMouseButton(0)) 
+		{
+			Vector2 mousePos = myCam.ScreenToWorldPoint(Input.mousePosition);
+
+			RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, guardians);
+
+			if (hit.collider != null)
+			{
+				UnitSelections.Instance.ClickSelect(hit.collider.gameObject);
+			}
+			else
+			{
+				// No guardian clicked, check for background click
+				hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, others);
+				if (hit.collider != null)
 				{
-					UnitSelections.Instance.ClickSelect(hit.collider.gameObject);
+					UnitSelections.Instance.DeselectAll();
 				}
 			}
-            
-            else
-            {
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    UnitSelections.Instance.DeselectAll();
-                }
-            }
-        }
-    }
+		}
+	}
 }

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5107737073356018707}
   - component: {fileID: 5913465575865462769}
   - component: {fileID: 8340488206516977140}
-  - component: {fileID: 4081303593761667898}
-  m_Layer: 0
+  - component: {fileID: 5642142260075317566}
+  m_Layer: 10
   m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1483494583
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: da9cdb25ca82a9d43bbcf4a4e7cd0c20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702252032bb2cc4e9f68a549d098087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchCount: 0
+  touchCount: 3
   type: 1
   m_SubSpriteRenderer: {fileID: 0}
   nextTree: {fileID: 0}
---- !u!61 &4081303593761667898
+--- !u!61 &5642142260075317566
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
