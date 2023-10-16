@@ -44,7 +44,6 @@ public class GuardianData
 	public float    damage;
 	public int      cost;
 	public float    searchRadius;
-	public float    releaseRadius;
 	public float    attackRadius;
 	public float    ATTACK_TIME;
 }
