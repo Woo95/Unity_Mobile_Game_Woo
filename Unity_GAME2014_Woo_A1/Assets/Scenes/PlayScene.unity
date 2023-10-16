@@ -29588,7 +29588,7 @@ MonoBehaviour:
   enemyManagerState: 0
   EACH_WAVE_TIME: 60
   END_WAVE_TIME: 60
-  SPAWN_INTERVAL: 2
+  SPAWN_INTERVAL: 10
   nextSpawnTime: 0
   currentWave: 0
   enemyPrefabList:

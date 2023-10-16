@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour
 	
 	public float EACH_WAVE_TIME = 60.0f;
 	public float END_WAVE_TIME = 600.0f;
-	public float SPAWN_INTERVAL = 2.0f;
+	public float SPAWN_INTERVAL = 10.0f;
 
 	public float nextSpawnTime;
 	public int currentWave;

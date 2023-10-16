@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour
 			CentralTower.instance.m_Gold -= guardianCost;
 
 			float xOffset = Random.Range(-2.0f, 2.0f);
-			float yOffset = Random.Range(1.0f, 3.0f);
+			float yOffset = Random.Range(3.0f, 4.0f);
 			Vector3 spawnPosition = m_CastleTrans.position + new Vector3(xOffset, -yOffset, 0);
 
 			Instantiate(guardianToBuy, spawnPosition, Quaternion.identity);
