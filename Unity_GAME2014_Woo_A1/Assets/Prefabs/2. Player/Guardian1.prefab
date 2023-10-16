@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8935156534519429672}
   - component: {fileID: 2507670888848780365}
   - component: {fileID: 7204411482613173119}
-  - component: {fileID: 7001273293237197168}
-  - component: {fileID: 5896518202317835251}
+  - component: {fileID: 311381893206503317}
+  - component: {fileID: -1980752079629143576}
   m_Layer: 6
   m_Name: Guardian1
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 646214707363943053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53, y: -1.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109,7 +109,7 @@ MonoBehaviour:
     releaseRadius: 5
     attackRadius: 2
     ATTACK_TIME: 1.5
---- !u!61 &7001273293237197168
+--- !u!61 &311381893206503317
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.9}
@@ -154,7 +154,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.9}
   m_EdgeRadius: 0
---- !u!50 &5896518202317835251
+--- !u!50 &-1980752079629143576
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -180,4 +180,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0

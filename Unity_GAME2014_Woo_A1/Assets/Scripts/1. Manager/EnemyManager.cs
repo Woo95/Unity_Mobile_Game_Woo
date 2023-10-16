@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
 	/*	p01		p11
 	 	p00		p10
 	*/
-	private void Start()
+	public void Init()
 	{
 		p01 = topLeft.position;
 		p10 = bottomRight.position;
@@ -91,7 +91,7 @@ public class EnemyManager : MonoBehaviour
 	}
 	#endregion
 
-	void Update()
+	public void Run()
 	{
 		switch (enemyManagerState)
 		{

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 	private eTypeResult typeResult = eTypeResult.None;
 	public eGameState gameState = eGameState.None;
 	public BuildManager m_BuildManager;
+	public EnemyManager m_EnemyManager;
 	public FieldManager m_FieldManager;
 	public CameraManager m_CameraManager;
 	public UIPlayScene m_UIPlayScene;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
 		gameState = eGameState.Play;
 
 		m_BuildManager.Init();
+		m_EnemyManager.Init();
 		m_FieldManager.Init();
 		m_CameraManager.Init();
 
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
 
 		m_BuildManager.PlaceTower();
 		m_FieldManager.PlaceObject();
+		m_EnemyManager.Run();
 		m_CameraManager.Play();
 
 		if (CentralTower.instance == null)
