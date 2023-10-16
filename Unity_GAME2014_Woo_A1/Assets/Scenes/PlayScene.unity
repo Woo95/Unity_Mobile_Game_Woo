@@ -29302,9 +29302,6 @@ MonoBehaviour:
   others:
     serializedVersion: 2
     m_Bits: 1975
-  moveTo:
-    serializedVersion: 2
-    m_Bits: 8
   unitList: []
   unitSelected: []
 --- !u!1 &1628467431
