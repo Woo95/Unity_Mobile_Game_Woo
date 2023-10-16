@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702252032bb2cc4e9f68a549d098087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchCount: 1
+  touchCount: 2
   type: 1
   m_SubSpriteRenderer: {fileID: 0}
   nextTree: {fileID: 0}

@@ -42,6 +42,7 @@ public class Guardian : MonoBehaviour
 	private void OnDestroy()
 	{
 		GrabManager.instance.Deselect(gameObject);
+		GrabManager.instance.unitList.Remove(gameObject);
 	}
 }
 

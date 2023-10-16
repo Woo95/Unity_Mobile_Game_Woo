@@ -78,6 +78,7 @@ public class Tower : MonoBehaviour
 			
 			Guardian purchasedGuardian = Instantiate(guardianToBuy, spawnPosition, Quaternion.identity);
 			purchasedGuardian.SetData();
+			GrabManager.instance.unitList.Add(purchasedGuardian.gameObject);
 
 			m_PurchaseCanvas.gameObject.SetActive(false);
 		}

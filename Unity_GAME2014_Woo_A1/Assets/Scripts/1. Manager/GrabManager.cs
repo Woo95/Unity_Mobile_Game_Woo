@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GrabManager : MonoBehaviour
 {
@@ -65,13 +66,21 @@ public class GrabManager : MonoBehaviour
 
 	public void Play()
 	{
-		if (Input.GetMouseButton(0))
+		if (EventSystem.current.IsPointerOverGameObject())
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				DeselectAll();
+			}
+			return;
+		}
+
+		if (Input.GetMouseButtonDown(0))
 		{
 			Vector2 mousePos = myCam.ScreenToWorldPoint(Input.mousePosition);
 
-			// No guardian clicked, check for background click
-			RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, others);
-			if (hit.collider != null)
+			RaycastHit2D othersHit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, others);
+			if (othersHit.collider != null)
 			{
 				DeselectAll();
 			}
