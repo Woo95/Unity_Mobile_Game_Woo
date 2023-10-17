@@ -4,7 +4,6 @@ public class PlayerBullet : Bullet
 {
 	protected override void CustomizeBullet()
 	{
-		// Customize player bullet here
 		SetDirection(Vector3.up);
 		BulletType = BulletType.PLAYERBULLET;
 		SetSpeed(3.0f);

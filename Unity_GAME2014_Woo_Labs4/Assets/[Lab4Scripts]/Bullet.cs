@@ -49,7 +49,6 @@ public abstract class Bullet : MonoBehaviour
 
 	protected abstract void CustomizeBullet();
 
-	// Update is called once per frame
 	void Update()
 	{
 		transform.position += _direction * _speed * Time.deltaTime;
