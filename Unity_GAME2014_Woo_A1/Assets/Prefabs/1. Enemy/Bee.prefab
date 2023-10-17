@@ -142,6 +142,9 @@ MonoBehaviour:
     ATTACK_TIME: 2.5
   centerTrans: {fileID: 2279896128527247979}
   enemyState: 0
+  m_Target1: {fileID: 0}
+  m_Target2: {fileID: 0}
+  m_Target3: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 448
@@ -179,4 +182,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.65}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.02

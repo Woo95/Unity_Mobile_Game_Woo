@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2818153853148046797}
   - component: {fileID: 6879887995559834074}
   - component: {fileID: 5282411473977414253}
-  - component: {fileID: -5517030467406886476}
+  - component: {fileID: 1343327739916985017}
   m_Layer: 10
   m_Name: TreeChopped
   m_TagString: Untagged
@@ -187,8 +187,8 @@ MonoBehaviour:
   type: 1
   m_SubSpriteRenderer: {fileID: 8093027328616463473}
   nextTree: {fileID: 0}
---- !u!61 &-5517030467406886476
-BoxCollider2D:
+--- !u!70 &1343327739916985017
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -219,16 +219,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.40625}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.90625, y: 0.8125}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.90625, y: 0.8125}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0.4}
+  m_Size: {x: 0.85, y: 0.76}
+  m_Direction: 0

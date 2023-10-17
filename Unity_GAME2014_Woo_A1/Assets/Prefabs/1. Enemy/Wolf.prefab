@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2049807436635099374}
   - component: {fileID: 836569067186836132}
   - component: {fileID: 282599509454591182}
+  - component: {fileID: -4171480545080717448}
   m_Layer: 9
   m_Name: Wolf
   m_TagString: Untagged
@@ -111,6 +112,9 @@ MonoBehaviour:
     ATTACK_TIME: 2
   centerTrans: {fileID: 15041078825978291}
   enemyState: 0
+  m_Target1: {fileID: 0}
+  m_Target2: {fileID: 0}
+  m_Target3: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 448
@@ -148,7 +152,34 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.65}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.02
+--- !u!50 &-4171480545080717448
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077023185362840684}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &8589185862004692375
 GameObject:
   m_ObjectHideFlags: 0

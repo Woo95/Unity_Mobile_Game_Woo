@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 124618759288824975}
   - component: {fileID: 7123806882970222275}
   - component: {fileID: 531999611590422636}
-  - component: {fileID: 8262196079139648549}
+  - component: {fileID: 5686389691048821046}
   m_Layer: 10
   m_Name: Bush
   m_TagString: Untagged
@@ -103,8 +103,8 @@ MonoBehaviour:
   type: 1
   m_SubSpriteRenderer: {fileID: 0}
   nextTree: {fileID: 0}
---- !u!61 &8262196079139648549
-BoxCollider2D:
+--- !u!70 &5686389691048821046
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,19 +135,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.39}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.21875, y: 0.78125}
-    newSize: {x: 1.15625, y: 0.8125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.21875, y: 0.78125}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0.390625}
+  m_Size: {x: 1.15, y: 0.75}
+  m_Direction: 1
 --- !u!1 &6695035837422775614
 GameObject:
   m_ObjectHideFlags: 0
