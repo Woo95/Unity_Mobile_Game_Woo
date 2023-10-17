@@ -75,7 +75,7 @@ public class BulletManager : MonoBehaviour
                 //give enemy bullet
                 if(_enemyBulletPool.Count <= 1)
                 {
-                    _playerBulletPool.Enqueue(_factory.CreateBullet(BulletType.ENEMYBULLET));
+					_enemyBulletPool.Enqueue(_factory.CreateBullet(BulletType.ENEMYBULLET));
                 }
 
                 bullet = _enemyBulletPool.Dequeue();

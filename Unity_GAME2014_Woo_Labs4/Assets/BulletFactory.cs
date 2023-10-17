@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class BulletFactory : MonoBehaviour
 {
-    GameObject _bulletPrefab;
+	public GameObject _bulletPool;
+	GameObject _bulletPrefab;
     [SerializeField]
     Sprite _playerBulletSprite, _enemyBulletSprite;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public GameObject CreateBullet(BulletType type)
     {
-
-        GameObject bullet = Instantiate(_bulletPrefab);
+        GameObject bullet = Instantiate(_bulletPrefab, _bulletPool.transform);
         bullet.SetActive(false);
 
         switch(type)
