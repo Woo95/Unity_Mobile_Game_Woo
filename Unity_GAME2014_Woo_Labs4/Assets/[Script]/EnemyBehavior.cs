@@ -116,7 +116,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if(collision.CompareTag("Bullet"))
         {
-            if(collision.GetComponent<BulletBehavior>()._type == BulletType.PLAYERBULLET)
+            if(collision.GetComponent<Bullet>().BulletType == BulletType.PLAYERBULLET)
             {
                 Debug.Log("Enemy got hit");
                 _gameController.ChangeScore(7);

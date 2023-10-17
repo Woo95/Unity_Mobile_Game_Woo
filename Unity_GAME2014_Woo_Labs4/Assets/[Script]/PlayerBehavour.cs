@@ -124,7 +124,7 @@ public class PlayerBehavour : MonoBehaviour
     {
         if(collision.CompareTag("Bullet"))
         {
-            if(collision.GetComponent<BulletBehavior>()._type == BulletType.ENEMYBULLET)
+            if(collision.GetComponent<Bullet>().BulletType == BulletType.ENEMYBULLET)
             {
                 _gameController.ChangeScore(-7);
                 _bulletManager.ReturnBullet(collision.gameObject);
