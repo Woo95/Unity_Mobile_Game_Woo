@@ -774,68 +774,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1948681584
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.30306596
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0067290217
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480340262078660315, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064718228689109984, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_Name
-      value: Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064718228689109984, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 758018712928932726, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
 --- !u!1 &1975184581
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,8 +784,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1975184582}
   - component: {fileID: 1975184585}
-  - component: {fileID: 1975184584}
-  - component: {fileID: 1975184583}
   m_Layer: 0
   m_Name: BulletFactory
   m_TagString: Untagged
@@ -870,32 +806,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1975184583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975184581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb1aeefdf016344a9b105a8dc51d57b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerBulletSprite: {fileID: 21300000, guid: c28eece5a1a96a240b518ae00ff8140e, type: 3}
---- !u!114 &1975184584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975184581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d56b3d294aea8094e8cc36b6ae73845a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyBulletSprite: {fileID: 21300000, guid: 317847539d2cde74d9b3b384d773a55a, type: 3}
 --- !u!114 &1975184585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,7 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797c904d073d10649ac8ed744bcc215f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 6064718228689109984, guid: 2bc8b293ddd85e6478b4435d88031338, type: 3}
+  _PlayerBulletPrefab: {fileID: 8546455592825110181, guid: d58ce7a568e13b146970f81730e539c0, type: 3}
+  _EnemyBulletPrefab: {fileID: 3107576208156796442, guid: 44a4541a0ba85344288932f0dbecf9ee, type: 3}
 --- !u!1 &2053158992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1089,5 @@ SceneRoots:
   - {fileID: 1025538338}
   - {fileID: 1975184582}
   - {fileID: 2053158994}
-  - {fileID: 1948681584}
   - {fileID: 8436140191583117607}
   - {fileID: 1645942762}

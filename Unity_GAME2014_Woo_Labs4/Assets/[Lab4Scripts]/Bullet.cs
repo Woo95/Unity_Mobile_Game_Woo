@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
-	protected Sprite _sprite;
 	protected Vector3 _direction;
 	protected BulletType _type;
 	protected float _speed;
@@ -25,12 +24,6 @@ public abstract class Bullet : MonoBehaviour
 	public void Deactivate()
 	{
 		gameObject.SetActive(false);
-	}
-
-	public void SetSprite(Sprite sprite)
-	{
-		_sprite = sprite;
-		GetComponent<SpriteRenderer>().sprite = _sprite;
 	}
 
 	public void SetDirection(Vector3 dir)

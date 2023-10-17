@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class BulletFactory : MonoBehaviour
 {
-	public GameObject _bulletPrefab;
+	public PlayerBullet _PlayerBulletPrefab;
+	public EnemyBullet _EnemyBulletPrefab;
 	public Bullet CreateBullet(BulletType type)
 	{
 		Bullet bullet = null;
@@ -11,10 +13,10 @@ public class BulletFactory : MonoBehaviour
 		switch (type)
 		{
 			case BulletType.PLAYERBULLET:
-				bullet = new PlayerBullet();
+				bullet = Instantiate(_PlayerBulletPrefab);
 				break;
 			case BulletType.ENEMYBULLET:
-				bullet = new EnemyBullet();
+				bullet = Instantiate(_EnemyBulletPrefab);
 				break;
 		}
 
