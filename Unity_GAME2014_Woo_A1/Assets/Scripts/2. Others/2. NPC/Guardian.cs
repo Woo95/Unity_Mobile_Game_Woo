@@ -17,12 +17,16 @@ public class Guardian : MonoBehaviour
 
 	private float m_damaged;
 
+	Animator animator;
+
 	public void SetData(Transform parent = null)
     {
 		transform.SetParent(parent);
         gameObject.SetActive(true);
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
         trans = transform;
+
+		animator = GetComponent<Animator>();
 
 		InitIdle();
 	}
@@ -32,6 +36,8 @@ public class Guardian : MonoBehaviour
 	{
 		guardianState = eGuardianState.IDLE;
 		m_Target = null;
+
+		animator.SetBool("Move", false);
 	}
 	public void ModifyIdle()
 	{
@@ -48,6 +54,8 @@ public class Guardian : MonoBehaviour
 	public void InitChase()
 	{
 		guardianState = eGuardianState.CHASE;
+
+		animator.SetBool("Move", true);
 	}
 	public void ModifyChase()
 	{
@@ -98,7 +106,8 @@ public class Guardian : MonoBehaviour
 		if (Time.time > attackTrackTime)
 		{
 			attackTrackTime = Time.time + m_GuardianData.ATTACK_TIME;
-			m_Target.TakeDamage(m_GuardianData.damage);
+
+			animator.SetTrigger("Attack");
 		}
 	}
 	#endregion
@@ -181,6 +190,17 @@ public class Guardian : MonoBehaviour
 		Gizmos2.DrawCircle2(centerTrans.position, Color.yellow, m_GuardianData.searchRadius);
 		Gizmos2.DrawCircle2(centerTrans.position, Color.red, m_GuardianData.attackRadius);
 	}
+
+
+	#region ANIMATOR
+	public void Animator_Attack()
+	{
+		animator.SetBool("Move", false);
+
+		m_Target.TakeDamage(m_GuardianData.damage);
+	}
+	#endregion
+
 }
 
 [System.Serializable]

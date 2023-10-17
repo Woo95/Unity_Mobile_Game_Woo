@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7204411482613173119}
   - component: {fileID: -1980752079629143576}
   - component: {fileID: 4448115990895460764}
+  - component: {fileID: 8487175517644646695}
   m_Layer: 6
   m_Name: Guardian1
   m_TagString: Untagged
@@ -177,6 +178,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.55}
   m_Size: {x: 0.45, y: 0.2}
   m_Direction: 1
+--- !u!95 &8487175517644646695
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646214707363943053}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f332cdf5a8deca246bd429d8734882a3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1838269462583875578
 GameObject:
   m_ObjectHideFlags: 0
