@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enemy;
 
 public enum eGuardianType { G1, G2, G3 }
 public class Guardian : MonoBehaviour
@@ -9,40 +10,68 @@ public class Guardian : MonoBehaviour
     SpriteRenderer m_SpriteRenderer;
 	Transform trans;
 
-	public bool m_isSelected;
+	public enum eGuardianState { NONE, IDLE, CHASE, ATTACK }
+	public eGuardianState guardianState;
 
 	public void SetData()
     {
         gameObject.SetActive(true);
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
         trans = transform;
-		m_isSelected = false;
-
-		Debug.Log("Add");
-        //UnitSelections.Instance.unitList.Add(this.gameObject);
 	}
 
-	public void SetSelect(bool isSelected)
+	#region FSM IDLE
+	public void InitIdle()
 	{
-		m_isSelected = isSelected;
-		m_SpriteRenderer.color = m_isSelected ? Color.gray : Color.white;
+		guardianState = eGuardianState.IDLE;
 	}
+	public void ModifyIdle()
+	{
+	}
+	#endregion
+
+	#region FSM CHASE
+	public void InitChase()
+	{
+		guardianState = eGuardianState.CHASE;
+	}
+	public void ModifyChase()
+	{
+	}
+	#endregion
+
+	#region FSM Attack
+	public void InitAttack()
+	{
+		guardianState = eGuardianState.ATTACK;
+	}
+	public void ModifyAttack()
+	{
+	}
+	#endregion
 
 	void Update()
-    {
-        m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
-    }
-
-	public void OnMouseDown()
 	{
-		if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-		GrabManager.instance.ClickSelect(gameObject);
+		switch (guardianState)
+		{
+			case eGuardianState.IDLE:
+				ModifyIdle();
+				break;
+
+			case eGuardianState.CHASE:
+				ModifyChase();
+				break;
+
+			case eGuardianState.ATTACK:
+				ModifyAttack();
+				break;
+		}
+		m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
 	}
 
 	private void OnDestroy()
 	{
-		GrabManager.instance.Deselect(gameObject);
-		GrabManager.instance.unitList.Remove(gameObject);
+		UnitManager.instance.Remove(this);
 	}
 }
 
