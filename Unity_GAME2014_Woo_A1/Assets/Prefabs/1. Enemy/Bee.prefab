@@ -138,7 +138,7 @@ MonoBehaviour:
     gold: 2
     searchRadius: 6
     releaseRadius: 7
-    attackRadius: 0.5
+    attackRadius: 1.2
     ATTACK_TIME: 2.5
   centerTrans: {fileID: 2279896128527247979}
   enemyState: 0
@@ -177,6 +177,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.65}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.3

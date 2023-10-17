@@ -14,9 +14,9 @@ public class Enemy : MonoBehaviour
 	public eEnemyState enemyState;
 
 
-	private Guardian m_Target1;
-	private GuardianTower m_Target2;
-	private CentralTower m_Target3;
+	public Guardian m_Target1;
+	public GuardianTower m_Target2;
+	public CentralTower m_Target3;
 	public LayerMask layerMask;
 
 	public void SetData(Transform parent = null)
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 		float distance;
 		if (m_Target1 != null)
 		{
-			distance = Vector3.Distance(trans.position, m_Target1.transform.position);
+			distance = Vector3.Distance(centerTrans.position, m_Target1.centerTrans.position);
 			if (distance > m_EnemyData.releaseRadius)
 			{
 				m_Target1 = null;
@@ -61,12 +61,12 @@ public class Enemy : MonoBehaviour
 			else
 			{
 				trans.position =
-				Vector3.MoveTowards(trans.position, m_Target1.transform.position, m_EnemyData.speed * Time.deltaTime);
+				Vector3.MoveTowards(trans.position, m_Target1.centerTrans.position, m_EnemyData.speed * Time.deltaTime);
 			}
 		}
 		else if (m_Target2 != null)
 		{
-			distance = Vector3.Distance(trans.position, m_Target2.transform.position);
+			distance = Vector3.Distance(centerTrans.position, m_Target2.transform.position);
 			if (distance > m_EnemyData.releaseRadius)
 			{
 				m_Target2 = null;
@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
 		}
 		else if (m_Target3 != null)
 		{
-			distance = Vector3.Distance(trans.position, m_Target3.transform.position);
+			distance = Vector3.Distance(centerTrans.position, m_Target3.transform.position);
 			if (distance < m_EnemyData.attackRadius)
 			{
 				isAttacking = true;
@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
 	{
 		if (m_Target1 != null)
 		{
-			if (Vector3.Distance(trans.position, m_Target1.transform.position) > m_EnemyData.attackRadius)
+			if (Vector3.Distance(centerTrans.position, m_Target1.centerTrans.position) > m_EnemyData.attackRadius)
 			{
 				InitMove();
 			}
@@ -145,13 +145,6 @@ public class Enemy : MonoBehaviour
 		m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
 	}
 
-	private void OnDrawGizmos()
-	{
-		Gizmos2.DrawCircle2(centerTrans.position, Color.grey, m_EnemyData.releaseRadius);
-		Gizmos2.DrawCircle2(centerTrans.position, Color.yellow, m_EnemyData.searchRadius);
-		Gizmos2.DrawCircle2(centerTrans.position, Color.red, m_EnemyData.attackRadius);
-	}
-
 	#region SearchPlayer Function
 	float checkTime = 0.0f;
 	float CONST_CHECKTIME = 0.5f;
@@ -183,6 +176,13 @@ public class Enemy : MonoBehaviour
 		}
 	}
 	#endregion
+
+	private void OnDrawGizmos()
+	{
+		Gizmos2.DrawCircle2(centerTrans.position, Color.grey, m_EnemyData.releaseRadius);
+		Gizmos2.DrawCircle2(centerTrans.position, Color.yellow, m_EnemyData.searchRadius);
+		Gizmos2.DrawCircle2(centerTrans.position, Color.red, m_EnemyData.attackRadius);
+	}
 }
 
 [System.Serializable]
@@ -198,43 +198,4 @@ public class EnemyData
 	public float releaseRadius;
 	public float attackRadius;
 	public float ATTACK_TIME;
-
-	/*
-	eEnemyType.SLIME:
-				m_health = 50.0f;
-				m_speed = 0.25f;
-				m_damage = 1.0f;
-				m_gold = 1;
-				m_searchRadius = 3.0f;
-				m_releaseRadius = 4.0f;
-				m_attackRadius = 0.5f;
-				m_ATTACK_TIME = 1.5f;
-	eEnemyType.BEE:
-				m_health = 70.0f;
-				m_speed = 1.0f;
-				m_damage = 3.0f;
-				m_gold = 2;
-				m_searchRadius = 7.0f;
-				m_releaseRadius = 9.0f;
-				m_attackRadius = 0.7f;
-				m_ATTACK_TIME = 2.5f;
-	eEnemyType.GOBLIN:
-				m_health = 120.0f;
-				m_speed = 0.5f;
-				m_damage = 5.0f;
-				m_gold = 3;
-				m_searchRadius = 4.0f;
-				m_releaseRadius = 6.0f;
-				m_attackRadius = 0.6f;
-				m_ATTACK_TIME = 2.0f;
-	eEnemyType.WOLF:
-				m_health = 90.0f;
-				m_speed = 0.75f;
-				m_damage = 4.0f;
-				m_gold = 4;
-				m_searchRadius = 6.0f;
-				m_releaseRadius = 8.0f;
-				m_attackRadius = 0.8f;
-				m_ATTACK_TIME = 2.0f;
-	 */
 }

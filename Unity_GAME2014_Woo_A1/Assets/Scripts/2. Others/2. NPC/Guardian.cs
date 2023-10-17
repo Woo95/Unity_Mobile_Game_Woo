@@ -49,6 +49,24 @@ public class Guardian : MonoBehaviour
 	}
 	public void ModifyChase()
 	{
+		float distance;
+		if (m_Target)
+		{
+			distance = Vector3.Distance(centerTrans.position, m_Target.centerTrans.position);
+			if (distance < m_GuardianData.attackRadius)
+			{
+				InitAttack();
+				return;
+			}
+		}
+		else
+		{
+			InitIdle();
+			return;
+		}
+
+		trans.position = 
+			Vector3.MoveTowards(trans.position, m_Target.centerTrans.position, m_GuardianData.speed * Time.deltaTime);
 	}
 	#endregion
 
@@ -59,6 +77,12 @@ public class Guardian : MonoBehaviour
 	}
 	public void ModifyAttack()
 	{
+		Debug.Log("Attack");
+		if (!m_Target)
+		{
+			InitIdle();
+			return;
+		}
 	}
 	#endregion
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8875355592132444958}
   - component: {fileID: 927454429808156343}
   - component: {fileID: 9032155518556100880}
-  - component: {fileID: -4698102606563812442}
+  - component: {fileID: 9085639820598716289}
   m_Layer: 9
   m_Name: Goblin
   m_TagString: Untagged
@@ -107,21 +107,21 @@ MonoBehaviour:
     gold: 3
     searchRadius: 4
     releaseRadius: 5
-    attackRadius: 0.5
+    attackRadius: 1.2
     ATTACK_TIME: 2
   centerTrans: {fileID: 7054517904949472458}
   enemyState: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 448
---- !u!61 &-4698102606563812442
-BoxCollider2D:
+--- !u!58 &9085639820598716289
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7555103252181198433}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -146,19 +146,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.5, y: 1.5}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0.65}
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.4
 --- !u!1 &7972544956851056460
 GameObject:
   m_ObjectHideFlags: 0
