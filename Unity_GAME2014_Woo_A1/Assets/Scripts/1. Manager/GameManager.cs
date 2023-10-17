@@ -1,16 +1,3 @@
-/*
-FileName: GameManager.cs
-Name: Chaewan Woo
-Student #101354291
-Last Modified: Sept 30
-
-About Script:
-This is a game manager.
-
-Revision History:
-- Added FSM of the game (game manager).
-*/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
