@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public enum eEnemyType { SLIME, BEE, GOBLIN, WOLF }
 public class Enemy : MonoBehaviour
@@ -13,11 +14,12 @@ public class Enemy : MonoBehaviour
 	public enum eEnemyState { NONE, MOVE, ATTACK }
 	public eEnemyState enemyState;
 
-
 	public Guardian m_Target1;
 	public GuardianTower m_Target2;
 	public CentralTower m_Target3;
 	public LayerMask layerMask;
+
+	private float m_damaged;
 
 	public void SetData(Transform parent = null)
 	{
@@ -31,21 +33,12 @@ public class Enemy : MonoBehaviour
 	}
 
 	#region FSM Move
-	bool isAttacking;
 	public void InitMove()
 	{
 		enemyState = eEnemyState.MOVE;
-		isAttacking = false;
 	}
 	public void ModifyMove()
 	{
-		if (isAttacking)
-		{
-			isAttacking = false;
-			InitAttack();
-			return;
-		}
-
 		float distance;
 		if (m_Target1 != null)
 		{
@@ -56,7 +49,8 @@ public class Enemy : MonoBehaviour
 			}
 			else if (distance < m_EnemyData.attackRadius)
 			{
-				isAttacking = true;
+				InitAttack();
+				return;
 			}
 			else
 			{
@@ -73,7 +67,8 @@ public class Enemy : MonoBehaviour
 			}
 			else if (distance < m_EnemyData.attackRadius)
 			{
-				isAttacking = true;
+				InitAttack();
+				return;
 			}
 			else
 			{
@@ -86,7 +81,8 @@ public class Enemy : MonoBehaviour
 			distance = Vector3.Distance(centerTrans.position, m_Target3.transform.position);
 			if (distance < m_EnemyData.attackRadius)
 			{
-				isAttacking = true;
+				InitAttack();
+				return;
 			}
 			else
 			{
@@ -99,9 +95,11 @@ public class Enemy : MonoBehaviour
 	#endregion
 
 	#region FSM Attack
+	float attackTrackTime;
 	public void InitAttack()
 	{
 		enemyState = eEnemyState.ATTACK;
+		attackTrackTime = Time.time;
 	}
 	public void ModifyAttack()
 	{
@@ -110,6 +108,7 @@ public class Enemy : MonoBehaviour
 			if (Vector3.Distance(centerTrans.position, m_Target1.centerTrans.position) > m_EnemyData.attackRadius)
 			{
 				InitMove();
+				return;
 			}
 		}
 		else if (m_Target2 != null)
@@ -117,6 +116,7 @@ public class Enemy : MonoBehaviour
 			if (Vector3.Distance(trans.position, m_Target2.transform.position) > m_EnemyData.attackRadius)
 			{
 				InitMove();
+				return;
 			}
 		}
 		else if (m_Target3 != null)
@@ -124,9 +124,16 @@ public class Enemy : MonoBehaviour
 			if (Vector3.Distance(trans.position, m_Target3.transform.position) > m_EnemyData.attackRadius)
 			{
 				InitMove();
+				return;
 			}
 		}
-		Debug.Log("@@Attack@@");
+		if (Time.time > attackTrackTime)
+		{
+			attackTrackTime = Time.time + m_EnemyData.ATTACK_TIME;
+			if (m_Target1 != null) m_Target1.TakeDamage(m_EnemyData.damage);
+			else if (m_Target2 != null) m_Target2.TakeDamage(m_EnemyData.damage);
+			else if (m_Target3 != null) m_Target3.TakeDamage(m_EnemyData.damage);
+		}
 	}
 	#endregion
 
@@ -142,6 +149,19 @@ public class Enemy : MonoBehaviour
 				ModifyAttack();
 				break;
 		}
+
+		float damage = m_damaged;
+		m_damaged = 0;
+		if (damage > 0)
+		{
+			m_EnemyData.health -= damage;
+			if (m_EnemyData.health <= 0)
+			{
+				Dead();
+				return;
+			}
+		}
+
 		m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
 	}
 
@@ -176,6 +196,17 @@ public class Enemy : MonoBehaviour
 		}
 	}
 	#endregion
+
+	public void TakeDamage(float damaged)
+	{
+		m_damaged += damaged;
+	}
+
+	private void Dead()
+	{
+		Destroy(gameObject);
+		EnemyManager.instance.Remove(this);
+	}
 
 	private void OnDrawGizmos()
 	{

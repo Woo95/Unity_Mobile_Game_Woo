@@ -15,6 +15,8 @@ public class Guardian : MonoBehaviour
 	public Enemy m_Target;
 	public LayerMask layerMask;
 
+	private float m_damaged;
+
 	public void SetData(Transform parent = null)
     {
 		transform.SetParent(parent);
@@ -71,17 +73,32 @@ public class Guardian : MonoBehaviour
 	#endregion
 
 	#region FSM Attack
+	float attackTrackTime;
 	public void InitAttack()
 	{
 		guardianState = eGuardianState.ATTACK;
+		attackTrackTime = Time.time;
 	}
 	public void ModifyAttack()
 	{
-		Debug.Log("Attack");
 		if (!m_Target)
 		{
 			InitIdle();
 			return;
+		}
+		else
+		{
+			float distance = Vector3.Distance(centerTrans.position, m_Target.centerTrans.position);
+			if (distance > m_GuardianData.attackRadius)
+			{
+				InitChase();
+				return;
+			}
+		}
+		if (Time.time > attackTrackTime)
+		{
+			attackTrackTime = Time.time + m_GuardianData.ATTACK_TIME;
+			m_Target.TakeDamage(m_GuardianData.damage);
 		}
 	}
 	#endregion
@@ -102,6 +119,19 @@ public class Guardian : MonoBehaviour
 				ModifyAttack();
 				break;
 		}
+
+		float damage = m_damaged;
+		m_damaged = 0;
+		if (damage > 0)
+		{
+			m_GuardianData.health -= damage;
+			if (m_GuardianData.health <= 0)
+			{
+				Dead();
+				return;
+			}
+		}
+
 		m_SpriteRenderer.sortingOrder = (int)(trans.position.y * -100.0f);
 	}
 
@@ -135,10 +165,15 @@ public class Guardian : MonoBehaviour
 		}
 	}
 	#endregion
+	public void TakeDamage(float damaged)
+	{
+		m_damaged += damaged;
+	}
 
-	private void OnDestroy()
+	private void Dead()
 	{
 		UnitManager.instance.Remove(this);
+		Destroy(gameObject);
 	}
 
 	private void OnDrawGizmos()

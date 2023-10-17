@@ -12,7 +12,7 @@ public class Tower : MonoBehaviour
 
 	public int m_BuyGold;
 	public int m_GoldExp;
-	public int m_Health;
+	public float m_Health;
 
 	private void Start()
 	{
@@ -22,6 +22,9 @@ public class Tower : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		if (EventSystem.current.IsPointerOverGameObject())
+			return;
+
 		if (m_PurchaseCanvas.gameObject.activeInHierarchy)
 			m_PurchaseCanvas.gameObject.SetActive(false);
 		else
@@ -81,6 +84,18 @@ public class Tower : MonoBehaviour
 			UnitManager.instance.Add(purchasedGuardian);
 
 			m_PurchaseCanvas.gameObject.SetActive(false);
+		}
+	}
+
+	public void TakeDamage(float damaged)
+	{
+		if (damaged > 0)
+		{
+			m_Health -= damaged;
+			if (m_Health <= 0)
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }

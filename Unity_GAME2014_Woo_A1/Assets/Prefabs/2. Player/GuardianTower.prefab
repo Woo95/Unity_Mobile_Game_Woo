@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4713778084573653965}
   - component: {fileID: 5915512533029300203}
   - component: {fileID: 1101908102273320819}
-  - component: {fileID: 5382867049961407008}
   m_Layer: 5
   m_Name: G2Purchase
   m_TagString: Untagged
@@ -135,41 +134,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!58 &5382867049961407008
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 37707276902378908}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.9
 --- !u!1 &1088620307997347591
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +476,7 @@ GameObject:
   - component: {fileID: 1224021206946219459}
   - component: {fileID: 3557312119055194078}
   - component: {fileID: 3401579518616695732}
-  - component: {fileID: 4452069206663457390}
+  - component: {fileID: 5115376161809795816}
   m_Layer: 7
   m_Name: GuardianTower
   m_TagString: Untagged
@@ -607,9 +571,9 @@ MonoBehaviour:
   m_PurchaseCanvas: {fileID: 5968070799687292718}
   m_BuyGold: 0
   m_GoldExp: 0
-  m_Health: 0
---- !u!61 &4452069206663457390
-BoxCollider2D:
+  m_Health: 100
+--- !u!70 &5115376161809795816
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -640,19 +604,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.1875, y: 4.0625}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 3}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 1.2}
+  m_Size: {x: 1.5, y: 2.2}
+  m_Direction: 0
 --- !u!1 &4876631035522577537
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +619,6 @@ GameObject:
   - component: {fileID: 6483176963053222747}
   - component: {fileID: 5959433711144047358}
   - component: {fileID: 6387684369171884027}
-  - component: {fileID: 613905136694183919}
   m_Layer: 5
   m_Name: G1Purchase
   m_TagString: Untagged
@@ -788,41 +741,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!58 &613905136694183919
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4876631035522577537}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.9
 --- !u!1 &5685393125174905184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1096,6 @@ GameObject:
   - component: {fileID: 1870980124396542310}
   - component: {fileID: 5498580250561454361}
   - component: {fileID: 5373676108686717486}
-  - component: {fileID: 5946059773460500188}
   m_Layer: 5
   m_Name: G3Purchase
   m_TagString: Untagged
@@ -1301,41 +1218,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!58 &5946059773460500188
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7636456419988283960}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.9
 --- !u!1 &7682481269814677622
 GameObject:
   m_ObjectHideFlags: 0

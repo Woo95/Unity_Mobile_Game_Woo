@@ -126,6 +126,13 @@ public class EnemyManager : MonoBehaviour
 			}
 		}
 	}
+
+	public void Remove(Enemy enemy)
+	{
+		if (enemySpawnedList.Contains(enemy))
+			enemySpawnedList.Remove(enemy);
+	}
+
 	public Vector3 GetPosition()
 	{
 		Vector3 spawnPosition = Vector3.zero;
