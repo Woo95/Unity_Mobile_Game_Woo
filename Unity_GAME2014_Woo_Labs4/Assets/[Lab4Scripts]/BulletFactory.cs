@@ -13,10 +13,10 @@ public class BulletFactory : MonoBehaviour
 		switch (type)
 		{
 			case BulletType.PLAYERBULLET:
-				bullet = Instantiate(_PlayerBulletPrefab);
+				bullet = Instantiate(_PlayerBulletPrefab, transform);
 				break;
 			case BulletType.ENEMYBULLET:
-				bullet = Instantiate(_EnemyBulletPrefab);
+				bullet = Instantiate(_EnemyBulletPrefab, transform);
 				break;
 		}
 
