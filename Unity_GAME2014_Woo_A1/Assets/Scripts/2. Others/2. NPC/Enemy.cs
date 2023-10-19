@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -222,11 +223,25 @@ public class Enemy : MonoBehaviour
 	#region ANIMATOR
 	public void Animator_Attack()
 	{
-		if (m_Target1 != null) m_Target1.TakeDamage(m_EnemyData.damage);
-		else if (m_Target2 != null) m_Target2.TakeDamage(m_EnemyData.damage);
+		float distance;
+
+		if (m_Target1 != null)
+		{
+			distance = Vector3.Distance(centerTrans.position, m_Target1.centerTrans.position);
+			if (distance < m_EnemyData.attackRadius)
+				m_Target1.TakeDamage(m_EnemyData.damage);
+		}
+		else if (m_Target2 != null)
+		{
+			distance = Vector3.Distance(centerTrans.position, m_Target2.transform.position);
+			if (distance < m_EnemyData.attackRadius)
+				m_Target2.TakeDamage(m_EnemyData.damage);
+		}
 		else if (m_Target3 != null)
 		{
-			m_Target3.TakeDamage(m_EnemyData.damage);
+			distance = Vector3.Distance(centerTrans.position, m_Target3.transform.position);
+			if (distance < m_EnemyData.attackRadius)
+				m_Target3.TakeDamage(m_EnemyData.damage);
 		}
 	}
 	#endregion
