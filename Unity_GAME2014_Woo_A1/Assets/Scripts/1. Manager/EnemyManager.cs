@@ -15,9 +15,9 @@ public class EnemyManager : MonoBehaviour
 	public eEnemyManagerState enemyManagerState;
 
 	
-	public float EACH_WAVE_TIME = 60.0f;
-	public float END_WAVE_TIME = 600.0f;
-	public float SPAWN_INTERVAL = 10.0f;
+	public float EACH_WAVE_TIME = 30.0f;
+	public float END_WAVE_TIME = 300.0f;
+	public float SPAWN_INTERVAL = 5.0f;
 
 	public float nextSpawnTime;
 	public int currentWave;
@@ -57,6 +57,7 @@ public class EnemyManager : MonoBehaviour
 		enemyManagerState = eEnemyManagerState.SPAWNING;
 
 		currentWave = 1;
+		CentralTower.instance.AddWave(currentWave);
 		nextSpawnTime = Time.time;
 }
 	public void ModifySpawning()
@@ -69,7 +70,8 @@ public class EnemyManager : MonoBehaviour
 		
 		if (Time.time > EACH_WAVE_TIME)
 		{
-			currentWave++;
+			CentralTower.instance.AddWave(++currentWave);
+
 			EACH_WAVE_TIME = Time.time + 60.0f;
 
 			if (currentWave > 10)

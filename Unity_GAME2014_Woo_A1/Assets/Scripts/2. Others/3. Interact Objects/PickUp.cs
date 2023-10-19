@@ -29,7 +29,14 @@ public class PickUp : MonoBehaviour
 	{
         touchCount--;
 
-        if (touchCount <= 0)
+        CentralTower.instance.AddScore();
+
+		if (type == eResourceType.Gold)
+			CentralTower.instance.AddGold(5);
+		if (type == eResourceType.Resource)
+			CentralTower.instance.AddResource(10);
+
+		if (touchCount <= 0)
         {
             if (nextTree != null)
             {

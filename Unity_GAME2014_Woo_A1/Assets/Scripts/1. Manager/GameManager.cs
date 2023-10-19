@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
 		m_CameraManager.Init();
 		m_UnitManager.Init();
 
+		CentralTower.instance.Init();
+
 		SoundManager.instance.PlayBGM("GamePlayBGM", 0.25f);
 	}
 	void ModifyPlay()

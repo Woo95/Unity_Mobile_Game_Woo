@@ -195,6 +195,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &60524130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 60524131}
+  m_Layer: 0
+  m_Name: Guardians
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &60524131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60524130}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1472890709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98623827
 GameObject:
   m_ObjectHideFlags: 0
@@ -25929,7 +25960,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 263961756}
-  m_Father: {fileID: 1472890709}
+  m_Father: {fileID: 1490721510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1192856987
 SpriteRenderer:
@@ -26000,13 +26031,17 @@ MonoBehaviour:
   - {fileID: 2536318078026747266, guid: 5f6c1b0a2fb45bf4182cae62155f20aa, type: 3}
   - {fileID: 8402792684858049529, guid: 7ab3a73800569fa4d901f429ee934da2, type: 3}
   m_PurchaseCanvas: {fileID: 263961759}
-  m_BuyGold: 0
-  m_GoldExp: 0
-  m_Health: 100
+  m_Health: 1000
+  m_Wave: 1
   m_playTime: 0
   m_Score: 0
-  m_Gold: 0
-  m_Resource: 0
+  m_Gold: 1000
+  m_Resource: 100
+  m_WaveText: {fileID: 1291060660}
+  m_ScoreText: {fileID: 1843434280}
+  m_HealthText: {fileID: 1218639411}
+  m_GoldText: {fileID: 1440223160}
+  m_ResourceText: {fileID: 602849266}
 --- !u!70 &1192856989
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -26518,7 +26553,7 @@ GameObject:
   - component: {fileID: 1389485975}
   - component: {fileID: 1389485974}
   m_Layer: 0
-  m_Name: Boundaries
+  m_Name: BuildRestrictArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27021,6 +27056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1472890709}
   - component: {fileID: 1472890710}
+  - component: {fileID: 1472890711}
   m_Layer: 0
   m_Name: '@BuildManager'
   m_TagString: Untagged
@@ -27042,7 +27078,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1490721510}
-  - {fileID: 1192856986}
+  - {fileID: 60524131}
   - {fileID: 2048284894}
   - {fileID: 1389485971}
   m_Father: {fileID: 0}
@@ -27064,6 +27100,19 @@ MonoBehaviour:
   m_BuildArea: {fileID: 2048284897}
   m_BuildIcon: {fileID: 1690790321}
   isTowerPlacable: 0
+--- !u!114 &1472890711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472890708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17ced9fca068904ab05c377703451eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitList: []
 --- !u!1 &1483516385
 GameObject:
   m_ObjectHideFlags: 0
@@ -27149,7 +27198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1490721510}
   m_Layer: 0
-  m_Name: GuardianTowers
+  m_Name: Towers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27167,7 +27216,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1192856986}
   m_Father: {fileID: 1472890709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1500504651
@@ -29399,7 +29449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1635109502}
   - component: {fileID: 1635109503}
-  - component: {fileID: 1635109504}
   m_Layer: 0
   m_Name: '@GameManager'
   m_TagString: Untagged
@@ -29439,21 +29488,8 @@ MonoBehaviour:
   m_EnemyManager: {fileID: 1707397965}
   m_FieldManager: {fileID: 135196395}
   m_CameraManager: {fileID: 519420033}
-  m_UnitManager: {fileID: 1635109504}
+  m_UnitManager: {fileID: 1472890711}
   m_UIPlayScene: {fileID: 1147290760}
---- !u!114 &1635109504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635109501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17ced9fca068904ab05c377703451eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitList: []
 --- !u!1 &1688804742
 GameObject:
   m_ObjectHideFlags: 0
@@ -29650,9 +29686,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManagerState: 0
-  EACH_WAVE_TIME: 60
-  END_WAVE_TIME: 60
-  SPAWN_INTERVAL: 1
+  EACH_WAVE_TIME: 30
+  END_WAVE_TIME: 300
+  SPAWN_INTERVAL: 5
   nextSpawnTime: 0
   currentWave: 0
   enemyPrefabList:
@@ -30562,7 +30598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2048284894
 Transform:
   m_ObjectHideFlags: 0

@@ -249,7 +249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.1}
+  m_AnchoredPosition: {x: 0, y: 1.2}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5968070799687292718
@@ -493,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 3944685884302152608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.36, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -569,9 +569,8 @@ MonoBehaviour:
   - {fileID: 2536318078026747266, guid: 5f6c1b0a2fb45bf4182cae62155f20aa, type: 3}
   - {fileID: 8402792684858049529, guid: 7ab3a73800569fa4d901f429ee934da2, type: 3}
   m_PurchaseCanvas: {fileID: 5968070799687292718}
-  m_BuyGold: 0
-  m_GoldExp: 0
-  m_Health: 100
+  m_Health: 200
+  m_BuyResource: 500
 --- !u!70 &5115376161809795816
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -604,7 +603,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.2}
+  m_Offset: {x: 0, y: 1.1}
   m_Size: {x: 1.5, y: 2.2}
   m_Direction: 0
 --- !u!1 &4876631035522577537

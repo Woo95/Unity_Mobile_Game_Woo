@@ -35,11 +35,6 @@ public class Enemy : MonoBehaviour
 		InitMove();
 	}
 
-	private void Start()
-	{
-		SetData();
-	}
-
 	#region FSM Move
 	public void InitMove()
 	{
@@ -213,6 +208,8 @@ public class Enemy : MonoBehaviour
 
 	private void Dead()
 	{
+		CentralTower.instance.AddGold(m_EnemyData.gold);
+		CentralTower.instance.AddScore();
 		Destroy(gameObject);
 		EnemyManager.instance.Remove(this);
 	}
@@ -229,7 +226,10 @@ public class Enemy : MonoBehaviour
 	{
 		if (m_Target1 != null) m_Target1.TakeDamage(m_EnemyData.damage);
 		else if (m_Target2 != null) m_Target2.TakeDamage(m_EnemyData.damage);
-		else if (m_Target3 != null) m_Target3.TakeDamage(m_EnemyData.damage);
+		else if (m_Target3 != null)
+		{
+			m_Target3.TakeDamage(m_EnemyData.damage);
+		}
 	}
 	#endregion
 }

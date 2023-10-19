@@ -43,8 +43,16 @@ public class BuildManager : MonoBehaviour
 		{
 			if (m_BuildArea.m_Collision == false)
 			{
-				Instantiate(m_GuardianTowerPrefab, worldPosition, Quaternion.identity, m_GuardianTowerParent);
-				ResetTowerPlacement();
+				int currentResource = CentralTower.instance.m_Resource;
+				int guardianTowerCost = m_GuardianTowerPrefab.GetComponent<GuardianTower>().m_BuyResource;
+
+				if (currentResource >= guardianTowerCost)
+				{
+					Instantiate(m_GuardianTowerPrefab, worldPosition, Quaternion.identity, m_GuardianTowerParent);
+					ResetTowerPlacement();
+
+					CentralTower.instance.AddResource(-guardianTowerCost);
+				}
 			}
 		}
 	}

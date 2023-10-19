@@ -5,19 +5,21 @@ using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
+	private Transform m_guardiansParent;
 	public List<Guardian> guardianPrefabList;
 
 	public Canvas m_PurchaseCanvas;
 	private Transform m_CastleTrans;
 
-	public int m_BuyGold;
-	public int m_GoldExp;
 	public float m_Health;
 
 	private void Start()
 	{
 		m_PurchaseCanvas.gameObject.SetActive(false);
 		m_CastleTrans = transform;
+
+		Transform buildManager = m_CastleTrans.parent.parent;
+		m_guardiansParent = buildManager.transform.Find("Guardians");
 	}
 
 	private void OnMouseDown()
@@ -68,34 +70,22 @@ public class Tower : MonoBehaviour
 
 	private void PurchaseGuardian(Guardian guardianToBuy)
 	{
-		int currentGold = 1000; // CentralTower.instance.m_Gold;
+		int currentGold = CentralTower.instance.m_Gold;
 		int guardianCost = guardianToBuy.m_GuardianData.cost;
 
 		if (currentGold >= guardianCost)
 		{
-			CentralTower.instance.m_Gold -= guardianCost;
-
 			float xOffset = Random.Range(-2.0f, 2.0f);
-			float yOffset = Random.Range(3.0f, 4.0f);
+			float yOffset = Random.Range(1.0f, 3.0f);
 			Vector3 spawnPosition = m_CastleTrans.position + new Vector3(xOffset, -yOffset, 0);
 			
-			Guardian purchasedGuardian = Instantiate(guardianToBuy, spawnPosition, Quaternion.identity);
+			Guardian purchasedGuardian = Instantiate(guardianToBuy, spawnPosition, Quaternion.identity, m_guardiansParent);
 			purchasedGuardian.SetData();
 			UnitManager.instance.Add(purchasedGuardian);
 
 			m_PurchaseCanvas.gameObject.SetActive(false);
-		}
-	}
 
-	public void TakeDamage(float damaged)
-	{
-		if (damaged > 0)
-		{
-			m_Health -= damaged;
-			if (m_Health <= 0)
-			{
-				Destroy(gameObject);
-			}
+			CentralTower.instance.AddGold(-guardianCost);
 		}
 	}
 }
