@@ -29,7 +29,9 @@ public class PickUp : MonoBehaviour
 	{
         touchCount--;
 
-        CentralTower.instance.AddScore();
+		m_SpriteRenderer.color = Color.gray;
+
+		CentralTower.instance.AddScore();
 
 		if (type == eResourceType.Gold)
 			CentralTower.instance.AddGold(5);
@@ -49,5 +51,10 @@ public class PickUp : MonoBehaviour
 			Destroy(gameObject);
 
 		}
+	}
+
+	private void OnMouseUp()
+	{
+		m_SpriteRenderer.color = Color.white;
 	}
 }
