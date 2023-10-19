@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 	public UnitManager m_UnitManager;
 	public UIPlayScene m_UIPlayScene;
 
+	public Text Text_GameOverStatus;
+
 	void Start()
 	{
 		InMenu();
@@ -105,11 +107,11 @@ public class GameManager : MonoBehaviour
 	{
 		if (typeResult == eTypeResult.Lost)
 		{
-			Debug.Log("@@Lost@@");
+			Text_GameOverStatus.text = "YOU LOST!";
 		}
 		else if (typeResult == eTypeResult.Won)
 		{
-			Debug.Log("@@Won@@");
+			Text_GameOverStatus.text = "YOU WON!";
 		}
 		Debug.Log("ModifyGameOver");
 		return;

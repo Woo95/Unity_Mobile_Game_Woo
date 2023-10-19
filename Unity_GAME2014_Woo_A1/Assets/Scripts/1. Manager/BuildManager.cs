@@ -54,6 +54,10 @@ public class BuildManager : MonoBehaviour
 					CentralTower.instance.AddResource(-guardianTowerCost);
 				}
 			}
+			else
+			{
+				ResetTowerPlacement();
+			}
 		}
 	}
 
