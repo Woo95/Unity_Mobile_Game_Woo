@@ -120,8 +120,8 @@ public class EnemyManager : MonoBehaviour
 
 			if (enemyPrefabList[enemyIndex] != null)
 			{
-				Enemy enemy = Instantiate(enemyPrefabList[enemyIndex], pos, rotation);
-				enemy.SetData(transform);
+				Enemy enemy = Instantiate(enemyPrefabList[enemyIndex], pos, rotation, transform);
+				enemy.SetData();
 				enemySpawnedList.Add(enemy);
 			}
 		}

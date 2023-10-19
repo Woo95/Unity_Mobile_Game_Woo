@@ -23,9 +23,8 @@ public class Enemy : MonoBehaviour
 
 	Animator animator;
 
-	public void SetData(Transform parent = null)
+	public void SetData()
 	{
-		transform.SetParent(parent);
 		gameObject.SetActive(true);
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
 		trans = transform;
