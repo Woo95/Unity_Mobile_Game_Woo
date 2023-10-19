@@ -25968,7 +25968,7 @@ MonoBehaviour:
   m_Health: 1000
   m_Wave: 1
   m_Score: 0
-  m_Gold: 1000
+  m_Gold: 100000
   m_Resource: 100
   m_WaveText: {fileID: 1291060660}
   m_ScoreText: {fileID: 1843434280}
@@ -29624,8 +29624,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManagerState: 0
   EACH_WAVE_TIME: 60
-  END_WAVE_TIME: 600
   SPAWN_INTERVAL: 5
+  nextwaveTime: 0
   nextSpawnTime: 0
   currentWave: 0
   enemyPrefabList:

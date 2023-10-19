@@ -39,8 +39,6 @@ public class Enemy : MonoBehaviour
 	public void InitMove()
 	{
 		enemyState = eEnemyState.MOVE;
-
-		animator.SetBool("Move", true);
 	}
 	public void ModifyMove()
 	{
@@ -105,8 +103,6 @@ public class Enemy : MonoBehaviour
 	{
 		enemyState = eEnemyState.ATTACK;
 		attackTrackTime = Time.time;
-
-		animator.SetBool("Move", false);
 	}
 	public void ModifyAttack()
 	{
@@ -137,6 +133,8 @@ public class Enemy : MonoBehaviour
 		if (Time.time > attackTrackTime)
 		{
 			attackTrackTime = Time.time + m_EnemyData.ATTACK_TIME;
+
+			animator.SetTrigger("Attack");
 		}
 	}
 	#endregion
