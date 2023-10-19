@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 
 	private float m_damaged;
 
+	Animator animator;
+
 	public void SetData(Transform parent = null)
 	{
 		transform.SetParent(parent);
@@ -29,13 +31,22 @@ public class Enemy : MonoBehaviour
 		trans = transform;
 		m_Target3 = CentralTower.instance;
 
+		animator = GetComponent<Animator>();
+
 		InitMove();
+	}
+
+	private void Start()
+	{
+		SetData();
 	}
 
 	#region FSM Move
 	public void InitMove()
 	{
 		enemyState = eEnemyState.MOVE;
+
+		animator.SetBool("Move", true);
 	}
 	public void ModifyMove()
 	{
@@ -100,6 +111,8 @@ public class Enemy : MonoBehaviour
 	{
 		enemyState = eEnemyState.ATTACK;
 		attackTrackTime = Time.time;
+
+		animator.SetBool("Move", false);
 	}
 	public void ModifyAttack()
 	{
@@ -130,9 +143,6 @@ public class Enemy : MonoBehaviour
 		if (Time.time > attackTrackTime)
 		{
 			attackTrackTime = Time.time + m_EnemyData.ATTACK_TIME;
-			if (m_Target1 != null) m_Target1.TakeDamage(m_EnemyData.damage);
-			else if (m_Target2 != null) m_Target2.TakeDamage(m_EnemyData.damage);
-			else if (m_Target3 != null) m_Target3.TakeDamage(m_EnemyData.damage);
 		}
 	}
 	#endregion
@@ -214,6 +224,15 @@ public class Enemy : MonoBehaviour
 		Gizmos2.DrawCircle2(centerTrans.position, Color.yellow, m_EnemyData.searchRadius);
 		Gizmos2.DrawCircle2(centerTrans.position, Color.red, m_EnemyData.attackRadius);
 	}
+
+	#region ANIMATOR
+	public void Animator_Attack()
+	{
+		if (m_Target1 != null) m_Target1.TakeDamage(m_EnemyData.damage);
+		else if (m_Target2 != null) m_Target2.TakeDamage(m_EnemyData.damage);
+		else if (m_Target3 != null) m_Target3.TakeDamage(m_EnemyData.damage);
+	}
+	#endregion
 }
 
 [System.Serializable]

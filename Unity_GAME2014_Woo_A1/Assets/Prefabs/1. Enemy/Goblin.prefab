@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9032155518556100880}
   - component: {fileID: 9085639820598716289}
   - component: {fileID: -3287384582794312663}
+  - component: {fileID: 1160617233645064257}
   m_Layer: 9
   m_Name: Goblin
   m_TagString: Untagged
@@ -180,6 +181,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1160617233645064257
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555103252181198433}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ea3833e4b7f82148adab03cdec5fef5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7972544956851056460
 GameObject:
   m_ObjectHideFlags: 0
