@@ -8,18 +8,26 @@ public class Tower : MonoBehaviour
 	private Transform m_guardiansParent;
 	public List<Guardian> guardianPrefabList;
 
+	SpriteRenderer m_SpriteRenderer;
 	public Canvas m_PurchaseCanvas;
 	private Transform m_CastleTrans;
 
 	public float m_Health;
+	public List<Transform> spawnPointList = new List<Transform>();
 
 	private void Start()
 	{
+		m_SpriteRenderer = GetComponent<SpriteRenderer>();
 		m_PurchaseCanvas.gameObject.SetActive(false);
 		m_CastleTrans = transform;
 
 		Transform buildManager = m_CastleTrans.parent.parent;
 		m_guardiansParent = buildManager.transform.Find("Guardians");
+	}
+
+	private void OnBecameVisible() // function calls only once it appeals on game scene
+	{
+		m_SpriteRenderer.sortingOrder = (int)(transform.position.y * -100.0f);
 	}
 
 	private void OnMouseDown()
@@ -75,9 +83,10 @@ public class Tower : MonoBehaviour
 
 		if (currentGold >= guardianCost)
 		{
-			float xOffset = Random.Range(-2.0f, 2.0f);
-			float yOffset = Random.Range(1.0f, 3.0f);
-			Vector3 spawnPosition = m_CastleTrans.position + new Vector3(xOffset, -yOffset, 0);
+			int randIndex = Random.Range(0, spawnPointList.Count-1);
+			Vector3 spawnPosition = 
+				Vector3.Lerp(spawnPointList[randIndex].position, spawnPointList[randIndex + 1].position, 
+				Random.Range(0.0f, 1.0f));
 			
 			Guardian purchasedGuardian = Instantiate(guardianToBuy, spawnPosition, Quaternion.identity, m_guardiansParent);
 			purchasedGuardian.SetData();
