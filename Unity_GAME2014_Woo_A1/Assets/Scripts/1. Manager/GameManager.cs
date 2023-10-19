@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 		gameState = eGameState.GameOver;
 
 		m_FieldManager.End();
+		CentralTower.instance.End();
 		m_UIPlayScene.GameOver();
 
 		SoundManager.instance.StopBGM();

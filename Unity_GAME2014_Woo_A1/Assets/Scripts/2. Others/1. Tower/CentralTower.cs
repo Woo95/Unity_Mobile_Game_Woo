@@ -14,7 +14,6 @@ public class CentralTower : Tower
 	#endregion
 
 	public int m_Wave;
-	public float m_playTime;
 	public int m_Score;
 	public int m_Gold;
 	public int m_Resource;
@@ -25,6 +24,10 @@ public class CentralTower : Tower
 	public Text m_GoldText;
 	public Text m_ResourceText;
 
+	public Text m_GameOverWaveText;
+	public Text m_GameOverScoreText;
+	public Text m_GameOverGoldText;
+
 	public void Init()
 	{
 		m_WaveText.text = "Wave " + m_Wave.ToString();
@@ -32,6 +35,13 @@ public class CentralTower : Tower
 		m_HealthText.text = m_Health.ToString();
 		m_GoldText.text = m_Gold.ToString();
 		m_ResourceText.text = m_Resource.ToString();
+	}
+
+	public void End()
+	{
+		m_GameOverWaveText.text = m_Wave.ToString();
+		m_GameOverScoreText.text = m_Score.ToString();
+		m_GameOverGoldText.text = m_Gold.ToString();
 	}
 
 	private void UpdateWaveText()
@@ -106,9 +116,9 @@ public class CentralTower : Tower
 			if (m_Health <= 0)
 			{
 				m_Health = 0;
-				UpdateHealthText();
 				Destroy(gameObject);
 			}
+			UpdateHealthText();
 		}
 	}
 }

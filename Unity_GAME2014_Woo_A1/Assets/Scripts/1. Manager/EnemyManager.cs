@@ -71,6 +71,7 @@ public class EnemyManager : MonoBehaviour
 		if (Time.time > EACH_WAVE_TIME)
 		{
 			CentralTower.instance.AddWave(++currentWave);
+			SPAWN_INTERVAL -= 0.3f;
 
 			EACH_WAVE_TIME = Time.time + 60.0f;
 
