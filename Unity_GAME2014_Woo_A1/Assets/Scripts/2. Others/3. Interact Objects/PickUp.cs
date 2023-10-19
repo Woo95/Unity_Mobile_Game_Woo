@@ -27,7 +27,8 @@ public class PickUp : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-        touchCount--;
+		SoundManager.instance.PlaySFX("collect_ItemSFX", 0.25f);
+		touchCount--;
 
 		m_SpriteRenderer.color = Color.gray;
 
@@ -49,7 +50,6 @@ public class PickUp : MonoBehaviour
 				m_fieldManager.DestroyPickUp(this);
 			}
 			Destroy(gameObject);
-
 		}
 	}
 

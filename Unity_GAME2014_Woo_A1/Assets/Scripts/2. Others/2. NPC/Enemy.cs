@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -198,10 +199,27 @@ public class Enemy : MonoBehaviour
 			}
 		}
 	}
+
 	#endregion
 
 	public void TakeDamage(float damaged)
 	{
+		if (m_EnemyData.EnemyType == eEnemyType.BEE)
+		{
+			SoundManager.instance.PlaySFX("beeDamagedSFX", 0.25f);
+		}
+		else if(m_EnemyData.EnemyType == eEnemyType.GOBLIN)
+		{
+			SoundManager.instance.PlaySFX("goblinDamagedSFX", 0.25f);
+		}
+		else if (m_EnemyData.EnemyType == eEnemyType.SLIME)
+		{
+			SoundManager.instance.PlaySFX("slimeDamagedSFX", 0.25f);
+		}
+		else if (m_EnemyData.EnemyType == eEnemyType.WOLF)
+		{
+			SoundManager.instance.PlaySFX("wolfDamagedSFX", 0.25f);
+		}
 		m_damaged += damaged;
 	}
 
@@ -229,7 +247,9 @@ public class Enemy : MonoBehaviour
 		{
 			distance = Vector3.Distance(centerTrans.position, m_Target1.centerTrans.position);
 			if (distance < m_EnemyData.attackRadius)
+			{
 				m_Target1.TakeDamage(m_EnemyData.damage);
+			}
 		}
 		else if (m_Target2 != null)
 		{

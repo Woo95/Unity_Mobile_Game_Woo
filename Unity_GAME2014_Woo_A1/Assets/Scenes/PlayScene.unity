@@ -321,7 +321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &135196394
 Transform:
   m_ObjectHideFlags: 0
@@ -25381,19 +25381,21 @@ MonoBehaviour:
   - name: GamePlayBGM
     clip: {fileID: 8300000, guid: 4c6a01ab10bc0774a9dfca1cb30d8813, type: 3}
   m_SFX:
-  - name: guardianAttack
+  - name: guardianAttackSFX
     clip: {fileID: 8300000, guid: 6dc57243f095baf4ab146cf376563af1, type: 3}
-  - name: guardianDamaged
+  - name: guardianDamagedSFX
     clip: {fileID: 8300000, guid: ca802e7335a8dd345850449426e1afb8, type: 3}
-  - name: beeDamaged
+  - name: guardianPurchasedSFX
+    clip: {fileID: 8300000, guid: 92f8a6a638a85b744879cff0efd98a3b, type: 3}
+  - name: beeDamagedSFX
     clip: {fileID: 8300000, guid: 55869a9aa2fe1fb4f8c9c66fd8d45b2d, type: 3}
-  - name: goblinDamaged
+  - name: goblinDamagedSFX
     clip: {fileID: 8300000, guid: ad134e2041a06e94b844fae21e3f9a8f, type: 3}
-  - name: slimeDamaged
+  - name: slimeDamagedSFX
     clip: {fileID: 8300000, guid: 4f3602ad793907f4f8f418e619f30ff4, type: 3}
-  - name: wolfDamaged
+  - name: wolfDamagedSFX
     clip: {fileID: 8300000, guid: 320ceca18aeee9b49b7a68a02aac6fff, type: 3}
-  - name: collect_Item
+  - name: collect_ItemSFX
     clip: {fileID: 8300000, guid: 7d7e22f027dcea045b8519604fdb5c35, type: 3}
   m_BGMSource: {fileID: 1753293231}
   m_SFXSource: {fileID: 811282505}
@@ -29728,7 +29730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1707397964
 Transform:
   m_ObjectHideFlags: 0
@@ -29759,7 +29761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManagerState: 0
   EACH_WAVE_TIME: 60
-  SPAWN_INTERVAL: 5
+  SPAWN_INTERVAL: 4
   nextwaveTime: 0
   nextSpawnTime: 0
   currentWave: 0

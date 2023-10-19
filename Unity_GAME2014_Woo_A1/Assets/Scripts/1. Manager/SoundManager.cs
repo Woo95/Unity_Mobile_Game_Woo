@@ -74,12 +74,7 @@ public class SoundManager : MonoBehaviour
 
 		if (sfxToPlay.clip != null)
 		{
-			// Set the AudioClip of the AudioSource to the matched SFX
-			m_SFXSource.clip = sfxToPlay.clip;
-			// Adjust volume
-			m_SFXSource.volume = volume;
-			// Play the SFX
-			m_SFXSource.Play();
+			AudioSource.PlayClipAtPoint(sfxToPlay.clip, Vector3.zero, volume);
 		}
 		else
 		{
