@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 08296e50fd656ad47965b324e42530fe
+guid: 304c0b69e38b1394e9a38d0b4f2bc865
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,19 +107,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -136,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: U_Walk_0
+      name: D_Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cebf9a4aea7e874ea303911f24a512d
-      internalID: -1628263938
+      spriteID: 923070ea2df944043b18a77d68dd3d60
+      internalID: -1551650034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: U_Walk_1
+      name: D_Attack_1
       rect:
         serializedVersion: 2
         x: 48
@@ -171,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c1eb6dac06d67446be6d2dd2b6e1e7b
-      internalID: 919188683
+      spriteID: 11541cfa565227b40b7dd00c65e6f72b
+      internalID: -267141602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: U_Walk_2
+      name: D_Attack_2
       rect:
         serializedVersion: 2
         x: 96
@@ -192,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aa3bb11ea096e746bb15c2402f2d73b
-      internalID: 411975037
+      spriteID: 1aacbe0a4b79eba45bbc7da42670d4eb
+      internalID: 930563538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: U_Walk_3
+      name: D_Attack_3
       rect:
         serializedVersion: 2
         x: 144
@@ -213,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01f59d5351f8015409aae72bc0ef64b6
-      internalID: 43434833
+      spriteID: 8593aa2cc8b614e43add14762a669459
+      internalID: -829676743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: U_Walk_4
+      name: D_Attack_4
       rect:
         serializedVersion: 2
         x: 192
@@ -234,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4a1c33640689a44898899bf279e0a1d
-      internalID: 1376600300
+      spriteID: f7978f03f2ce1e84bbea2d8ee1f99248
+      internalID: 430464309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: U_Walk_5
+      name: D_Attack_5
       rect:
         serializedVersion: 2
         x: 240
@@ -255,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9ed7146626141744a0a63f8856c0051
-      internalID: -1758886187
+      spriteID: d5b57c4d41eeea043b4e517b7b2919a2
+      internalID: 2096998789
       vertices: []
       indices: 
       edges: []
@@ -272,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      U_Walk_0: -1628263938
-      U_Walk_1: 919188683
-      U_Walk_2: 411975037
-      U_Walk_3: 43434833
-      U_Walk_4: 1376600300
-      U_Walk_5: -1758886187
+      D_Attack_0: -1551650034
+      D_Attack_1: -267141602
+      D_Attack_2: 930563538
+      D_Attack_3: -829676743
+      D_Attack_4: 430464309
+      D_Attack_5: 2096998789
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
