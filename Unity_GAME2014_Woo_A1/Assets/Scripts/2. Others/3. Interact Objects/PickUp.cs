@@ -27,7 +27,7 @@ public class PickUp : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-		SoundManager.instance.PlaySFX("collect_ItemSFX", 0.25f);
+		SoundManager.instance.PlaySFX("collect_ItemSFX", 0.3f);
 		touchCount--;
 
 		m_SpriteRenderer.color = Color.gray;

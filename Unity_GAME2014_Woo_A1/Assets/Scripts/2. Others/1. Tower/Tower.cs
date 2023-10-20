@@ -83,7 +83,7 @@ public class Tower : MonoBehaviour
 
 		if (currentGold >= guardianCost)
 		{
-			SoundManager.instance.PlaySFX("guardianPurchasedSFX", 1.0f);
+			SoundManager.instance.PlaySFX("guardianPurchasedSFX", 1.5f);
 			int randIndex = Random.Range(0, spawnPointList.Count-1);
 			Vector3 spawnPosition = 
 				Vector3.Lerp(spawnPointList[randIndex].position, spawnPointList[randIndex + 1].position, 

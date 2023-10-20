@@ -206,19 +206,19 @@ public class Enemy : MonoBehaviour
 	{
 		if (m_EnemyData.EnemyType == eEnemyType.BEE)
 		{
-			SoundManager.instance.PlaySFX("beeDamagedSFX", 0.25f);
+			SoundManager.instance.PlaySFX("beeDamagedSFX", 0.5f);
 		}
 		else if(m_EnemyData.EnemyType == eEnemyType.GOBLIN)
 		{
-			SoundManager.instance.PlaySFX("goblinDamagedSFX", 0.25f);
+			SoundManager.instance.PlaySFX("goblinDamagedSFX", 0.5f);
 		}
 		else if (m_EnemyData.EnemyType == eEnemyType.SLIME)
 		{
-			SoundManager.instance.PlaySFX("slimeDamagedSFX", 0.25f);
+			SoundManager.instance.PlaySFX("slimeDamagedSFX", 0.5f);
 		}
 		else if (m_EnemyData.EnemyType == eEnemyType.WOLF)
 		{
-			SoundManager.instance.PlaySFX("wolfDamagedSFX", 0.25f);
+			SoundManager.instance.PlaySFX("wolfDamagedSFX", 0.5f);
 		}
 		m_damaged += damaged;
 	}

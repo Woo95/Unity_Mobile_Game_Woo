@@ -175,7 +175,7 @@ public class Guardian : MonoBehaviour
 	#endregion
 	public void TakeDamage(float damaged)
 	{
-		SoundManager.instance.PlaySFX("guardianDamagedSFX", 0.25f);
+		SoundManager.instance.PlaySFX("guardianDamagedSFX", 0.5f);
 		m_damaged += damaged;
 	}
 
@@ -199,7 +199,7 @@ public class Guardian : MonoBehaviour
 
 		if (m_Target)
 		{
-			SoundManager.instance.PlaySFX("guardianAttackSFX", 0.25f);
+			SoundManager.instance.PlaySFX("guardianAttackSFX", 0.5f);
 			m_Target.TakeDamage(m_GuardianData.damage);
 		}
 	}
