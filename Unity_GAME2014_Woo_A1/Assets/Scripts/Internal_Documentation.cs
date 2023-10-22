@@ -52,11 +52,14 @@ This script is a type of tower in the game. It only has functionality for taking
 manages guardian purchases for the tower. It handles showing and hiding the purchase menu, 
 and upon purchase, it instantiates guardian units at random spawn points, deducting the cost from the player's gold.
 
-
 <Guardian.cs>
 Also using a small FSM model, and this script is for Guaridan AI. (very similar to Enemy script)
 
+<UIMainMenu.cs>
+UI for main menu scene
 
+<UIPlayScene.cs>
+UI for play scene
 
 
 
