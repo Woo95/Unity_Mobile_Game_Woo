@@ -60,24 +60,5 @@ UI for main menu scene
 
 <UIPlayScene.cs>
 UI for play scene
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
  
 */
