@@ -109,7 +109,7 @@ MonoBehaviour:
     gold: 4
     searchRadius: 5
     releaseRadius: 6
-    attackRadius: 1.2
+    attackRadius: 1.5
     ATTACK_TIME: 2
   centerTrans: {fileID: 15041078825978291}
   enemyState: 0
