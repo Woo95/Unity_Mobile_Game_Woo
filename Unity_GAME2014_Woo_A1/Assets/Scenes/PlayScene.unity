@@ -29761,7 +29761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManagerState: 0
   EACH_WAVE_TIME: 60
-  SPAWN_INTERVAL: 4
+  SPAWN_INTERVAL: 5
   nextwaveTime: 0
   nextSpawnTime: 0
   currentWave: 0
