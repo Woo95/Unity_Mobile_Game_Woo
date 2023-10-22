@@ -35,7 +35,7 @@ public class PickUp : MonoBehaviour
 		CentralTower.instance.AddScore();
 
 		if (type == eResourceType.Gold)
-			CentralTower.instance.AddGold(5);
+			CentralTower.instance.AddGold(15);
 		if (type == eResourceType.Resource)
 			CentralTower.instance.AddResource(10);
 
