@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
 		}
 		else if (m_Target2 != null)
 		{
-			if (Vector3.Distance(trans.position, m_Target2.transform.position) > m_EnemyData.attackRadius)
+			if (Vector3.Distance(centerTrans.position, m_Target2.transform.position) > m_EnemyData.attackRadius)
 			{
 				InitMove();
 				return;
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
 		}
 		else if (m_Target3 != null)
 		{
-			if (Vector3.Distance(trans.position, m_Target3.transform.position) > m_EnemyData.attackRadius)
+			if (Vector3.Distance(centerTrans.position, m_Target3.transform.position) > m_EnemyData.attackRadius)
 			{
 				InitMove();
 				return;
@@ -246,7 +246,7 @@ public class Enemy : MonoBehaviour
 		if (m_Target1 != null)
 		{
 			distance = Vector3.Distance(centerTrans.position, m_Target1.centerTrans.position);
-			if (distance < m_EnemyData.attackRadius)
+			if (distance <= m_EnemyData.attackRadius)
 			{
 				m_Target1.TakeDamage(m_EnemyData.damage);
 			}
@@ -254,14 +254,16 @@ public class Enemy : MonoBehaviour
 		else if (m_Target2 != null)
 		{
 			distance = Vector3.Distance(centerTrans.position, m_Target2.transform.position);
-			if (distance < m_EnemyData.attackRadius)
+			if (distance <= m_EnemyData.attackRadius)
 				m_Target2.TakeDamage(m_EnemyData.damage);
 		}
 		else if (m_Target3 != null)
 		{
 			distance = Vector3.Distance(centerTrans.position, m_Target3.transform.position);
-			if (distance < m_EnemyData.attackRadius)
+			if (distance <= m_EnemyData.attackRadius)
+			{
 				m_Target3.TakeDamage(m_EnemyData.damage);
+			}
 		}
 	}
 	#endregion
