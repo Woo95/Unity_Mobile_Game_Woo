@@ -17,6 +17,10 @@ public class PlayerBehavior : MonoBehaviour
 
     [SerializeField]
     float _jumpingPower = 20;
+
+    bool _isGrounded = false;
+
+    float _airbornSpeedMultiplier = .6f;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -40,9 +44,18 @@ public class PlayerBehavior : MonoBehaviour
     {
         float xMovementDirection = Input.GetAxisRaw("Horizontal"); // Get the direction of the movement
 
-        Vector2 force = xMovementDirection * Vector2.right * _accelerator;
 
-       
+        float applicableAcceleration = _accelerator;
+
+        if (!IsGrounded())
+        {
+            applicableAcceleration *= _airbornSpeedMultiplier; //Airborne speed
+        }
+
+
+
+        Vector2 force = xMovementDirection * Vector2.right * applicableAcceleration;
+
 
         if(xMovementDirection == -1)
         {
@@ -60,12 +73,21 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Jump()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(_groundPoint.position, .1f, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+        
 
-        if(hit && Input.GetKeyDown(KeyCode.Space))
+        if(IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             _rigidbody.AddForce(Vector2.up * _jumpingPower, ForceMode2D.Impulse);
         }
     }
+
+    bool IsGrounded()
+    {
+        return Physics2D.CircleCast(_groundPoint.position, .1f, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+
+
+    }
+
+
 
 }
