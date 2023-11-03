@@ -11,18 +11,29 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField]
     float _maxSpeed = 5;
     // Start is called before the first frame update
+
+    [SerializeField]
+    Transform _groundPoint;
+
+    [SerializeField]
+    float _jumpingPower = 20;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
+    {
+
+        //Jump
+        Jump();
+    }
+
+    private void FixedUpdate()
     {
         //Movement
         Move();
-       //Jump
-
     }
 
     private void Move()
@@ -31,7 +42,7 @@ public class PlayerBehavior : MonoBehaviour
 
         Vector2 force = xMovementDirection * Vector2.right * _accelerator;
 
-        force = Vector2.ClampMagnitude(force, _maxSpeed);
+       
 
         if(xMovementDirection == -1)
         {
@@ -43,6 +54,18 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         _rigidbody.AddForce(force);
+
+        _rigidbody.velocity =  Vector2.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
+    }
+
+    private void Jump()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(_groundPoint.position, .1f, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+
+        if(hit && Input.GetKeyDown(KeyCode.Space))
+        {
+            _rigidbody.AddForce(Vector2.up * _jumpingPower, ForceMode2D.Impulse);
+        }
     }
 
 }
