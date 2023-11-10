@@ -85,7 +85,6 @@ public class PlayerBehavior : MonoBehaviour
 
         Vector2 force = _moveDirection * Vector2.right * applibleAcceleration;
 
-
         force = Vector2.ClampMagnitude(force, _maxSpeed);
 
         if (_moveDirection < 0)
@@ -112,7 +111,15 @@ public class PlayerBehavior : MonoBehaviour
 
     private bool IsGrounded()
     {
-        isGrounded = Physics2D.CircleCast(_groundPoint.position, 0.1f, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+        isGrounded = Physics2D.CircleCast(_groundPoint.position, 0.1f, Vector2.down, .1f, groundLayer);
         return isGrounded;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("DeathPlane"))
+        {
+            transform.position = new Vector3(0, 5, 0);
+        }
     }
 }

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DeathPlane
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 886749917
+    locked: 0
+  - name: Enemy
+    uniqueID: 2490010871
     locked: 0
   - name: UI
     uniqueID: 1067882717
