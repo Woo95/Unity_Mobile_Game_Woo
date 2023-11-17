@@ -1,0 +1,9 @@
+Date Last Modified: 2023/11/18
+
+Author's Name: Chaewan Woo
+Student Number: 101354291
+
+All Revision History: It is recorded on the github repository
+
+[UIMainMenu.cs]
+Script for Main Menu UI control.
