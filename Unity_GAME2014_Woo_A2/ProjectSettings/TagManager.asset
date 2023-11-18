@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround/Far
+    uniqueID: 3021034863
+    locked: 0
+  - name: BackGround/Near
+    uniqueID: 4111276819
+    locked: 0
+  - name: PlayGround
+    uniqueID: 701357531
+    locked: 0
+  - name: ForwardGround
+    uniqueID: 4006250285
+    locked: 0
