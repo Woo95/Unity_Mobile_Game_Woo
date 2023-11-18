@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
+
+		SoundManager.instance.Init();
 	}
 	void ModifyPlay()
 	{

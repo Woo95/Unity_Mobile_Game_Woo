@@ -45,8 +45,7 @@ public class SoundManager : MonoBehaviour
 	{
 		m_ActiveBGMList.Clear();
 
-		PlayBGM("OverWorldBGM");
-		StopBGM("BattleBGM");
+		PlayBGM("GamePlayBGM");
 	}
 
 	#region BGM
