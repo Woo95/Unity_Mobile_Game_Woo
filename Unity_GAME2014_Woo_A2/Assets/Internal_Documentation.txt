@@ -1,4 +1,4 @@
-Date Last Modified: 2023/11/18
+Date Last Modified: 2023/11/19
 
 Author's Name: Chaewan Woo
 Student Number: 101354291
@@ -7,3 +7,18 @@ All Revision History: It is recorded on the github repository
 
 [UIMainMenu.cs]
 Script for Main Menu UI control.
+[UIGamePlay.cs]
+Script for Game Play UI control.
+
+[GameManager.cs]
+Script for GameManager flow on PlayScene.
+[SoundManager.cs]
+Script for SoundManager flow on PlayScene.
+
+[MovingPlatform.cs]
+Script for Moving Platform.
+[BouncyPlatform.cs]
+Script for Bouncy Platform.
+
+[Player.cs]
+Script for player behaviour.
