@@ -5,73 +5,72 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
 	[Header("Behaviour Set-Up")]
-	public bool UpDown;
-	public bool LeftRight;
+	public bool m_UpDown;
+	public bool m_LeftRight;
 	[Header("Others")]
-	public float moveSpeed      = 1.0f;
-    public float moveDistance   = 5.0f;
+	public float m_MoveSpeed      = 1.0f;
+    public float m_MoveDistance   = 5.0f;
 
-    private Vector3 initialPos;
-
+    private Vector3 m_StartPos, m_EndPos;
+	bool m_ChangeDirection;
 	void Start()
 	{
-		initialPos = transform.position;
+		m_StartPos = transform.position;
+		m_EndPos = transform.position;
+		if (m_LeftRight && !m_UpDown)
+		{
+			m_StartPos.x -= m_MoveDistance;
+			m_EndPos.x += m_MoveDistance;
+		}
+		else if (m_UpDown && !m_LeftRight)
+		{
+			m_StartPos.y -= m_MoveDistance;
+			m_EndPos.y += m_MoveDistance;
+		}
+
+		m_ChangeDirection = true;
+
+		transform.position = Vector3.Lerp(m_StartPos, m_EndPos, Random.Range(0.0f, 1.0f));
 	}
 
 	void Update()
 	{
-		float newPosX = transform.position.x;
-		float newPosY = transform.position.y;
-
-		if (LeftRight && !UpDown)
+		if (m_ChangeDirection)
 		{
-			// Move left and right
-			newPosX = initialPos.x + Mathf.PingPong(Time.time * moveSpeed, moveDistance * 2) - moveDistance;
+			transform.position = Vector3.MoveTowards(transform.position, m_StartPos, m_MoveSpeed * Time.deltaTime);
+			if (Vector3.Distance(transform.position, m_StartPos) <= 0.01f)
+				m_ChangeDirection = !m_ChangeDirection;
 		}
-		else if (UpDown && !LeftRight)
+		else
 		{
-			// Move up and down
-			newPosY = initialPos.y + Mathf.PingPong(Time.time * moveSpeed, moveDistance * 2) - moveDistance;
-		}
-
-		transform.position = new Vector3(newPosX, newPosY, transform.position.z);
+			transform.position = Vector3.MoveTowards(transform.position, m_EndPos, m_MoveSpeed * Time.deltaTime);
+			if (Vector3.Distance(transform.position, m_EndPos) <= 0.01f)
+				m_ChangeDirection = !m_ChangeDirection;
+		}	
 	}
 
 	private void OnDrawGizmos()
 	{
 		if (!Application.isPlaying)
 		{
-			if (LeftRight && !UpDown)
+			if (m_LeftRight && !m_UpDown)
 			{
-				Vector3 startPos = new Vector3(transform.position.x - moveDistance, transform.position.y, transform.position.z);
-				Vector3 endPos = new Vector3(transform.position.x + moveDistance, transform.position.y, transform.position.z);
+				Vector3 startPos = new Vector3(transform.position.x - m_MoveDistance, transform.position.y, transform.position.z);
+				Vector3 endPos = new Vector3(transform.position.x + m_MoveDistance, transform.position.y, transform.position.z);
 
 				Gizmos.DrawLine(startPos, endPos);
 			}
-			else if (UpDown && !LeftRight)
+			else if (m_UpDown && !m_LeftRight)
 			{
-				Vector3 startPos = new Vector3(transform.position.x, transform.position.y - moveDistance, transform.position.z);
-				Vector3 endPos = new Vector3(transform.position.x, transform.position.y + moveDistance, transform.position.z);
+				Vector3 startPos = new Vector3(transform.position.x, transform.position.y - m_MoveDistance, transform.position.z);
+				Vector3 endPos = new Vector3(transform.position.x, transform.position.y + m_MoveDistance, transform.position.z);
 
 				Gizmos.DrawLine(startPos, endPos);
 			}
 		}
 		else
 		{
-			if (LeftRight && !UpDown)
-			{
-				Vector3 startPos = new Vector3(initialPos.x - moveDistance, initialPos.y, initialPos.z);
-				Vector3 endPos = new Vector3(initialPos.x + moveDistance, initialPos.y, initialPos.z);
-
-				Gizmos.DrawLine(startPos, endPos);
-			}
-			else if (UpDown && !LeftRight)
-			{
-				Vector3 startPos = new Vector3(initialPos.x, initialPos.y - moveDistance, initialPos.z);
-				Vector3 endPos = new Vector3(initialPos.x, initialPos.y + moveDistance, initialPos.z);
-
-				Gizmos.DrawLine(startPos, endPos);
-			}
+			Gizmos.DrawLine(m_StartPos, m_EndPos);
 		}
 	}
 }
