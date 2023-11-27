@@ -120,6 +120,7 @@ public class PlayerBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("DeathPlane"))
         {
             transform.position = new Vector3(0, 5, 0);
-        }
+			FindObjectOfType<LifeCounterManager>().LoseLife();
+		}
     }
 }

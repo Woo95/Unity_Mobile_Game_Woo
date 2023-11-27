@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,12 +12,16 @@ public class LifeCounterManager : MonoBehaviour
 
 	Image lifeCounterUI;
 
+	public List<Sprite> images = new List<Sprite>();
+
 	void Start()
 	{
 		lifeCounterUI = GetComponent<Image>();
 
 		maxLifeNumber = 4;
 		currentLifeNumber = maxLifeNumber;
+
+		lifeCounterUI.sprite = images[currentLifeNumber - 1];
 	}
 
 	public void LoseLife()
@@ -24,8 +31,9 @@ public class LifeCounterManager : MonoBehaviour
 		if (currentLifeNumber <= 0)
 		{
 			//game over
-			SceneManager.LoadScene(1);
+			SceneManager.LoadScene("GameOver");
 		}
-		lifeCounterUI.sprite = Resources.Load<Sprite>($"Sprites/LifeCounter/hud-{currentLifeNumber}");
+		if (currentLifeNumber-1 >= 0)
+			lifeCounterUI.sprite = images[currentLifeNumber - 1];
 	}
 }

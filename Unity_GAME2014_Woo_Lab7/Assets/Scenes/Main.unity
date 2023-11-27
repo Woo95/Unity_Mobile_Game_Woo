@@ -28008,9 +28008,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1791244420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07aa222f5d224224da3f44beb4463a27, type: 3}
+  m_Script: {fileID: 11500000, guid: f73a33c39a1326b49adb0c8e2811c2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  images:
+  - {fileID: 21300000, guid: b18aa9795ff504f048a193653a6aaaa6, type: 3}
+  - {fileID: 21300000, guid: 3c2eeae102fc54c208ca164fd14595be, type: 3}
+  - {fileID: 21300000, guid: 95494a9f649d4463b85a095258c83af4, type: 3}
+  - {fileID: 21300000, guid: d43faa95ae8bf43a6acb96b79294243c, type: 3}
 --- !u!114 &1791244422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28640,10 +28645,6 @@ PrefabInstance:
     - target: {fileID: 7846320901405426029, guid: 39562224e1eaf314bb2f3edf53fa1fcc, type: 3}
       propertyPath: m_Name
       value: PlantEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7846320901405426029, guid: 39562224e1eaf314bb2f3edf53fa1fcc, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
