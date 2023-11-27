@@ -13,7 +13,9 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] bool isAnyObstacle;
     [SerializeField] LayerMask groundLayerMask;
 
-    private void Update()
+	int hitDamage = 25;
+
+	private void Update()
     {
         isGrounded = Physics2D.Linecast(groundCheckPoint.position, groundCheckPoint.position + Vector3.down * .95f, groundLayerMask);
         isGroundToStepOn = Physics2D.Linecast(groundCheckPoint.position, frontGroundPoint.position, groundLayerMask);
@@ -40,7 +42,12 @@ public class EnemyBehavior : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * -1 , 1, 1);
     }
 
-    private void OnDrawGizmos()
+	public float GetHitDamageAmount()
+	{
+		return hitDamage;
+	}
+
+	private void OnDrawGizmos()
     {
         Debug.DrawLine(groundCheckPoint.position, groundCheckPoint.position + Vector3.down * .95f, Color.green);
         Debug.DrawLine(groundCheckPoint.position, frontGroundPoint.position, Color.blue);

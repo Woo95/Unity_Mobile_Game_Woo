@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
@@ -17,12 +18,14 @@ public class PlayerBehavior : MonoBehaviour
     Animator animator;
     [SerializeField]bool isGrounded;
 
-    // Start is called before the first frame update
-    void Start()
+	public HealthBarController healthBarController;
+
+	// Start is called before the first frame update
+	void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        if (GameObject.Find("LeftController"))
+		if (GameObject.Find("LeftController"))
         {
             leftJoystick = GameObject.Find("LeftController").GetComponent<Joystick>();
         }      
@@ -119,8 +122,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("DeathPlane"))
         {
-            transform.position = new Vector3(0, 5, 0);
 			FindObjectOfType<LifeCounterManager>().LoseLife();
 		}
-    }
+		if (collision.gameObject.CompareTag("Enemy"))
+		{
+			healthBarController.TakeDamage(collision.GetComponent<EnemyBehavior>().GetHitDamageAmount());
+		}
+	}
 }

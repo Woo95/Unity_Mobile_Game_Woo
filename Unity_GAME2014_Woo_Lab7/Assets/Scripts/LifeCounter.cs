@@ -34,5 +34,9 @@ public class LifeCounterManager : MonoBehaviour
 		}
 		if (currentLifeNumber-1 >= 0)
 			lifeCounterUI.sprite = images[currentLifeNumber - 1];
+
+		FindObjectOfType<HealthBarController>().ResetHealth();
+
+		FindObjectOfType<PlayerBehavior>().transform.position = new Vector3(0, 5, 0);
 	}
 }
