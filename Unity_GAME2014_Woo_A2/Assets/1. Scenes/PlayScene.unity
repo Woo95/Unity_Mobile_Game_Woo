@@ -3312,6 +3312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1367518887}
+  - component: {fileID: 1367518890}
   - component: {fileID: 1367518889}
   - component: {fileID: 1367518888}
   m_Layer: 5
@@ -3373,7 +3374,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10:00
+  m_Text: 05:00
 --- !u!222 &1367518889
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3382,6 +3383,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367518886}
   m_CullTransparentMesh: 1
+--- !u!114 &1367518890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367518886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a7ce299d2e3934eb64ce8168113fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TimerText: {fileID: 1367518888}
 --- !u!1 &1377453875
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,7 +5826,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2045876363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ecb48102dfdd86418be5c0ff858a253, type: 3}
+  m_Script: {fileID: 11500000, guid: 469e888cb31713a49a7bb95d7227e583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_PauseUI: {fileID: 236467826}

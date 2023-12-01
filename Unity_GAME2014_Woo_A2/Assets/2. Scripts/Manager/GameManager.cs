@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("ModifyPlay");
 
+		Timer.instance.UpdateTimer();
+
 		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))    // FOR PAUSE
 		{
 			InPause();
