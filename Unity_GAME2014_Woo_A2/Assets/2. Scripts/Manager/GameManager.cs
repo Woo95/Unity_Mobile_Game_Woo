@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
 
+		Player.instance.Init();
 		SoundManager.instance.Init();
 	}
 	void ModifyPlay()
@@ -33,10 +34,11 @@ public class GameManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))    // FOR PAUSE
 		{
-
 			InPause();
 			return;
 		}
+		Player.instance.Move();
+		Player.instance.MoveWithKeyboard();
 	}
 	#endregion
 
