@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class UIGamePlay : MonoBehaviour
+public class UIPause : MonoBehaviour
 {
 	#region singleton
-	public static UIGamePlay instance;
+	public static UIPause instance;
 	private void Awake()
 	{
 		if (instance != null)

@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("InPause");
 		gameState = eGameState.Pause;
 
-		UIGamePlay.instance.Invoke_Pause();
+		UIPause.instance.Invoke_Pause();
 		SoundManager.instance.PauseBGM();
 	}
 	public void UnPause()
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("UnPause");
 		gameState = eGameState.Play;
 
-		UIGamePlay.instance.Invoke_Pause();
+		UIPause.instance.Invoke_Pause();
 		SoundManager.instance.UnPauseBGM();
 	}
 	void ModifyPause()
