@@ -38,18 +38,15 @@ public class Player : MonoBehaviour
 }
 	public void Move()
 	{
-		if (m_IsMoveLeft)
-		{
-			MoveLeft();
-		}
-		if (m_IsMoveRight)
-		{
-			MoveRight();
-		}
-		if (!m_IsMoveLeft && !m_IsMoveRight)
-		{
+		if (m_IsMoveLeft && m_IsMoveRight)
 			Stop();
-		}
+		else if (m_IsMoveLeft)
+			MoveLeft();
+		else if (m_IsMoveRight)
+			MoveRight();
+		else
+			Stop();
+
 		if (m_IsJump)
 		{
 			Jump();
@@ -57,7 +54,7 @@ public class Player : MonoBehaviour
 	}
 	public void MoveWithKeyboard()	// For test purposes
 	{
-		if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
 		{
 			Stop();
 		}
@@ -122,8 +119,7 @@ public class Player : MonoBehaviour
 	public void OnPlatform(bool OnPlatform, Transform parent = null)
     {
 		transform.SetParent(OnPlatform ? parent : null);
-    }
-
+	}
 	private bool IsGrounded()
 	{
 		RaycastHit2D raycastHit = Physics2D.BoxCast(m_BoxCollider2D.bounds.center, m_BoxCollider2D.bounds.size, 0.0f, Vector2.down, 0.1f, m_PlatformLayerMask);
