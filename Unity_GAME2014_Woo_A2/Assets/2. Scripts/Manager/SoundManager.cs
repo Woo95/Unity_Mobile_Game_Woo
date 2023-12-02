@@ -95,48 +95,6 @@ public class SoundManager : MonoBehaviour
 			}
 		}
 	}
-	#region Swap Scene BGM Handler
-	public void SwapTrack(string CurrentBgmName, string NewBgmName, float newVloume = 0.15f)
-	{
-		BGM currentBGM = System.Array.Find(m_BGM, b => b.name == CurrentBgmName);
-		BGM newBGM = System.Array.Find(m_BGM, b => b.name == NewBgmName);
-
-		// start fading out the current track
-		StartCoroutine(FadeTrack(currentBGM, currentBGM.source.volume, 0.0f));
-
-		// start fade in for the new track
-		StartCoroutine(FadeTrack(newBGM, 0.0f, newVloume, newBGM.source.clip));
-	}
-
-	IEnumerator FadeTrack(BGM bgm, float startVolume, float endVolume, AudioClip newClip = null)
-	{
-		float timer = 0f;
-		float fadeDuration = 1.0f;
-
-		if (newClip != null)
-		{
-			bgm.source.clip = newClip;
-			bgm.source.volume = startVolume;   // new track sound start from startVolume(which is 0)
-			bgm.source.Play();
-			m_ActiveBGMList.Add(bgm);
-		}
-
-		while (timer < fadeDuration)
-		{
-			timer += Time.deltaTime;
-			bgm.source.volume = Mathf.Lerp(startVolume, endVolume, timer / fadeDuration);
-			yield return null;
-		}
-
-		bgm.source.volume = endVolume; // to avoid the bug of having volume very close to 0 instead of 0.
-
-		if (endVolume == 0f)
-		{
-			bgm.source.Stop();
-			m_ActiveBGMList.Remove(bgm);
-		}
-	}
-	#endregion
 	#endregion
 
 	#region SFX

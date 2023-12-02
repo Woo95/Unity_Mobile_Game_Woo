@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,20 +18,23 @@ public class Player : MonoBehaviour
 			instance = this;
 	}
 	#endregion
-
+	
+	[SerializeField] private LayerMask m_PlatformLayerMask;
+	
 	Rigidbody2D m_Rb;
+	BoxCollider2D m_BoxCollider2D;
+
 	public float m_MoveSpeed = 2.5f;
-	public float m_JumpForce = 5.0f;
+	public float m_JumpVelocity = 6.5f;
 
 	private bool m_IsMoveLeft = false;
 	private bool m_IsMoveRight = false;
 	private bool m_IsJump = false;
-	public enum eJumpState { OnPlatform, Jump };
-	public eJumpState m_JumpState;
+
 	public void Init()
 	{
 		m_Rb = GetComponent<Rigidbody2D>();
-		m_JumpState = eJumpState.OnPlatform;
+		m_BoxCollider2D = transform.GetComponent<BoxCollider2D>();
 }
 	public void Move()
 	{
@@ -43,7 +46,10 @@ public class Player : MonoBehaviour
 		{
 			MoveRight();
 		}
-
+		if (!m_IsMoveLeft && !m_IsMoveRight)
+		{
+			Stop();
+		}
 		if (m_IsJump)
 		{
 			Jump();
@@ -51,13 +57,21 @@ public class Player : MonoBehaviour
 	}
 	public void MoveWithKeyboard()	// For test purposes
 	{
-		if (Input.GetKey(KeyCode.A))
+		if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+		{
+			Stop();
+		}
+		else if (Input.GetKey(KeyCode.A))
 		{
 			MoveLeft();
 		}
-		if (Input.GetKey(KeyCode.D))
+		else if (Input.GetKey(KeyCode.D))
 		{
 			MoveRight();
+		}
+		else
+		{
+			Stop();
 		}
 		if (Input.GetKey(KeyCode.Space))
 		{
@@ -88,19 +102,20 @@ public class Player : MonoBehaviour
 	#region Move Behaviours
 	public void MoveLeft()
     {
-		transform.position += Vector3.left * m_MoveSpeed * Time.deltaTime;
+		m_Rb.velocity = new Vector2(-m_MoveSpeed, m_Rb.velocity.y);
 	}
     public void MoveRight()
     {
-		transform.position += Vector3.right * m_MoveSpeed * Time.deltaTime;
+		m_Rb.velocity = new Vector2(+m_MoveSpeed, m_Rb.velocity.y);
 	}
-    public void Jump()
+	public void Stop()
+	{
+		m_Rb.velocity = new Vector2(0, m_Rb.velocity.y);
+	}
+	public void Jump()
     {
-		if (m_JumpState == eJumpState.OnPlatform)
-		{
-			m_Rb.AddForce(Vector3.up * m_JumpForce, ForceMode2D.Impulse);
-			m_JumpState = eJumpState.Jump;
-		}
+		if (IsGrounded())
+			m_Rb.velocity = Vector3.up * m_JumpVelocity;
 	}
 	#endregion
 
@@ -109,11 +124,9 @@ public class Player : MonoBehaviour
 		transform.SetParent(OnPlatform ? parent : null);
     }
 
-	private void OnCollisionEnter2D(Collision2D other)
+	private bool IsGrounded()
 	{
-		if (other.collider.CompareTag("Platform"))
-		{
-			m_JumpState = eJumpState.OnPlatform;
-		}
+		RaycastHit2D raycastHit = Physics2D.BoxCast(m_BoxCollider2D.bounds.center, m_BoxCollider2D.bounds.size, 0.0f, Vector2.down, 0.1f, m_PlatformLayerMask);
+		return raycastHit.collider != null;
 	}
 }

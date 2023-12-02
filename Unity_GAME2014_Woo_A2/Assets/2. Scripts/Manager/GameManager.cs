@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 			InPause();
 			return;
 		}
-		Player.instance.Move();
+		//Player.instance.Move();
 		Player.instance.MoveWithKeyboard();
 	}
 	#endregion
