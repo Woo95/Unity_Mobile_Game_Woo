@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
 
+		Time.timeScale = 1.0f;
+
 		Player.instance.Init();
 		SoundManager.instance.Init();
 	}
@@ -34,21 +36,18 @@ public class GameManager : MonoBehaviour
 
 		Timer.instance.UpdateTimer();
 
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))    // FOR PAUSE
-		{
-			InPause();
-			return;
-		}
 		//Player.instance.Move();
 		Player.instance.MoveWithKeyboard();
 	}
 	#endregion
 
 	#region FSM Pause
-	void InPause()
+	public void InPause()
 	{
 		Debug.Log("InPause");
 		gameState = eGameState.Pause;
+
+		Time.timeScale = 0f;
 
 		UIPause.instance.Invoke_Pause();
 		SoundManager.instance.PauseBGM();
@@ -58,17 +57,10 @@ public class GameManager : MonoBehaviour
 		Debug.Log("UnPause");
 		gameState = eGameState.Play;
 
+		Time.timeScale = 1f;
+
 		UIPause.instance.Invoke_Pause();
 		SoundManager.instance.UnPauseBGM();
-	}
-	void ModifyPause()
-	{
-		Debug.Log("ModifyPause");
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
-		{
-			UnPause();
-			return;
-		}
 	}
 	#endregion
 
@@ -91,9 +83,6 @@ public class GameManager : MonoBehaviour
 		{
 			case eGameState.Play:
 				ModifyPlay();
-				break;
-			case eGameState.Pause:
-				ModifyPause();
 				break;
 			case eGameState.GameOver:
 				ModifyGameOver();
