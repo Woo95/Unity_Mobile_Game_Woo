@@ -9,12 +9,14 @@ public class LifeCounter : MonoBehaviour
 
 	public void LoseLife()
 	{
-		if (m_LifeCount <= 0)
-			return;
-
-		Destroy(m_GameObjectLife[m_LifeCount-1]);
-
 		m_LifeCount--;
+		Destroy(m_GameObjectLife[m_LifeCount]);
+
+		if (m_LifeCount <= 0)
+		{
+			//GameOver();
+			return;
+		}
 	}
 
 	public void FallOffMapChecker()

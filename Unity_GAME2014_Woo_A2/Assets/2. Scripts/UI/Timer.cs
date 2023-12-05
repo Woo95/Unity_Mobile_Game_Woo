@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
 	public Text m_TimerText;
 	private float m_Timer = 300.0f; // 5 minutes in seconds
 
-	public void UpdateTimer()
+	public bool UpdateTimer()
 	{
 		if (m_Timer > 0)
 		{
@@ -31,7 +31,10 @@ public class Timer : MonoBehaviour
 		{
 			m_Timer = 0.0f;
 			UpdateTimerDisplay();
+
+			return false;
 		}
+		return true;
 	}
 
 	void UpdateTimerDisplay()

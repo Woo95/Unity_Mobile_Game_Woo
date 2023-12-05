@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum eGameState
 {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	#region FSM Play
-	void InPlay()   // Don't ever call this function more than once! Player.instance.Init() has loading system!
+	void InPlay()
 	{
 		Debug.Log("InPlay");
 		gameState = eGameState.Play;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 
 		Player.instance.Init();
+		UIGamePlay.instance.Init();
 		UIPause.instance.Init();
 		SoundManager.instance.Init();
 	}
@@ -35,7 +37,11 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("ModifyPlay");
 
-		Timer.instance.UpdateTimer();
+		if (!Timer.instance.UpdateTimer())
+		{
+			InGameOver();
+			return;
+		}
 
 		//Player.instance.Move();
 		Player.instance.MoveWithKeyboard();
@@ -70,10 +76,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("InGameOver");
 		gameState = eGameState.GameOver;
-	}
-	void ModifyGameOver()
-	{
-		Debug.Log("ModifyGameOver");
+
+		SceneManager.LoadScene("GameOverScene");
 	}
 	#endregion
 
@@ -84,9 +88,6 @@ public class GameManager : MonoBehaviour
 		{
 			case eGameState.Play:
 				ModifyPlay();
-				break;
-			case eGameState.GameOver:
-				ModifyGameOver();
 				break;
 		}
 
