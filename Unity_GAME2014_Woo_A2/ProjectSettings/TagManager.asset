@@ -40,18 +40,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: BackGround/Far
+  - name: BackGround/Back
     uniqueID: 3021034863
     locked: 0
-  - name: BackGround/Near
+  - name: BackGround/Normal
+    uniqueID: 33614071
+    locked: 0
+  - name: BackGround/Front
     uniqueID: 4111276819
     locked: 0
-  - name: PlayGround
+  - name: PlayGround/Back
+    uniqueID: 44777143
+    locked: 0
+  - name: PlayGround/Normal
     uniqueID: 701357531
     locked: 0
-  - name: ForwardGround
-    uniqueID: 4006250285
+  - name: PlayGround/Front
+    uniqueID: 3144230375
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
