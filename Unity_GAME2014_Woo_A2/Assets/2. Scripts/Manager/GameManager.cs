@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
 		Time.timeScale = 1.0f;
 
-		Player.instance.Init();
+		PlayerManager.instance.Init();
 		UIGamePlay.instance.Init();
 		UIPause.instance.Init();
 		SoundManager.instance.Init();
@@ -37,14 +37,15 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("ModifyPlay");
 
-		if (!Timer.instance.UpdateTimer())
+		if (!Timer.instance.UpdateTimer() || !PlayerManager.instance.IsAlive())
 		{
 			InGameOver();
 			return;
 		}
 
-		//Player.instance.Move();
-		Player.instance.MoveWithKeyboard();
+		PlayerManager.instance.InputHandler();
+
+		PlayerManager.instance.FallOffMapChecker();
 	}
 	#endregion
 

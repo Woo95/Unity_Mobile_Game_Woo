@@ -53,7 +53,7 @@ public class MovingPlatform : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			Player player = other.GetComponent<Player>();
+			PlayerController player = other.GetComponent<PlayerController>();
 			if (player != null)
 			{
 				player.OnPlatform(true, transform);
@@ -65,7 +65,7 @@ public class MovingPlatform : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			Player player = other.GetComponent<Player>();
+			PlayerController player = other.GetComponent<PlayerController>();
 			if (player != null)
 			{
 				player.OnPlatform(false, transform);

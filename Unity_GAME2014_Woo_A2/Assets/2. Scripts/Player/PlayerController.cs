@@ -2,22 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-	#region singleton
-	public static Player instance;
-	private void Awake()
-	{
-		if (instance != null)
-		{
-			Destroy(gameObject);
-			return;
-		}
-		else
-			instance = this;
-	}
-	#endregion
-	
 	[SerializeField] private LayerMask m_PlatformLayerMask;
 	
 	Rigidbody2D m_Rb;
@@ -41,8 +27,6 @@ public class Player : MonoBehaviour
 	#region Move Input
 	public void Move()
 	{
-		UpdateFootColliderState();
-
 		if (m_IsMoveLeft && m_IsMoveRight)
 			Stop();
 		else if (m_IsMoveLeft)
@@ -54,11 +38,12 @@ public class Player : MonoBehaviour
 
 		if (m_IsJump)
 			Jump();
+
+
+		UpdateFootColliderState();
 	}
 	public void MoveWithKeyboard()	// For test purposes
 	{
-		UpdateFootColliderState();
-
 		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
 		{
 			Stop();
@@ -79,6 +64,9 @@ public class Player : MonoBehaviour
 		{
 			Jump();
 		}
+
+
+		UpdateFootColliderState();
 	}
 	#endregion
 
@@ -130,6 +118,17 @@ public class Player : MonoBehaviour
 				m_IsJump = isButtonDown;
 				break;
 		}
+	}
+	#endregion
+
+	#region Position Getter and Setter
+	public Vector2 GetPosition()
+	{
+		return transform.position;	
+	}
+	public void SetPosition(Vector2 position)
+	{
+		transform.position = position;
 	}
 	#endregion
 

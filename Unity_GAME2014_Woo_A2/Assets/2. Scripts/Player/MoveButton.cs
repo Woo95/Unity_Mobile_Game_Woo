@@ -12,15 +12,20 @@ public enum eButtonActionType
 
 public class MoveButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-	public eButtonActionType m_ActionType;
-
-	public void OnPointerDown(PointerEventData eventData)
+	PlayerController m_Controller;
+	void Start()
 	{
-		Player.instance.HandleButtonAction(m_ActionType, true);
+		m_Controller = PlayerManager.instance.m_Controller;
 	}
 
+
+	public eButtonActionType m_ActionType;
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		m_Controller.HandleButtonAction(m_ActionType, true);
+	}
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		Player.instance.HandleButtonAction(m_ActionType, false);
+		m_Controller.HandleButtonAction(m_ActionType, false);
 	}
 }
