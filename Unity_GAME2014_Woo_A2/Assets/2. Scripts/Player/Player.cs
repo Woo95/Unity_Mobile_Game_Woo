@@ -22,7 +22,8 @@ public class Player : MonoBehaviour
 	[SerializeField] private LayerMask m_PlatformLayerMask;
 	
 	Rigidbody2D m_Rb;
-	BoxCollider2D m_BoxCollider2D;
+	BoxCollider2D m_GroundChecker;
+	CapsuleCollider2D m_PlayerFootCollider;
 
 	public float m_MoveSpeed = 2.5f;
 	public float m_JumpVelocity = 6.5f;
@@ -34,10 +35,15 @@ public class Player : MonoBehaviour
 	public void Init()
 	{
 		m_Rb = GetComponent<Rigidbody2D>();
-		m_BoxCollider2D = transform.GetComponent<BoxCollider2D>();
-}
+		m_GroundChecker = GameObject.Find("GroundChecker").transform.GetComponent<BoxCollider2D>();
+		m_PlayerFootCollider = GetComponent<CapsuleCollider2D>();
+	}
+
+	#region Move Input
 	public void Move()
 	{
+		UpdateFootColliderState();
+
 		if (m_IsMoveLeft && m_IsMoveRight)
 			Stop();
 		else if (m_IsMoveLeft)
@@ -48,12 +54,12 @@ public class Player : MonoBehaviour
 			Stop();
 
 		if (m_IsJump)
-		{
 			Jump();
-		}
 	}
 	public void MoveWithKeyboard()	// For test purposes
 	{
+		UpdateFootColliderState();
+
 		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
 		{
 			Stop();
@@ -73,25 +79,6 @@ public class Player : MonoBehaviour
 		if (Input.GetKey(KeyCode.Space))
 		{
 			Jump();
-		}
-	}
-
-	#region Player Button Handler
-	public void HandleButtonAction(eButtonActionType actionType, bool isButtonDown)
-	{
-		switch (actionType)
-		{
-			case eButtonActionType.MoveLeft:
-				m_IsMoveLeft = isButtonDown;
-				break;
-
-			case eButtonActionType.MoveRight:
-				m_IsMoveRight = isButtonDown;
-				break;
-
-			case eButtonActionType.Jump:
-				m_IsJump = isButtonDown;
-				break;
 		}
 	}
 	#endregion
@@ -114,6 +101,37 @@ public class Player : MonoBehaviour
 		if (IsGrounded())
 			m_Rb.velocity = Vector3.up * m_JumpVelocity;
 	}
+
+	void UpdateFootColliderState()
+	{
+		if (!IsGrounded())
+		{
+			if (m_Rb.velocity.y > 0.0f)
+				m_PlayerFootCollider.enabled = false;
+			else
+				m_PlayerFootCollider.enabled = true;
+		}
+	}
+	#endregion
+
+	#region Player Button Handler
+	public void HandleButtonAction(eButtonActionType actionType, bool isButtonDown)
+	{
+		switch (actionType)
+		{
+			case eButtonActionType.MoveLeft:
+				m_IsMoveLeft = isButtonDown;
+				break;
+
+			case eButtonActionType.MoveRight:
+				m_IsMoveRight = isButtonDown;
+				break;
+
+			case eButtonActionType.Jump:
+				m_IsJump = isButtonDown;
+				break;
+		}
+	}
 	#endregion
 
 	public void OnPlatform(bool OnPlatform, Transform parent = null)
@@ -122,7 +140,10 @@ public class Player : MonoBehaviour
 	}
 	private bool IsGrounded()
 	{
-		RaycastHit2D raycastHit = Physics2D.BoxCast(m_BoxCollider2D.bounds.center, m_BoxCollider2D.bounds.size, 0.0f, Vector2.down, 0.1f, m_PlatformLayerMask);
+		if (!m_PlayerFootCollider.enabled)
+			return false;
+
+		RaycastHit2D raycastHit = Physics2D.BoxCast(m_GroundChecker.bounds.center, m_GroundChecker.bounds.size, 0.0f, Vector2.down, 0.0f, m_PlatformLayerMask);
 		return raycastHit.collider != null;
 	}
 }
