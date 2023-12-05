@@ -18,7 +18,6 @@ public class MoveButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 		m_Controller = PlayerManager.instance.m_Controller;
 	}
 
-
 	public eButtonActionType m_ActionType;
 	public void OnPointerDown(PointerEventData eventData)
 	{

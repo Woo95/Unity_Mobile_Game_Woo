@@ -2087,7 +2087,7 @@ Transform:
   m_GameObject: {fileID: 1201767949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.5, y: 3, z: 0}
+  m_LocalPosition: {x: -12.5, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2190,7 +2190,7 @@ Transform:
   m_GameObject: {fileID: 1275240081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.03, y: 3.27, z: 0}
+  m_LocalPosition: {x: -13.74, y: 5.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7198,8 +7198,8 @@ Tilemap:
   - first: {x: -10, y: 8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 14
+      m_TileIndex: 16
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8605,11 +8605,11 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 5bc5b43b9bb6154468bb2895d987533f, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 8e5a029686f71184e946a8186f456b24, type: 2}
-  - m_RefCount: 13
+  - m_RefCount: 12
     m_Data: {fileID: 11400000, guid: 8e1e8a24b33f0f34fa4d36223a0c086e, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: af85271552031b746bb013b103c0cead, type: 2}
-  - m_RefCount: 42
+  - m_RefCount: 43
     m_Data: {fileID: 11400000, guid: 5e19dad1b3660e643bb8fa39d6a20634, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: b3563967742641342ab531afaf8a3aa7, type: 2}
@@ -8662,11 +8662,11 @@ Tilemap:
     m_Data: {fileID: -1366885086, guid: 40d894de970e7db41b8c75fa66ec3d35, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 748261030, guid: 40d894de970e7db41b8c75fa66ec3d35, type: 3}
-  - m_RefCount: 13
+  - m_RefCount: 12
     m_Data: {fileID: -121165371, guid: 40d894de970e7db41b8c75fa66ec3d35, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 119180811, guid: 40d894de970e7db41b8c75fa66ec3d35, type: 3}
-  - m_RefCount: 42
+  - m_RefCount: 43
     m_Data: {fileID: -913670067, guid: 40d894de970e7db41b8c75fa66ec3d35, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -1079745675, guid: 40d894de970e7db41b8c75fa66ec3d35, type: 3}
@@ -8767,7 +8767,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
