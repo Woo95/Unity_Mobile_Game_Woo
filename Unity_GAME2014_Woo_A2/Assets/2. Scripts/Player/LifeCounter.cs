@@ -12,8 +12,19 @@ public class LifeCounter : MonoBehaviour
 		if (m_LifeCount <= 0)
 			return;
 
-		Destroy(m_GameObjectLife[m_LifeCount]);
+		Destroy(m_GameObjectLife[m_LifeCount-1]);
 
 		m_LifeCount--;
+	}
+
+	public void FallOffMapChecker()
+	{
+		if (transform.position.y <= -12.0f)
+			LoseLife();
+	}
+
+	private void Update()
+	{
+		FallOffMapChecker();
 	}
 }

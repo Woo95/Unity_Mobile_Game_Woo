@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 
 		Player.instance.Init();
+		UIPause.instance.Init();
 		SoundManager.instance.Init();
 	}
 	void ModifyPlay()
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("UnPause");
 		gameState = eGameState.Play;
 
-		Time.timeScale = 1f;
+		Time.timeScale = 1.0f;
 
 		UIPause.instance.Invoke_Pause();
 		SoundManager.instance.UnPauseBGM();

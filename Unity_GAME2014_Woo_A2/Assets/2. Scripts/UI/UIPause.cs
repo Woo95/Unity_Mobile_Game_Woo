@@ -43,9 +43,4 @@ public class UIPause : MonoBehaviour
 	{
 		SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
 	}
-
-	public void Invoke_Save()
-	{
-		m_PauseBody.text = "Game Saved!";
-	}
 }
