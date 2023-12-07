@@ -9,7 +9,7 @@ public class Bat : Enemy
 		
 	}
 
-	#region FSM Idle
+	#region FSM Patrol
 	public override void InPatrol()
 	{
 

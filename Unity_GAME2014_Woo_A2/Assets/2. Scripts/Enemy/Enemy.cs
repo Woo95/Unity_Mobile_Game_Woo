@@ -14,18 +14,18 @@ public abstract class Enemy : MonoBehaviour
 	public abstract void Init();
 
 	#region FSM Patrol
-	public abstract void InPatrol();
-	public abstract void ModifyPatrol();
+	public virtual void InPatrol() { }
+	public virtual void ModifyPatrol() { }
 	#endregion
 
 	#region FSM CHASE
-	public abstract void InChase();
-	public abstract void ModifyChase();
+	public virtual void InChase() { }
+	public virtual void ModifyChase() { }
 	#endregion
 
 	#region FSM ATTACK
-	public abstract void InAttack();
-	public abstract void ModifyAttack();
+	public virtual void InAttack() { }
+	public virtual void ModifyAttack() { }
 	#endregion
 
 	public void Update()
