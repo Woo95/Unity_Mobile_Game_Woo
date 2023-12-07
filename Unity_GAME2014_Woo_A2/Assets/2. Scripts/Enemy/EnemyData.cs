@@ -6,8 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New EnemyData", menuName = "Enemy/New EnemyData")]
 public class EnemyData : ScriptableObject
 {
-	public Sprite m_Sprite;
-
 	public float m_SpawnTime;
-	public float m_Speed;
+	public float m_MoveSpeed;
 }

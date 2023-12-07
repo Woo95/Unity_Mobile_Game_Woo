@@ -10,12 +10,12 @@ public class Mushroom : Enemy
 	public Transform m_PatrolChecker;
 	public float m_PatrolCheckerRadius = 0.2f;
 
-	public float m_MoveSpeed = 2f;
 	public override void Init()
 	{
 		m_Target = null;
 
 		m_Rb = GetComponent<Rigidbody2D>();
+		m_MoveSpeed = 2.0f;
 
 		InPatrol();
 	}

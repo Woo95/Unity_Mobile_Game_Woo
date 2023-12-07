@@ -4,41 +4,32 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
+	private void Start()
+	{
+		Init();
+	}
 	public override void Init()
 	{
-		
-	}
+		m_Target = null;
 
-	#region FSM Patrol
-	public override void InPatrol()
-	{
+		m_MoveSpeed = 1.0f;
 
+		InChase();
 	}
-	public override void ModifyPatrol()
-	{
-
-	}
-	#endregion
 
 	#region FSM CHASE
 	public override void InChase()
 	{
+		m_EnemyState = eEnemyState.CHASE;
 
+		m_Target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
 	public override void ModifyChase()
 	{
-
-	}
-	#endregion
-
-	#region FSM ATTACK
-	public override void InAttack()
-	{
-
-	}
-	public override void ModifyAttack()
-	{
-
+		if (m_Target)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, m_Target.transform.position, m_MoveSpeed * Time.deltaTime);
+		}
 	}
 	#endregion
 }

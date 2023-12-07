@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
 	public PlayerController m_Target;
-	public EnemyData m_EnemyData;
+	protected float m_MoveSpeed;
 
 	public enum eEnemyState { NONE, PATROL, CHASE, ATTACK };
 
