@@ -10,11 +10,11 @@ public class Goblin : Enemy
 	}
 
 	#region FSM Idle
-	public override void InIdle()
+	public override void InPatrol()
 	{
 
 	}
-	public override void ModifyIdle()
+	public override void ModifyPatrol()
 	{
 
 	}

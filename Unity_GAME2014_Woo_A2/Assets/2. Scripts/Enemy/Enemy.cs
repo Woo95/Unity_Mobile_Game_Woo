@@ -7,15 +7,15 @@ public abstract class Enemy : MonoBehaviour
 	public PlayerController m_Target;
 	public EnemyData m_EnemyData;
 
-	public enum eEnemyState { NONE, IDLE, CHASE, ATTACK };
+	public enum eEnemyState { NONE, PATROL, CHASE, ATTACK };
 
 	public eEnemyState m_EnemyState;
 
 	public abstract void Init();
 
-	#region FSM Idle
-	public abstract void InIdle();
-	public abstract void ModifyIdle();
+	#region FSM Patrol
+	public abstract void InPatrol();
+	public abstract void ModifyPatrol();
 	#endregion
 
 	#region FSM CHASE
@@ -32,8 +32,8 @@ public abstract class Enemy : MonoBehaviour
 	{
 		switch (m_EnemyState)
 		{
-			case eEnemyState.IDLE:
-				ModifyIdle(); 
+			case eEnemyState.PATROL:
+				ModifyPatrol(); 
 				break;
 			case eEnemyState.CHASE:
 				ModifyChase();
