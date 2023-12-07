@@ -2615,6 +2615,7 @@ GameObject:
   - component: {fileID: 1275240083}
   - component: {fileID: 1275240084}
   - component: {fileID: 1275240091}
+  - component: {fileID: 1275240092}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2681,12 +2682,12 @@ SpriteRenderer:
   m_SortingLayerID: 701357531
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 63376c2710242664b8a9ae8e82f287b0, type: 3}
+  m_Sprite: {fileID: 1743889729, guid: 80c704e287188ae4d88fdc65adca1223, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2736,6 +2737,7 @@ MonoBehaviour:
     m_Bits: 64
   m_MoveSpeed: 2.5
   m_JumpVelocity: 6.5
+  m_Animator: {fileID: 0}
 --- !u!70 &1275240091
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2771,6 +2773,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.47}
   m_Size: {x: 0.34, y: 0.08}
   m_Direction: 1
+--- !u!95 &1275240092
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275240081}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3f4352fad7d5fe442935e4db96c25a4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1287080522
 GameObject:
   m_ObjectHideFlags: 0
@@ -10067,6 +10090,10 @@ PrefabInstance:
     - target: {fileID: 4101207235698510152, guid: e4462fdf164a7ad4d8c4190274425466, type: 3}
       propertyPath: m_Name
       value: Bat
+      objectReference: {fileID: 0}
+    - target: {fileID: 4101207235698510152, guid: e4462fdf164a7ad4d8c4190274425466, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

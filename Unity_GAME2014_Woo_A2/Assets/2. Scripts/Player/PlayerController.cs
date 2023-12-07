@@ -17,11 +17,15 @@ public class PlayerController : MonoBehaviour
 	private bool m_IsMoveRight = false;
 	private bool m_IsJump = false;
 
+	public Animator m_Animator;
+
 	public void Init()
 	{
 		m_Rb = GetComponent<Rigidbody2D>();
 		m_GroundChecker = GameObject.Find("GroundChecker").transform.GetComponent<BoxCollider2D>();
 		m_PlayerFootCollider = GetComponent<CapsuleCollider2D>();
+
+		m_Animator = GetComponent<Animator>();
 	}
 
 	#region Move Input
@@ -44,15 +48,15 @@ public class PlayerController : MonoBehaviour
 	}
 	public void MoveWithKeyboard()	// For test purposes
 	{
-		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+		if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.D))
 		{
 			Stop();
 		}
-		else if (Input.GetKey(KeyCode.A))
+		else if (Input.GetKeyDown(KeyCode.A))
 		{
 			MoveLeft();
 		}
-		else if (Input.GetKey(KeyCode.D))
+		else if (Input.GetKeyDown(KeyCode.D))
 		{
 			MoveRight();
 		}
@@ -60,7 +64,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Stop();
 		}
-		if (Input.GetKey(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			Jump();
 		}
@@ -74,17 +78,21 @@ public class PlayerController : MonoBehaviour
 	public void MoveLeft()
     {
 		m_Rb.velocity = new Vector2(-m_MoveSpeed, m_Rb.velocity.y);
+		m_Animator.SetBool("Move", true);
 	}
     public void MoveRight()
     {
 		m_Rb.velocity = new Vector2(+m_MoveSpeed, m_Rb.velocity.y);
+		m_Animator.SetBool("Move", true);
 	}
 	public void Stop()
 	{
 		m_Rb.velocity = new Vector2(0, m_Rb.velocity.y);
+		m_Animator.SetBool("Move", false);
 	}
 	public void Jump()
     {
+		m_Animator.SetTrigger("Jump");
 		if (IsGrounded())
 			m_Rb.velocity = Vector3.up * m_JumpVelocity;
 	}
