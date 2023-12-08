@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum eGameState
-{
-	None,
-	Play,
-	GameOver,
-	Pause,
-}
-
 public class GameManager : MonoBehaviour
 {
-	public eGameState gameState = eGameState.None;
+	public enum eGameState { NONE, PLAY, GAMEOVER, PAUSE };
+
+	public eGameState gameState = eGameState.NONE;
 
 	void Start()
 	{
@@ -24,11 +18,13 @@ public class GameManager : MonoBehaviour
 	void InPlay()
 	{
 		Debug.Log("InPlay");
-		gameState = eGameState.Play;
+		gameState = eGameState.PLAY;
 
 		Time.timeScale = 1.0f;
 
 		PlayerManager.instance.Init();
+		EnemyManager.instance.Init();
+		CameraControl.instance.Init();
 		UIGamePlay.instance.Init();
 		UIPause.instance.Init();
 		SoundManager.instance.Init();
@@ -46,6 +42,10 @@ public class GameManager : MonoBehaviour
 		PlayerManager.instance.InputHandler();
 
 		PlayerManager.instance.FallOffMapChecker();
+
+		CameraControl.instance.TrackPlayer();
+
+		EnemyManager.instance.Run();
 	}
 	#endregion
 
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 	public void InPause()
 	{
 		Debug.Log("InPause");
-		gameState = eGameState.Pause;
+		gameState = eGameState.PAUSE;
 
 		Time.timeScale = 0f;
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 	public void UnPause()
 	{
 		Debug.Log("UnPause");
-		gameState = eGameState.Play;
+		gameState = eGameState.PLAY;
 
 		Time.timeScale = 1.0f;
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 	void InGameOver()
 	{
 		Debug.Log("InGameOver");
-		gameState = eGameState.GameOver;
+		gameState = eGameState.GAMEOVER;
 
 		SceneManager.LoadScene("GameOverScene");
 	}
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 	{
 		switch (gameState)
 		{
-			case eGameState.Play:
+			case eGameState.PLAY:
 				ModifyPlay();
 				break;
 		}
