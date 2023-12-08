@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	private bool m_IsMoveRight = false;
 	private bool m_IsJump = false;
 
+	public bool m_FaceRight = true;
 	public Animator m_Animator;
 
 	public void Init()
@@ -48,15 +49,15 @@ public class PlayerController : MonoBehaviour
 	}
 	public void MoveWithKeyboard()	// For test purposes
 	{
-		if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
 		{
 			Stop();
 		}
-		else if (Input.GetKeyDown(KeyCode.A))
+		else if (Input.GetKey(KeyCode.A))
 		{
 			MoveLeft();
 		}
-		else if (Input.GetKeyDown(KeyCode.D))
+		else if (Input.GetKey(KeyCode.D))
 		{
 			MoveRight();
 		}
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Stop();
 		}
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKey(KeyCode.Space))
 		{
 			Jump();
 		}
@@ -78,11 +79,13 @@ public class PlayerController : MonoBehaviour
 	public void MoveLeft()
     {
 		m_Rb.velocity = new Vector2(-m_MoveSpeed, m_Rb.velocity.y);
+		Flip(true);
 		m_Animator.SetBool("Move", true);
 	}
     public void MoveRight()
     {
 		m_Rb.velocity = new Vector2(+m_MoveSpeed, m_Rb.velocity.y);
+		Flip(false);
 		m_Animator.SetBool("Move", true);
 	}
 	public void Stop()
@@ -105,6 +108,17 @@ public class PlayerController : MonoBehaviour
 				m_PlayerFootCollider.enabled = false;
 			else
 				m_PlayerFootCollider.enabled = true;
+		}
+	}
+	void Flip(bool faceRight)
+	{
+		if (m_FaceRight !=  faceRight)
+		{
+			m_FaceRight = faceRight;
+
+			Vector3 scale = transform.localScale;
+			scale.x *= -1;
+			transform.localScale = scale;
 		}
 	}
 	#endregion
