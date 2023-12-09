@@ -27,6 +27,8 @@ public class PlayerManager : MonoBehaviour
 
 	public Transform m_SpawnPoint;
 
+	private int m_ObtainedCoinAmount;
+
 	public void Init()
 	{
 		m_Controller.SetPosition(m_SpawnPoint.position);
@@ -66,5 +68,10 @@ public class PlayerManager : MonoBehaviour
 	public void Respawn()
 	{
 		m_Controller.SetPosition(m_SpawnPoint.position);
+	}
+
+	public void ObtainCoin()
+	{
+		m_ObtainedCoinAmount++;
 	}
 }
