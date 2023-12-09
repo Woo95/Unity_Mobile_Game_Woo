@@ -9,7 +9,7 @@ public class Mushroom : Enemy
 		Init();
 	}
 
-	[SerializeField] private LayerMask m_LayerMask;
+	public LayerMask m_LayerMask;
 
 	Rigidbody2D m_Rb;
 	public Transform m_PatrolChecker;

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private LayerMask m_PlatformLayerMask;
+	public LayerMask m_PlatformLayerMask;
 	
 	Rigidbody2D m_Rb;
-	BoxCollider2D m_GroundChecker;
 	CapsuleCollider2D m_PlayerFootCollider;
 
 	public float m_MoveSpeed = 2.5f;
@@ -20,10 +19,12 @@ public class PlayerController : MonoBehaviour
 	public bool m_FaceRight = true;
 	public Animator m_Animator;
 
+	public Transform m_HitAreaA, m_HitAreaB;
+	public LayerMask m_HitLayerMask;
+
 	public void Init()
 	{
 		m_Rb = GetComponent<Rigidbody2D>();
-		m_GroundChecker = GameObject.Find("GroundChecker").transform.GetComponent<BoxCollider2D>();
 		m_PlayerFootCollider = GetComponent<CapsuleCollider2D>();
 
 		m_Animator = GetComponent<Animator>();
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
 			Jump();
 
 
+		CheckEnemyToKill();
 		UpdateFootColliderState();
 	}
 	public void MoveWithKeyboard()	// For test purposes
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
 			Jump();
 		}
 
-
+		CheckEnemyToKill();
 		UpdateFootColliderState();
 	}
 	#endregion
@@ -94,10 +96,12 @@ public class PlayerController : MonoBehaviour
 		m_Animator.SetBool("Move", false);
 	}
 	public void Jump()
-    {
-		m_Animator.SetTrigger("Jump");
+	{
+		m_Animator.SetBool("Jump", true);
 		if (IsGrounded())
+		{
 			m_Rb.velocity = Vector3.up * m_JumpVelocity;
+		}
 	}
 
 	void UpdateFootColliderState()
@@ -163,7 +167,36 @@ public class PlayerController : MonoBehaviour
 		if (!m_PlayerFootCollider.enabled)
 			return false;
 
-		RaycastHit2D raycastHit = Physics2D.BoxCast(m_GroundChecker.bounds.center, m_GroundChecker.bounds.size, 0.0f, Vector2.down, 0.0f, m_PlatformLayerMask);
-		return raycastHit.collider != null;
+		Collider2D groundCollider = Physics2D.OverlapArea(m_HitAreaA.position, m_HitAreaB.position, m_PlatformLayerMask);
+		if(groundCollider != null)
+		{
+			m_Animator.SetBool("Jump", false);
+		}
+		return groundCollider != null;
 	}
+	public void CheckEnemyToKill()
+	{
+		Collider2D enemyToKill = Physics2D.OverlapArea(m_HitAreaA.position, m_HitAreaB.position, m_HitLayerMask);
+
+		if (enemyToKill != null)
+		{
+			Destroy(enemyToKill.gameObject);
+		}
+	}
+
+	#region Gizmo Drawing
+	private void OnDrawGizmos()
+	{
+		Vector3 p00 = m_HitAreaA.position;
+		Vector3 p11 = m_HitAreaB.position;
+		Vector3 p10 = new Vector3(p11.x, p00.y, p00.z);
+		Vector3 p01 = new Vector3(p00.x, p11.y, p00.z);
+
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine(p00, p10);
+		Gizmos.DrawLine(p10, p11);
+		Gizmos.DrawLine(p11, p01);
+		Gizmos.DrawLine(p01, p00);
+	}
+	#endregion
 }

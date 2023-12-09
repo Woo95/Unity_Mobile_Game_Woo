@@ -27,13 +27,12 @@ public class EnemyManager : MonoBehaviour
 	public eEnemyManagerState enemyManagerState;
 
 	[Header("Sky Mob - Settings")]
-	public float SPAWN_BAT_INTERVAL = 20.0f;
-	public float m_NextSkyMobSpawnTime;
-	public List<Enemy>		m_SkyMobPrefabList = new List<Enemy>();
+	float SPAWN_BAT_INTERVAL = 20.0f;
+	float m_NextSkyMobSpawnTime;
+	public List<Enemy>			m_SkyMobPrefabList = new List<Enemy>();
 
 	[Header("Ground Mob - Settings")]
-	public float SPAWN_GROUND_MOB_INTERVAL = 10.0f;
-
+	float SPAWN_GROUND_MOB_INTERVAL = 10.0f;
 	public List<Enemy>			m_GroundMobPrefabList = new List<Enemy>();
 	public List<GroundMobData>	m_GroundMobList = new List<GroundMobData>();
 
@@ -87,7 +86,6 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	#region SpawnEnemy
-
 	#region Sky Mob
 	public void SpawnSkyMob()
 	{
@@ -134,16 +132,22 @@ public class EnemyManager : MonoBehaviour
 	#region Ground Mob
 	public void SpawnGroundMob(GroundMobData spawnGroundData)
 	{
-		int enemyIndex = Random.Range(0, m_GroundMobPrefabList.Count);
-		Vector3 pos = spawnGroundData.m_GroundMobSpawnPoint.position;
-		Quaternion rotation = Quaternion.identity;
+		if (m_GroundMobPrefabList.Count > 0)
+		{
+			int enemyIndex = Random.Range(0, m_GroundMobPrefabList.Count);
+			Vector3 pos = spawnGroundData.m_GroundMobSpawnPoint.position;
+			Quaternion rotation = Quaternion.identity;
 
-		Enemy enemy = Instantiate(m_GroundMobPrefabList[enemyIndex], pos, rotation, transform);
-		spawnGroundData.m_GroundMob = enemy;
+			if (m_GroundMobPrefabList[enemyIndex] != null)
+			{
+				Enemy enemy = Instantiate(m_GroundMobPrefabList[enemyIndex], pos, rotation, transform);
+				spawnGroundData.m_GroundMob = enemy;
 
-		spawnGroundData.m_NextGroundMobSpawnTime = Time.time + SPAWN_GROUND_MOB_INTERVAL;
+				spawnGroundData.m_NextGroundMobSpawnTime = Time.time + SPAWN_GROUND_MOB_INTERVAL;
 
-		m_EnemySpawnedList.Add(enemy);
+				m_EnemySpawnedList.Add(enemy);
+			}
+		}
 	}
 	#endregion
 

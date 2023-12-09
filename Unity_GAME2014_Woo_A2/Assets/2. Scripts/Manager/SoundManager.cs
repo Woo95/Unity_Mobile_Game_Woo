@@ -5,18 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public struct SFX
 {
-	[SerializeField]
 	public string name;
-	[SerializeField]
 	public AudioClip clip;
 }
 
 [System.Serializable]
 public struct BGM
 {
-	[SerializeField]
 	public string name;
-	[SerializeField]
 	public AudioSource source;
 }
 
