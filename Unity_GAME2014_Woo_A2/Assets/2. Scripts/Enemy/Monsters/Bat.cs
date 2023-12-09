@@ -8,6 +8,7 @@ public class Bat : Enemy
 	{
 		Init();
 	}
+
 	public override void Init()
 	{
 		m_Target = null;
@@ -28,8 +29,21 @@ public class Bat : Enemy
 	{
 		if (m_Target)
 		{
+			FlipBat(m_Target.transform.position.x);
 			transform.position = Vector3.MoveTowards(transform.position, m_Target.transform.position, m_MoveSpeed * Time.deltaTime);
 		}
 	}
 	#endregion
+
+	private void FlipBat(float targetXPosition)
+	{
+		if (targetXPosition < transform.position.x)
+		{
+			transform.right = Vector3.right;
+		}
+		else
+		{
+			transform.right = Vector3.left;
+		}
+	}
 }

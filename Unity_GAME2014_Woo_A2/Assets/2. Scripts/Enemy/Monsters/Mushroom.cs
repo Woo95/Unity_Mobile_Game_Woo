@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Mushroom : Enemy
 {
+	private void Start()
+	{
+		Init();
+	}
+
 	[SerializeField] private LayerMask m_LayerMask;
 
 	Rigidbody2D m_Rb;
@@ -17,12 +22,12 @@ public class Mushroom : Enemy
 		m_Rb = GetComponent<Rigidbody2D>();
 		m_MoveSpeed = 2.0f;
 
-		InPatrol();
-	}
+		if (Random.Range(0, 2) == 0)
+		{
+			Flip();
+		}
 
-	private void Start()
-	{
-		Init();
+		InPatrol();
 	}
 
 	#region FSM Patrol
@@ -47,8 +52,10 @@ public class Mushroom : Enemy
 		transform.right *= -1.0f;
 	}
 
+	#region Gizmo Drawing
 	private void OnDrawGizmos()
 	{
 		Gizmos.DrawWireSphere(m_PatrolChecker.position, m_PatrolCheckerRadius);
 	}
+	#endregion
 }
