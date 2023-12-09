@@ -22,16 +22,18 @@ public class PlayerManager : MonoBehaviour
 	public PlayerController m_Controller;
 	public UILifeCounter m_UILifeCounter;
 
+	private int m_ObtainedCoinAmount;
+
 	public int m_LifeCount;
 	float m_DeadHeight;
 
 	public Transform m_SpawnPoint;
 
-	private int m_ObtainedCoinAmount;
-
 	public void Init()
 	{
 		m_Controller.SetPosition(m_SpawnPoint.position);
+
+		m_ObtainedCoinAmount = 0;
 
 		m_LifeCount = 3;
 		m_DeadHeight = -12.0f;
