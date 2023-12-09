@@ -108,10 +108,12 @@ public class EnemyManager : MonoBehaviour
 	}
 	public Vector3 GetSkyMobSpawnPosition()
 	{
-		float halfWidth = Camera.main.orthographicSize * Camera.main.aspect;
-		float halfHeight = Camera.main.orthographicSize;
+		Camera camera = Camera.main;
 
-		Vector3 cameraPos = Camera.main.transform.position;
+		float halfWidth = camera.orthographicSize * camera.aspect;
+		float halfHeight = camera.orthographicSize;
+
+		Vector3 cameraPos = camera.transform.position;
 		p00 = new Vector2(cameraPos.x - halfWidth, cameraPos.y - halfHeight);
 		p01 = new Vector2(cameraPos.x - halfWidth, cameraPos.y + halfHeight);
 		p11 = new Vector2(cameraPos.x + halfWidth, cameraPos.y + halfHeight);

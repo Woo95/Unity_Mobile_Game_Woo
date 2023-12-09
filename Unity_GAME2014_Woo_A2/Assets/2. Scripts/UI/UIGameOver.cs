@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIGameOver : MonoBehaviour
+public class UIGameOver
 {
 	public void Invoke_PlayButton()
 	{
