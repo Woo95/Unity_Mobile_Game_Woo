@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
-	private void Start()
-	{
-		Init();
-	}
 
 	public override void Init()
 	{

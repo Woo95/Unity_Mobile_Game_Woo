@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//public enum eSpawnType { Freqeuntly, Area }
 [System.Serializable]
 public class GroundMobData
 {
@@ -89,20 +87,24 @@ public class EnemyManager : MonoBehaviour
 	#region Sky Mob
 	public void SpawnSkyMob()
 	{
-		if (m_SkyMobPrefabList.Count > 0)
+		if (m_SkyMobPrefabList.Count <= 0)
 		{
-			int enemyIndex = Random.Range(0, m_SkyMobPrefabList.Count);
-			Vector3 pos = GetSkyMobSpawnPosition();
-			Quaternion rotation = Quaternion.identity;
+			Debug.LogError("No Sky Mob Prefab Found"); 
+			return;
+		}	
 
-			if (m_SkyMobPrefabList[enemyIndex] != null)
-			{
-				Enemy enemy = Instantiate(m_SkyMobPrefabList[enemyIndex], pos, rotation, transform);
-				m_EnemySpawnedList.Add(enemy);
+		int enemyIndex = Random.Range(0, m_SkyMobPrefabList.Count);
+		Vector3 pos = GetSkyMobSpawnPosition();
+		Quaternion rot = Quaternion.identity;
 
-				m_NextSkyMobSpawnTime = Time.time + SPAWN_BAT_INTERVAL;
-			}
-		}
+		Enemy enemy = Instantiate(m_SkyMobPrefabList[enemyIndex], pos, rot, transform);
+		enemy.Init();
+
+		m_EnemySpawnedList.Add(enemy);
+
+		m_NextSkyMobSpawnTime = Time.time + SPAWN_BAT_INTERVAL;
+			
+
 	}
 	public Vector3 GetSkyMobSpawnPosition()
 	{
@@ -132,22 +134,21 @@ public class EnemyManager : MonoBehaviour
 	#region Ground Mob
 	public void SpawnGroundMob(GroundMobData spawnGroundData)
 	{
-		if (m_GroundMobPrefabList.Count > 0)
+		if (m_GroundMobPrefabList.Count <= 0)
 		{
-			int enemyIndex = Random.Range(0, m_GroundMobPrefabList.Count);
-			Vector3 pos = spawnGroundData.m_GroundMobSpawnPoint.position;
-			Quaternion rotation = Quaternion.identity;
-
-			if (m_GroundMobPrefabList[enemyIndex] != null)
-			{
-				Enemy enemy = Instantiate(m_GroundMobPrefabList[enemyIndex], pos, rotation, transform);
-				spawnGroundData.m_GroundMob = enemy;
-
-				spawnGroundData.m_NextGroundMobSpawnTime = Time.time + SPAWN_GROUND_MOB_INTERVAL;
-
-				m_EnemySpawnedList.Add(enemy);
-			}
+			Debug.LogError("No Ground Mob Prefab Found");
+			return;
 		}
+
+		int enemyIndex = Random.Range(0, m_GroundMobPrefabList.Count);
+		Vector3 pos = spawnGroundData.m_GroundMobSpawnPoint.position;
+		Quaternion rot = Quaternion.identity;
+
+		Enemy enemy = Instantiate(m_GroundMobPrefabList[enemyIndex], pos, rot, transform);
+		spawnGroundData.m_GroundMob = enemy;
+		enemy.Init();
+
+		m_EnemySpawnedList.Add(enemy);
 	}
 	#endregion
 
@@ -155,6 +156,15 @@ public class EnemyManager : MonoBehaviour
 	{
 		if (m_EnemySpawnedList.Contains(enemy))
 			m_EnemySpawnedList.Remove(enemy);
+
+		for (int i=0; i< m_GroundMobList.Count; i++)
+		{
+			if (m_GroundMobList[i].m_GroundMob == enemy)
+			{
+				m_GroundMobList[i].m_NextGroundMobSpawnTime = Time.time + SPAWN_GROUND_MOB_INTERVAL;
+				break;
+			}
+		}
 	}
 	#endregion
 

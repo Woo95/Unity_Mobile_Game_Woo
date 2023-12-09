@@ -43,4 +43,17 @@ public abstract class Enemy : MonoBehaviour
 				break;
 		}
 	}
+
+	public void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Player"))
+		{
+			PlayerManager.instance.LoseLife();
+		}
+	}
+
+	private void OnDestroy()
+	{
+		EnemyManager.instance.Remove(this);
+	}
 }

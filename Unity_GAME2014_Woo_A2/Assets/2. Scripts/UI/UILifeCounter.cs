@@ -18,6 +18,7 @@ public class UILifeCounter : MonoBehaviour
 	public void UpdateLife()
 	{
 		int lifeCount = PlayerManager.instance.m_LifeCount;
-		m_GameObjectLife[lifeCount].SetActive(false);
+		if (lifeCount >= 0)
+			m_GameObjectLife[lifeCount].SetActive(false);
 	}
 }

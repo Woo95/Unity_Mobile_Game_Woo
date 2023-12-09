@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7505108117176843813}
   - component: {fileID: 1766276248709333327}
   - component: {fileID: 1149742983414725163}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Small_Mushroom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217959366396756034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrolChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Mushroom : Enemy
 {
-	private void Start()
-	{
-		Init();
-	}
-
 	public LayerMask m_LayerMask;
 
 	Rigidbody2D m_Rb;
@@ -44,13 +39,14 @@ public class Mushroom : Enemy
 			Flip();
 		}
 	}
-	#endregion
+
 
 	private void Flip()
 	{
 		m_MoveSpeed *= -1.0f;
 		transform.right *= -1.0f;
 	}
+	#endregion
 
 	#region Gizmo Drawing
 	private void OnDrawGizmos()
