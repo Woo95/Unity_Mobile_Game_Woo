@@ -73,16 +73,6 @@ public class EnemyManager : MonoBehaviour
 	}
 	#endregion
 
-	public void Run()
-	{
-		switch (enemyManagerState)
-		{
-			case eEnemyManagerState.SPAWNING:
-				ModifySpawning();
-				break;
-		}
-	}
-
 	#region SpawnEnemy
 	#region Sky Mob
 	public void SpawnSkyMob()
@@ -169,6 +159,16 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 	#endregion
+
+	public void Run()
+	{
+		switch (enemyManagerState)
+		{
+			case eEnemyManagerState.SPAWNING:
+				ModifySpawning();
+				break;
+		}
+	}
 
 	#region Gizmo Drawing
 	//private void OnDrawGizmos()

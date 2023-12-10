@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
 	}
 
 	#region BGM
-	public void PlayBGM(string name, float volume = 0.15f, bool isLoop = true)
+	public void PlayBGM(string name, float volume = 0.10f, bool isLoop = true)
 	{
 		// find the BGM object with the matching name
 		BGM bgm = System.Array.Find(m_BGM, b => b.name == name);

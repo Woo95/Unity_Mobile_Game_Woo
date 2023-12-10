@@ -35,13 +35,17 @@ public class GameManager : MonoBehaviour
 
 		if (!Timer.instance.UpdateTimer() || !PlayerManager.instance.IsAlive())
 		{
-			InGameOver();
+			InGameOver(false);
+			return;
+		}
+
+		if (PlayerManager.instance.Finished())
+		{
+			InGameOver(true);
 			return;
 		}
 
 		PlayerManager.instance.InputHandler();
-
-		PlayerManager.instance.FallOffMapChecker();
 
 		CameraControl.instance.TrackPlayer();
 
@@ -73,10 +77,12 @@ public class GameManager : MonoBehaviour
 	#endregion
 
 	#region FSM GameOver
-	void InGameOver()
+	void InGameOver(bool isWon)
 	{
 		Debug.Log("InGameOver");
 		gameState = eGameState.GAMEOVER;
+
+		GameOverData.SetData(PlayerManager.instance.GetObtainedCoin(), Timer.instance.GetTimer(), isWon);
 
 		SceneManager.LoadScene("GameOverScene");
 	}

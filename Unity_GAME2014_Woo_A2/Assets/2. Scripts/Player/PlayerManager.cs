@@ -44,8 +44,9 @@ public class PlayerManager : MonoBehaviour
 
 	public void InputHandler()
 	{
-		//m_Controller.Move();
-		m_Controller.MoveWithKeyboard();
+		m_Controller.Move();
+
+		FallOffMapChecker();
 	}
 
 	public bool IsAlive()
@@ -72,8 +73,17 @@ public class PlayerManager : MonoBehaviour
 		m_Controller.SetPosition(m_SpawnPoint.position);
 	}
 
-	public void ObtainCoin()
+	public void ObtainedCoin()
 	{
 		m_ObtainedCoinAmount++;
+	}
+	public int GetObtainedCoin()
+	{
+		return m_ObtainedCoinAmount;
+	}
+
+	public bool Finished()
+	{
+		return m_Controller.CheckGoal();
 	}
 }

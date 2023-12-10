@@ -3308,6 +3308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_MoveDistance
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7439,6 +7443,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_UpDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_LeftRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_MoveDistance
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9101,12 +9117,20 @@ PrefabInstance:
       value: MovingPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_UpDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_LeftRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_MoveSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_MoveDistance
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10063,11 +10087,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3451167510766029317, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.5
+      value: -14.39
       objectReference: {fileID: 0}
     - target: {fileID: 3451167510766029317, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11
+      value: 9.56
       objectReference: {fileID: 0}
     - target: {fileID: 3451167510766029317, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10104,6 +10128,14 @@ PrefabInstance:
     - target: {fileID: 4162821823230803633, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_Name
       value: MovingPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_UpDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
+      propertyPath: m_LeftRight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8124810812981892924, guid: 7ddb9209c7292c44caa7efd231991730, type: 3}
       propertyPath: m_MoveSpeed
@@ -11063,6 +11095,8 @@ MonoBehaviour:
   m_SFX:
   - name: Coin
     clip: {fileID: 8300000, guid: 0b50c7d340660004b97b54fcbf182918, type: 3}
+  - name: Goal
+    clip: {fileID: 8300000, guid: 24c269ff6e71249438cdcd562d669ef8, type: 3}
   m_BGM:
   - name: GamePlayBGM
     source: {fileID: 648139795}

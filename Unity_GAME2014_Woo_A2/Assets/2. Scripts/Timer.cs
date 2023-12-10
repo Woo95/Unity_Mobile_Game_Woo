@@ -44,4 +44,8 @@ public class Timer : MonoBehaviour
 
 		m_TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 	}
+	public float GetTimer()
+	{
+		return m_Timer;
+	}
 }

@@ -56,6 +56,10 @@ public class PlayerController : MonoBehaviour
 		if (m_IsJump)
 			Jump();
 
+#if UNITY_EDITOR
+		MoveWithKeyboard();
+#endif
+
 
 		CheckPlayerInteraction();
 		UpdateFootColliderState();
@@ -82,9 +86,6 @@ public class PlayerController : MonoBehaviour
 		{
 			Jump();
 		}
-
-		CheckPlayerInteraction();
-		UpdateFootColliderState();
 	}
 	#endregion
 
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
 			m_Rb.velocity = Vector3.up * m_JumpVelocity;
 		}
 	}
-
+	#region Checking upon move
 	void UpdateFootColliderState()
 	{
 		if (!IsGrounded())
@@ -125,9 +126,28 @@ public class PlayerController : MonoBehaviour
 				m_PlayerFootCollider.enabled = true;
 		}
 	}
+	public void OnPlatform(bool isOnPlatform, Transform parent)
+	{
+		if (isOnPlatform)
+			transform.SetParent(parent);
+		else
+			transform.SetParent(m_DefaultParent);
+	}
+	private bool IsGrounded()
+	{
+		if (!m_PlayerFootCollider.enabled)
+			return false;
+
+		Collider2D groundCollider = Physics2D.OverlapArea(m_FeetPoint1.position, m_FeetPoint2.position, m_PlatformLayerMask);
+		if (groundCollider != null)
+		{
+			m_Animator.SetBool("Jump", false);
+		}
+		return groundCollider != null;
+	}
 	void Flip(bool faceRight)
 	{
-		if (m_FaceRight !=  faceRight)
+		if (m_FaceRight != faceRight)
 		{
 			m_FaceRight = faceRight;
 
@@ -136,6 +156,7 @@ public class PlayerController : MonoBehaviour
 			transform.localScale = scale;
 		}
 	}
+	#endregion
 	#endregion
 
 	#region Player Button Handler
@@ -169,32 +190,11 @@ public class PlayerController : MonoBehaviour
 	}
 	#endregion
 
-
-	public void OnPlatform(bool isOnPlatform, Transform parent)
-    {
-		if (isOnPlatform)
-			transform.SetParent(parent);
-		else 
-			transform.SetParent(m_DefaultParent);
-	}
-	private bool IsGrounded()
-	{
-		if (!m_PlayerFootCollider.enabled)
-			return false;
-
-		Collider2D groundCollider = Physics2D.OverlapArea(m_FeetPoint1.position, m_FeetPoint2.position, m_PlatformLayerMask);
-		if(groundCollider != null)
-		{
-			m_Animator.SetBool("Jump", false);
-		}
-		return groundCollider != null;
-	}
-
+	#region Player Interaction with other things
 	public void CheckPlayerInteraction()
 	{
 		CheckSomethingToKill();
 		CheckObtainCoin();
-		CheckGoal();
 	}
 	public void CheckSomethingToKill()
 	{
@@ -216,19 +216,18 @@ public class PlayerController : MonoBehaviour
 		Collider2D obtainedCoin = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, LayerMask.GetMask("Coin"));
 		if (obtainedCoin != null)
 		{
-			PlayerManager.instance.ObtainCoin();
+			PlayerManager.instance.ObtainedCoin();
 			Destroy(obtainedCoin.gameObject);
 			SoundManager.instance.PlaySFX("Coin");
 		}
 	}
-	public void CheckGoal()
+	public bool CheckGoal()
 	{
 		Collider2D goal = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, LayerMask.GetMask("Goal"));
-		if (goal != null)
-		{
-			// end
-		}
+
+		return goal != null;
 	}
+	#endregion
 
 	#region Gizmo Drawing
 	private void OnDrawGizmos()

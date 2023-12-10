@@ -1044,8 +1044,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Initial Message\n\n\n<Objective>\nTBA\n\n<How to Play>\n1. TBA\n2. TBA\n
-    \n\nFinal Message"
+  m_Text: "Welcome to the 2D Platformer!\n\n\n<Objective>\nTouch the red flag within
+    5min!\r\n\n<How to Play>\n1. Jump on enemies to kill them.\n2. Dodge obstacles.\n
+    \n\n\nGood luck, Fellows!"
 --- !u!222 &1162215505
 CanvasRenderer:
   m_ObjectHideFlags: 0
