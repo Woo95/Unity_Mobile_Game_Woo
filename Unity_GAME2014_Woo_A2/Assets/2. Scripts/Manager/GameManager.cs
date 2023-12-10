@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +11,8 @@ public class GameManager : MonoBehaviour
 	eGameState m_GameState;
 	enum eResultStatus { NONE, WON, LOST }
 	eResultStatus m_ResultStatus;
+
+	public float m_GameOverTimeDelay;
 
 	void Start()
 	{
@@ -43,7 +47,7 @@ public class GameManager : MonoBehaviour
 			{
 				m_ResultStatus = eResultStatus.LOST;
 
-				StartCoroutine(Co_GameOver(false));
+				InGameOver();
 				return;
 			}
 
@@ -51,10 +55,9 @@ public class GameManager : MonoBehaviour
 			{
 				m_ResultStatus = eResultStatus.WON;
 
-				SoundManager.instance.StopBGM("GamePlayBGM");
-				SoundManager.instance.PlayBGM("GoalBGM", 0.2f, false);
+				SoundManager.instance.PlaySFX("Goal");
 				EnemyManager.instance.DestroyAllEnemies();
-				StartCoroutine(Co_GameOver(true));
+				InGameOver();
 				return;
 			}
 		}
@@ -87,25 +90,24 @@ public class GameManager : MonoBehaviour
 		SoundManager.instance.UnPauseBGM();
 	}
 	#endregion
-
 	#region FSM GameOver
-	IEnumerator Co_GameOver(bool isWon)
-	{
-		if (isWon)
-			yield return new WaitForSeconds(4.0f);
-		else
-			yield return new WaitForSeconds(1.0f);
-
-		InGameOver(isWon);
-	}
-	void InGameOver(bool isWon)
+	void InGameOver()
 	{
 		Debug.Log("InGameOver");
 		m_GameState = eGameState.GAMEOVER;
 
-		GameOverData.SetData(PlayerManager.instance.GetScore(), Timer.instance.GetTimer(), isWon);
+		bool isWon = m_ResultStatus == eResultStatus.WON;
 
-		SceneManager.LoadScene("GameOverScene");
+		m_GameOverTimeDelay = isWon ? Time.time + 4.0f : Time.time + 1.0f;
+		GameOverData.SetData(PlayerManager.instance.GetScore(), Timer.instance.GetTimer(), isWon);
+	}
+	void ModifyGameOver()
+	{
+		Debug.Log("ModifyGameOver");
+		if (Time.time >= m_GameOverTimeDelay)
+		{
+			SceneManager.LoadScene("GameOverScene");
+		}
 	}
 	#endregion
 
@@ -115,6 +117,9 @@ public class GameManager : MonoBehaviour
 		{
 			case eGameState.PLAY:
 				ModifyPlay();
+				break;
+			case eGameState.GAMEOVER:
+				ModifyGameOver();
 				break;
 		}
 	}

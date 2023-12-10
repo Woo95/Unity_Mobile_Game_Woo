@@ -1,5 +1,5 @@
 GamePlayBGM
 https://www.mewpot.com/qna/music_copyright
 
-Coin, GoalBGM, EnemyKill, PlayerDeath
+Coin, Goal, EnemyKill, PlayerDeath
 https://pixabay.com/service/license-summary/

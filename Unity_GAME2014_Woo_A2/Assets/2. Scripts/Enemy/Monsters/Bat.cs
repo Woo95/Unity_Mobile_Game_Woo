@@ -9,7 +9,7 @@ public class Bat : Enemy
 	{
 		m_Target = null;
 
-		m_MoveSpeed = 1.0f;
+		m_MoveSpeed = 1.5f;
 
 		InChase();
 	}

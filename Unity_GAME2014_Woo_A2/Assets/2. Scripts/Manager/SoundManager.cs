@@ -33,7 +33,6 @@ public class SoundManager : MonoBehaviour
 	#endregion
 
 	public SFX[] m_SFX;
-	//public BGM m_OverWorldBGM, m_BattleBGM;
 	public BGM[] m_BGM;
 	public List<BGM> m_ActiveBGMList = new List<BGM>();
 
@@ -42,8 +41,6 @@ public class SoundManager : MonoBehaviour
 		m_ActiveBGMList.Clear();
 
 		PlayBGM("GamePlayBGM");
-
-		StopBGM("GoalBGM");
 	}
 
 	#region BGM

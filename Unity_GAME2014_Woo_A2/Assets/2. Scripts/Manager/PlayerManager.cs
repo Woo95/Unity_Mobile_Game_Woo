@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
 		m_ObtainedCoinAmount = 0;
 
 		m_LifeCount = 3;
-		m_DeadHeight = -12.0f;
+		m_DeadHeight = -8.0f;
 
 		m_Controller.Init();
 		m_UILifeCounter.Init();
