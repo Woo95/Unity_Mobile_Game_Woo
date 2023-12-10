@@ -1,24 +1,59 @@
-Date Last Modified: 2023/11/19
+Date Last Modified: 2023/12/10
 
 Author's Name: Chaewan Woo
 Student Number: 101354291
 
 All Revision History: It is recorded on the github repository
 
-[UIMainMenu.cs]
-Script for Main Menu UI control.
-[UIGamePlay.cs]
-Script for Game Play UI control.
+[BackgroundController.cs]
+Script for each background layer moving based on camera movement.
+[CameraControl.cs]
+Script for camera control.
+
+[Enemy.cs]
+Script for all Enemy parent class.
+[Bat.cs]
+Script for Bat Enemy.
+[Mushroom.cs]
+Script for Mushroom Enemy.
 
 [GameManager.cs]
 Script for GameManager flow on PlayScene.
 [SoundManager.cs]
 Script for SoundManager flow on PlayScene.
+[EnemyManager.cs]
+Script for EnemyManager flow on PlayScene.
+[PlayerManager.cs]
+Script for Player related scripts handling on PlayScene.
 
-[MovingPlatform.cs]
-Script for Moving Platform.
+[UIMainMenu.cs]
+Script for Main Menu UI control.
+[UIGamePlay.cs]
+Script for Game Play UI control.
+[UILifeCounter.cs]
+Script for Player Life UI control.
+[UIPause.cs]
+Script for Game Pause UI control.
+[UIGameOver.cs]
+Script for Game Over UI control.
+
+[Coin.cs]
+Script for Coin.
+[Trap.cs]
+Script for Trap.
+
 [BouncyPlatform.cs]
 Script for Bouncy Platform.
+[MovingPlatform.cs]
+Script for Moving Platform.
 
-[Player.cs]
+[PlayerController.cs]
 Script for player behaviour.
+[MoveButton.cs]
+Script for player movement buttons (for mobile).
+
+[GameOverData]
+Script for gameover data to send from PlayScene to GameOverScene.
+
+[Timer.cs]
+Script for time running on PlayScene.
