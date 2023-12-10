@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 	private bool m_IsMoveRight = false;
 	private bool m_IsJump = false;
 
-	private bool m_FaceRight = true;
+	[HideInInspector] public bool m_FaceRight = true;
 	public Animator m_Animator;
 
 	public Transform m_BodyPoint1, m_BodyPoint2;
@@ -31,10 +31,16 @@ public class PlayerController : MonoBehaviour
 
 		m_Rb = GetComponent<Rigidbody2D>();
 
-		m_BodyPoint1 = GameObject.Find("BodyPoint1").transform;
-		m_BodyPoint2 = GameObject.Find("BodyPoint2").transform;
-		m_FeetPoint1 = GameObject.Find("FeetPoint1").transform;
-		m_FeetPoint2 = GameObject.Find("FeetPoint2").transform;
+		if (m_BodyPoint1 == null && m_BodyPoint2 == null)
+		{
+			m_BodyPoint1 = GameObject.Find("BodyPoint1").transform;
+			m_BodyPoint2 = GameObject.Find("BodyPoint2").transform;
+		}
+		if (m_FeetPoint1 == null && m_FeetPoint2 == null)
+		{
+			m_FeetPoint1 = GameObject.Find("FeetPoint1").transform;
+			m_FeetPoint2 = GameObject.Find("FeetPoint2").transform;
+		}
 
 		m_PlayerFootCollider = GetComponent<CapsuleCollider2D>();
 
@@ -145,7 +151,7 @@ public class PlayerController : MonoBehaviour
 		}
 		return groundCollider != null;
 	}
-	void Flip(bool faceRight)
+	public void Flip(bool faceRight)
 	{
 		if (m_FaceRight != faceRight)
 		{
@@ -202,7 +208,9 @@ public class PlayerController : MonoBehaviour
 		if (enemyToKill != null)
 		{
 			m_Rb.velocity = Vector3.up * m_JumpVelocity * 0.5f;
+			PlayerManager.instance.KilledEnemy();
 			Destroy(enemyToKill.gameObject);
+			SoundManager.instance.PlaySFX("EnemyKill");
 		}
 
 		Collider2D playerToKill = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, m_DeathLayerMask);
@@ -225,7 +233,12 @@ public class PlayerController : MonoBehaviour
 	{
 		Collider2D goal = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, LayerMask.GetMask("Goal"));
 
-		return goal != null;
+        if (goal != null)
+        {
+			goal.GetComponent<Collider2D>().enabled = false;
+        }
+
+        return goal != null;
 	}
 	#endregion
 

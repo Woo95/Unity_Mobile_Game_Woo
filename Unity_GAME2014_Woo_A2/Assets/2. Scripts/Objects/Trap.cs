@@ -11,14 +11,14 @@ public class Trap : MonoBehaviour
 
 	void Start()
     {
-        StartCoroutine("Co_Attack");
+        StartCoroutine(Co_Attack());
 	}
 
     IEnumerator Co_Attack()
     {
         while (true)
         {
-            float randTime = Random.Range(3f, 7f);
+            float randTime = Random.Range(3f, 5f);
             yield return new WaitForSeconds(randTime);
             m_Animator.SetTrigger("Attack");
         }

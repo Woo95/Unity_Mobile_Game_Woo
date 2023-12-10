@@ -15,9 +15,9 @@ public static class GameOverData
 		m_Won = false;
 	}
 
-	static public void SetData(int obtainedCoin, float leftTime, bool isWon)
+	static public void SetData(int score, float leftTime, bool isWon)
 	{
-		m_Score = obtainedCoin;
+		m_Score = score;
 		m_LeftTime = leftTime;
 		m_Won = isWon;
 	}

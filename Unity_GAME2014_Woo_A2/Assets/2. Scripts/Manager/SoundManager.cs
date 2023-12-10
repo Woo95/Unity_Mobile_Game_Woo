@@ -42,6 +42,8 @@ public class SoundManager : MonoBehaviour
 		m_ActiveBGMList.Clear();
 
 		PlayBGM("GamePlayBGM");
+
+		StopBGM("GoalBGM");
 	}
 
 	#region BGM
@@ -94,14 +96,17 @@ public class SoundManager : MonoBehaviour
 	#endregion
 
 	#region SFX
-	public void PlaySFX(string name, float volume = 1.0f)
+	public void PlaySFX(string name, float volume = 0.25f)
 	{
-		// Find the Sound object with the matching name
 		SFX sfxToPlay = System.Array.Find(m_SFX, sound => sound.name == name);
 
 		if (sfxToPlay.clip != null)
 		{
-			AudioSource.PlayClipAtPoint(sfxToPlay.clip, Vector3.zero, volume);
+			AudioSource sfxSource = gameObject.AddComponent<AudioSource>();
+			sfxSource.clip = sfxToPlay.clip;
+			sfxSource.volume = volume;
+			sfxSource.Play();
+			Destroy(sfxSource, sfxToPlay.clip.length);
 		}
 		else
 		{

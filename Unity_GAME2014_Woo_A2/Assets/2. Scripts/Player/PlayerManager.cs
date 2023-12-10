@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
 	public UILifeCounter m_UILifeCounter;
 
 	private int m_ObtainedCoinAmount;
+	private int m_KilledEnemyAmount;
 
 	public int m_LifeCount;
 	float m_DeadHeight;
@@ -49,6 +50,7 @@ public class PlayerManager : MonoBehaviour
 		FallOffMapChecker();
 	}
 
+	#region Player Life Related
 	public bool IsAlive()
 	{
 		return m_LifeCount > 0;
@@ -66,24 +68,55 @@ public class PlayerManager : MonoBehaviour
 
 		m_UILifeCounter.UpdateLife();
 
-		Respawn();
+		GO_NORMAL();
+
+		SoundManager.instance.PlaySFX("PlayerDeath");
+
+		if (IsAlive())
+			Respawn();
+		else
+			m_Controller.gameObject.SetActive(false);
 	}
 	public void Respawn()
 	{
+		m_Controller.m_FaceRight = true;
+		m_Controller.Flip(m_Controller.m_FaceRight);
+
 		m_Controller.SetPosition(m_SpawnPoint.position);
 	}
+	#endregion
 
+	#region Point Related
 	public void ObtainedCoin()
 	{
 		m_ObtainedCoinAmount++;
 	}
-	public int GetObtainedCoin()
+	public void KilledEnemy()
 	{
-		return m_ObtainedCoinAmount;
+		m_KilledEnemyAmount++;
 	}
-
+	public int GetScore()
+	{
+		return m_ObtainedCoinAmount + m_KilledEnemyAmount;
+	}
 	public bool Finished()
 	{
 		return m_Controller.CheckGoal();
 	}
+	#endregion
+
+	#region Event
+	public void GO_BIG()
+	{
+		m_Controller.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+	}
+	void GO_NORMAL()
+	{
+		m_Controller.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+	}
+	public void GO_SMALL()
+	{
+		m_Controller.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+	}
+	#endregion
 }

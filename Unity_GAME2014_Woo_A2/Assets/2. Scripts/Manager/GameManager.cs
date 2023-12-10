@@ -37,13 +37,15 @@ public class GameManager : MonoBehaviour
 
 		if (!Timer.instance.UpdateTimer() || !PlayerManager.instance.IsAlive())
 		{
-			InGameOver(false);
+			StartCoroutine(Co_GameOver(false));
 			return;
 		}
 
 		if (PlayerManager.instance.Finished())
 		{
-			InGameOver(true);
+			SoundManager.instance.StopBGM("GamePlayBGM");
+			SoundManager.instance.PlayBGM("GoalBGM", 0.2f, false);
+			StartCoroutine(Co_GameOver(true));
 			return;
 		}
 
@@ -79,17 +81,25 @@ public class GameManager : MonoBehaviour
 	#endregion
 
 	#region FSM GameOver
+	IEnumerator Co_GameOver(bool isWon)
+	{
+		if (isWon)
+			yield return new WaitForSeconds(4.0f);
+		else
+			yield return new WaitForSeconds(1.0f);
+
+		InGameOver(isWon);
+	}
 	void InGameOver(bool isWon)
 	{
 		Debug.Log("InGameOver");
 		gameState = eGameState.GAMEOVER;
 
-		GameOverData.SetData(PlayerManager.instance.GetObtainedCoin(), Timer.instance.GetTimer(), isWon);
+		GameOverData.SetData(PlayerManager.instance.GetScore(), Timer.instance.GetTimer(), isWon);
 
 		SceneManager.LoadScene("GameOverScene");
 	}
 	#endregion
-
 
 	void Update()
 	{
@@ -99,6 +109,6 @@ public class GameManager : MonoBehaviour
 				ModifyPlay();
 				break;
 		}
-
 	}
 }
+
