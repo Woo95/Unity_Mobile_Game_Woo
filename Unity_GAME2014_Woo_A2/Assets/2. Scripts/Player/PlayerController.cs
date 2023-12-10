@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	#region Move Input
-	public void Move()
+	public void MoveWithButton()
 	{
 		if (m_IsMoveLeft && m_IsMoveRight)
 			Stop();
@@ -62,14 +62,10 @@ public class PlayerController : MonoBehaviour
 		if (m_IsJump)
 			Jump();
 
-#if UNITY_EDITOR
-		MoveWithKeyboard();
-#endif
-
 		CheckPlayerInteraction();
 		UpdateFootColliderState();
 	}
-	public void MoveWithKeyboard()	// For test purposes
+	public void MoveWithKeyboard()
 	{
 		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
 		{
@@ -91,6 +87,9 @@ public class PlayerController : MonoBehaviour
 		{
 			Jump();
 		}
+
+		CheckPlayerInteraction();
+		UpdateFootColliderState();
 	}
 	#endregion
 

@@ -45,7 +45,13 @@ public class PlayerManager : MonoBehaviour
 
 	public void InputHandler()
 	{
-		m_Controller.Move();
+	#if UNITY_EDITOR
+		m_Controller.MoveWithKeyboard();
+	#endif
+
+	#if !UNITY_EDITOR
+		m_Controller.MoveWithButton();
+	#endif
 
 		FallOffMapChecker();
 	}

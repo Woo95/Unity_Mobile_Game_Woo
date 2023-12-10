@@ -28,15 +28,15 @@ public class UIPause : MonoBehaviour
 			m_PauseUI.SetActive(false);
 	}
 
-	public void Invoke_Pause()
+	public void Invoke_Pause(bool isActive)
 	{
-		m_PauseBody.text = "Game Paused!";
-
-		if (m_PauseUI.activeInHierarchy)
-			m_PauseUI.SetActive(false);
-
-		else if (!m_PauseUI.activeInHierarchy)
-			m_PauseUI.SetActive(true);
+		if (isActive)
+		{
+			m_PauseBody.text = "Game Paused!";
+			m_PauseUI.SetActive(isActive);
+		}
+		else
+			m_PauseUI.SetActive(isActive);
 	}
 
 	public void Invoke_Menu()

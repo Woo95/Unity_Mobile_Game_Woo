@@ -16,13 +16,9 @@ public class UIMainMenu : MonoBehaviour
 		SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
 	}
 
-	public void Invoke_InstructionButton()
+	public void Invoke_InstructionButton(bool isActive)
 	{
-		if (m_Instruction.activeInHierarchy)
-			m_Instruction.SetActive(false);
-
-		else if (!m_Instruction.activeInHierarchy)
-			m_Instruction.SetActive(true);
+		m_Instruction.SetActive(isActive);
 	}
 
 	public void Invoke_ExitButton()

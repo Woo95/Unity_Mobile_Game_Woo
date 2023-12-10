@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
 		Time.timeScale = 0f;
 
-		UIPause.instance.Invoke_Pause();
+		UIPause.instance.Invoke_Pause(true);
 		SoundManager.instance.PauseBGM();
 	}
 	public void UnPause()
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
 		Time.timeScale = 1.0f;
 
-		UIPause.instance.Invoke_Pause();
+		UIPause.instance.Invoke_Pause(false);
 		SoundManager.instance.UnPauseBGM();
 	}
 	#endregion
