@@ -13,6 +13,9 @@ public class MovingPlatform : MonoBehaviour
 
     private Vector3 m_StartPos, m_EndPos;
 	bool m_ChangeDirection;
+
+	PlayerController m_Player; 
+
 	void Start()
 	{
 		m_StartPos = transform.position;
@@ -53,10 +56,10 @@ public class MovingPlatform : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			PlayerController player = other.GetComponent<PlayerController>();
-			if (player != null)
+			m_Player = other.GetComponent<PlayerController>();
+			if (m_Player != null)
 			{
-				player.OnPlatform(true, transform);
+				m_Player.OnPlatform(true, transform);
 			}
 		}
 	}
@@ -65,10 +68,10 @@ public class MovingPlatform : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			PlayerController player = other.GetComponent<PlayerController>();
-			if (player != null)
+			m_Player = other.GetComponent<PlayerController>();
+			if (m_Player != null)
 			{
-				player.OnPlatform(false, transform);
+				m_Player.OnPlatform(false, null);
 			}
 		}
 	}

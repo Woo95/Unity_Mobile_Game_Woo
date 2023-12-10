@@ -5,26 +5,37 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	public LayerMask m_PlatformLayerMask;
-	
+	public LayerMask m_KillLayerMask;
+	public LayerMask m_DeathLayerMask;
+
 	Rigidbody2D m_Rb;
 	CapsuleCollider2D m_PlayerFootCollider;
 
-	public float m_MoveSpeed = 2.5f;
-	public float m_JumpVelocity = 6.5f;
+	private float m_MoveSpeed = 2.5f;
+	private float m_JumpVelocity = 6.5f;
 
 	private bool m_IsMoveLeft = false;
 	private bool m_IsMoveRight = false;
 	private bool m_IsJump = false;
 
-	public bool m_FaceRight = true;
+	private bool m_FaceRight = true;
 	public Animator m_Animator;
 
-	public Transform m_HitAreaA, m_HitAreaB;
-	public LayerMask m_HitLayerMask;
+	public Transform m_BodyPoint1, m_BodyPoint2;
+	public Transform m_FeetPoint1, m_FeetPoint2;
+	private Transform m_DefaultParent;
 
 	public void Init()
 	{
+		m_DefaultParent = transform.parent;
+
 		m_Rb = GetComponent<Rigidbody2D>();
+
+		m_BodyPoint1 = GameObject.Find("BodyPoint1").transform;
+		m_BodyPoint2 = GameObject.Find("BodyPoint2").transform;
+		m_FeetPoint1 = GameObject.Find("FeetPoint1").transform;
+		m_FeetPoint2 = GameObject.Find("FeetPoint2").transform;
+
 		m_PlayerFootCollider = GetComponent<CapsuleCollider2D>();
 
 		m_Animator = GetComponent<Animator>();
@@ -46,7 +57,7 @@ public class PlayerController : MonoBehaviour
 			Jump();
 
 
-		CheckEnemyToKill();
+		CheckPlayerInteraction();
 		UpdateFootColliderState();
 	}
 	public void MoveWithKeyboard()	// For test purposes
@@ -72,7 +83,7 @@ public class PlayerController : MonoBehaviour
 			Jump();
 		}
 
-		CheckEnemyToKill();
+		CheckPlayerInteraction();
 		UpdateFootColliderState();
 	}
 	#endregion
@@ -81,13 +92,13 @@ public class PlayerController : MonoBehaviour
 	public void MoveLeft()
     {
 		m_Rb.velocity = new Vector2(-m_MoveSpeed, m_Rb.velocity.y);
-		Flip(true);
+		Flip(false);
 		m_Animator.SetBool("Move", true);
 	}
     public void MoveRight()
     {
 		m_Rb.velocity = new Vector2(+m_MoveSpeed, m_Rb.velocity.y);
-		Flip(false);
+		Flip(true);
 		m_Animator.SetBool("Move", true);
 	}
 	public void Stop()
@@ -158,45 +169,87 @@ public class PlayerController : MonoBehaviour
 	}
 	#endregion
 
-	public void OnPlatform(bool OnPlatform, Transform parent = null)
+
+	public void OnPlatform(bool isOnPlatform, Transform parent)
     {
-		transform.SetParent(OnPlatform ? parent : null);
+		if (isOnPlatform)
+			transform.SetParent(parent);
+		else 
+			transform.SetParent(m_DefaultParent);
 	}
 	private bool IsGrounded()
 	{
 		if (!m_PlayerFootCollider.enabled)
 			return false;
 
-		Collider2D groundCollider = Physics2D.OverlapArea(m_HitAreaA.position, m_HitAreaB.position, m_PlatformLayerMask);
+		Collider2D groundCollider = Physics2D.OverlapArea(m_FeetPoint1.position, m_FeetPoint2.position, m_PlatformLayerMask);
 		if(groundCollider != null)
 		{
 			m_Animator.SetBool("Jump", false);
 		}
 		return groundCollider != null;
 	}
-	public void CheckEnemyToKill()
-	{
-		Collider2D enemyToKill = Physics2D.OverlapArea(m_HitAreaA.position, m_HitAreaB.position, m_HitLayerMask);
 
+	public void CheckPlayerInteraction()
+	{
+		CheckSomethingToKill();
+		CheckObtainCoin();
+	}
+	public void CheckSomethingToKill()
+	{
+		Collider2D enemyToKill = Physics2D.OverlapArea(m_FeetPoint1.position, m_FeetPoint2.position, m_KillLayerMask);
 		if (enemyToKill != null)
 		{
+			m_Rb.velocity = Vector3.up * m_JumpVelocity * 0.5f;
 			Destroy(enemyToKill.gameObject);
+		}
+
+		Collider2D playerToKill = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, m_DeathLayerMask);
+		if (playerToKill != null)
+		{
+			PlayerManager.instance.LoseLife();
+		}
+	}
+	public void CheckObtainCoin()
+	{
+		Collider2D obtainedCoin = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, LayerMask.GetMask("Coin"));
+		if (obtainedCoin != null)
+		{
+			PlayerManager.instance.ObtainCoin();
+			Destroy(obtainedCoin.gameObject);
 		}
 	}
 
 	#region Gizmo Drawing
 	private void OnDrawGizmos()
 	{
-		Vector3 p00 = m_HitAreaA.position;
-		Vector3 p11 = m_HitAreaB.position;
-		Vector3 p10 = new Vector3(p11.x, p00.y, p00.z);
-		Vector3 p01 = new Vector3(p00.x, p11.y, p00.z);
+		if (m_FeetPoint1 && m_FeetPoint2)
+		{
+			Vector3 p00 = m_FeetPoint1.position;
+			Vector3 p11 = m_FeetPoint2.position;
+			Vector3 p10 = new Vector3(p11.x, p00.y, p00.z);
+			Vector3 p01 = new Vector3(p00.x, p11.y, p00.z);
 
-		Gizmos.color = Color.red;
-		Gizmos.DrawLine(p00, p10);
-		Gizmos.DrawLine(p10, p11);
-		Gizmos.DrawLine(p11, p01);
-		Gizmos.DrawLine(p01, p00);
+			Gizmos.color = Color.red;
+			Gizmos.DrawLine(p00, p10);
+			Gizmos.DrawLine(p10, p11);
+			Gizmos.DrawLine(p11, p01);
+			Gizmos.DrawLine(p01, p00);
+		}
+
+		if (m_BodyPoint1 && m_BodyPoint2)
+		{
+			Vector3 p00 = m_BodyPoint1.position;
+			Vector3 p11 = m_BodyPoint2.position;
+			Vector3 p10 = new Vector3(p11.x, p00.y, p00.z);
+			Vector3 p01 = new Vector3(p00.x, p11.y, p00.z);
+
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawLine(p00, p10);
+			Gizmos.DrawLine(p10, p11);
+			Gizmos.DrawLine(p11, p01);
+			Gizmos.DrawLine(p01, p00);
+		}
 	}
 	#endregion
 }

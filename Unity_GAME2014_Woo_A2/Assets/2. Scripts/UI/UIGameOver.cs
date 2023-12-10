@@ -1,6 +1,7 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIGameOver
+public class UIGameOver : MonoBehaviour
 {
 	public void Invoke_PlayButton()
 	{
