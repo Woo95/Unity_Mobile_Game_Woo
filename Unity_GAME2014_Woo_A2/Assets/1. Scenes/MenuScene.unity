@@ -821,7 +821,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Platformer game
+  m_Text: 2D Platformer Game
 --- !u!222 &939858383
 CanvasRenderer:
   m_ObjectHideFlags: 0

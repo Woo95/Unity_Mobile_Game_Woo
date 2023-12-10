@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	public enum eGameState { NONE, PLAY, GAMEOVER, PAUSE };
-
-	public eGameState gameState = eGameState.NONE;
+	enum eGameState { PLAY, GAMEOVER, PAUSE };
+	eGameState m_GameState;
+	enum eResultStatus { NONE, WON, LOST }
+	eResultStatus m_ResultStatus;
 
 	void Start()
 	{
@@ -18,7 +19,8 @@ public class GameManager : MonoBehaviour
 	void InPlay()
 	{
 		Debug.Log("InPlay");
-		gameState = eGameState.PLAY;
+		m_GameState = eGameState.PLAY;
+		m_ResultStatus = eResultStatus.NONE;
 
 		Time.timeScale = 1.0f;
 
@@ -35,24 +37,30 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("ModifyPlay");
 
-		if (!Timer.instance.UpdateTimer() || !PlayerManager.instance.IsAlive())
+		if (m_ResultStatus == eResultStatus.NONE)
 		{
-			StartCoroutine(Co_GameOver(false));
-			return;
-		}
+			if (!Timer.instance.UpdateTimer() || !PlayerManager.instance.IsAlive())
+			{
+				m_ResultStatus = eResultStatus.LOST;
 
-		if (PlayerManager.instance.Finished())
-		{
-			SoundManager.instance.StopBGM("GamePlayBGM");
-			SoundManager.instance.PlayBGM("GoalBGM", 0.2f, false);
-			StartCoroutine(Co_GameOver(true));
-			return;
+				StartCoroutine(Co_GameOver(false));
+				return;
+			}
+
+			if (PlayerManager.instance.Finished())
+			{
+				m_ResultStatus = eResultStatus.WON;
+
+				SoundManager.instance.StopBGM("GamePlayBGM");
+				SoundManager.instance.PlayBGM("GoalBGM", 0.2f, false);
+				EnemyManager.instance.DestroyAllEnemies();
+				StartCoroutine(Co_GameOver(true));
+				return;
+			}
 		}
 
 		PlayerManager.instance.InputHandler();
-
 		CameraControl.instance.TrackPlayer();
-
 		EnemyManager.instance.Run();
 	}
 	#endregion
@@ -61,7 +69,7 @@ public class GameManager : MonoBehaviour
 	public void InPause()
 	{
 		Debug.Log("InPause");
-		gameState = eGameState.PAUSE;
+		m_GameState = eGameState.PAUSE;
 
 		Time.timeScale = 0f;
 
@@ -71,7 +79,7 @@ public class GameManager : MonoBehaviour
 	public void UnPause()
 	{
 		Debug.Log("UnPause");
-		gameState = eGameState.PLAY;
+		m_GameState = eGameState.PLAY;
 
 		Time.timeScale = 1.0f;
 
@@ -93,7 +101,7 @@ public class GameManager : MonoBehaviour
 	void InGameOver(bool isWon)
 	{
 		Debug.Log("InGameOver");
-		gameState = eGameState.GAMEOVER;
+		m_GameState = eGameState.GAMEOVER;
 
 		GameOverData.SetData(PlayerManager.instance.GetScore(), Timer.instance.GetTimer(), isWon);
 
@@ -103,7 +111,7 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{
-		switch (gameState)
+		switch (m_GameState)
 		{
 			case eGameState.PLAY:
 				ModifyPlay();

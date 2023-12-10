@@ -143,13 +143,21 @@ public class EnemyManager : MonoBehaviour
 		m_EnemySpawnedList.Add(enemy);
 	}
 	#endregion
+	#endregion
 
+	public void DestroyAllEnemies()
+	{
+		foreach (Enemy enemy in m_EnemySpawnedList)
+		{
+			Destroy(enemy.gameObject);
+		}
+	}
 	public void Remove(Enemy enemy)
 	{
 		if (m_EnemySpawnedList.Contains(enemy))
 			m_EnemySpawnedList.Remove(enemy);
 
-		for (int i=0; i< m_GroundMobList.Count; i++)
+		for (int i = 0; i < m_GroundMobList.Count; i++)
 		{
 			if (m_GroundMobList[i].m_GroundMob == enemy)
 			{
@@ -158,7 +166,6 @@ public class EnemyManager : MonoBehaviour
 			}
 		}
 	}
-	#endregion
 
 	public void Run()
 	{
