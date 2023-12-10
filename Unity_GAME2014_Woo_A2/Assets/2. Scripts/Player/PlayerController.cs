@@ -194,6 +194,7 @@ public class PlayerController : MonoBehaviour
 	{
 		CheckSomethingToKill();
 		CheckObtainCoin();
+		CheckGoal();
 	}
 	public void CheckSomethingToKill()
 	{
@@ -218,6 +219,14 @@ public class PlayerController : MonoBehaviour
 			PlayerManager.instance.ObtainCoin();
 			Destroy(obtainedCoin.gameObject);
 			SoundManager.instance.PlaySFX("Coin");
+		}
+	}
+	public void CheckGoal()
+	{
+		Collider2D goal = Physics2D.OverlapArea(m_BodyPoint1.position, m_BodyPoint2.position, LayerMask.GetMask("Goal"));
+		if (goal != null)
+		{
+			// end
 		}
 	}
 
