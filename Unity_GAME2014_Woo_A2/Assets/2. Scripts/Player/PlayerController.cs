@@ -217,6 +217,7 @@ public class PlayerController : MonoBehaviour
 		{
 			PlayerManager.instance.ObtainCoin();
 			Destroy(obtainedCoin.gameObject);
+			SoundManager.instance.PlaySFX("Coin");
 		}
 	}
 

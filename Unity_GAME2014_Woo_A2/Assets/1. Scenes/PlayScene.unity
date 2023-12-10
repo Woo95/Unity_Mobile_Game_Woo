@@ -10984,7 +10984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e917b6bd349fd334f918abcc5aace0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SFX: []
+  m_SFX:
+  - name: Coin
+    clip: {fileID: 8300000, guid: 0b50c7d340660004b97b54fcbf182918, type: 3}
   m_BGM:
   - name: GamePlayBGM
     source: {fileID: 648139795}
