@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 		UIGamePlay.instance.Init();
 		UIPause.instance.Init();
 		SoundManager.instance.Init();
+
+		GameOverData.Init();
 	}
 	void ModifyPlay()
 	{
