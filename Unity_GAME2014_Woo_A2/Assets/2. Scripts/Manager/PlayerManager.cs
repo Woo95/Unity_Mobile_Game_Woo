@@ -108,15 +108,19 @@ public class PlayerManager : MonoBehaviour
 	#region Event
 	public void GO_BIG()
 	{
-		m_Controller.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+		m_Controller.transform.position += Vector3.up * 2.5f;
+
+		float scaleFactor = (m_Controller.transform.localScale.x < 0) ? -5.0f : 5.0f;
+		m_Controller.transform.localScale = new Vector3(scaleFactor, 5.0f, 5.0f);
 	}
 	void GO_NORMAL()
 	{
-		m_Controller.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+		m_Controller.transform.localScale = Vector3.one;
 	}
 	public void GO_SMALL()
 	{
-		m_Controller.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		float scaleFactor = (m_Controller.transform.localScale.x < 0) ? -0.5f : 0.5f;
+		m_Controller.transform.localScale = new Vector3(scaleFactor, 0.5f, 0.5f);
 	}
 	#endregion
 }
