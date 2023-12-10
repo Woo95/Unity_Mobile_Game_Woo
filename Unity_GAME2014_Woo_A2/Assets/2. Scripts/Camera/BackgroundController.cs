@@ -37,7 +37,7 @@ public class BackgroundController : MonoBehaviour
 
 		for (int i=0; i< m_BackgroundList.Count; i++)
 		{
-			m_BackgroundList[i].m_Percent = i * 0.025f;
+			m_BackgroundList[i].m_Percent = i * 0.03f;
 		}
 	}
 

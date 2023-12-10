@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour
 	{
 		enemyManagerState = eEnemyManagerState.SPAWNING;
 
-		m_NextSkyMobSpawnTime = Time.time;
+		m_NextSkyMobSpawnTime = Time.time + SPAWN_BAT_INTERVAL;
 	}
 	public void ModifySpawning()
 	{
