@@ -4,7 +4,7 @@ This repository contains two Unity projects developed during the 2023 academic y
 
 ---
 
-## A1: Tower Defender - *Waves of War*
+## A1: Tower Defender: *Waves of War*
 
 > 📁 Folder: `Unity_GAME2014_Woo_A1`  
 > 🎮 Genre: Tower Defense  
