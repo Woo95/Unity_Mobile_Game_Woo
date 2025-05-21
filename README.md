@@ -8,7 +8,7 @@ This repository contains two Unity projects developed during the 2023 academic y
 
 > 📁 Folder: `Unity_GAME2014_Woo_A1`  
 > 🎮 Genre: Tower Defense  
-> 🎬 [Gameplay Video](https://youtu.be/sOtYVJ6maYU)
+> 🎬 [Demo Video](https://youtu.be/sOtYVJ6maYU)
 
 ![A1 Video Thumbnail](https://img.youtube.com/vi/sOtYVJ6maYU/hqdefault.jpg)
 
@@ -25,7 +25,7 @@ This repository contains two Unity projects developed during the 2023 academic y
 
 > 📁 Folder: `Unity_GAME2014_Woo_A2`  
 > 🎮 Genre: 2D Side-Scrolling Platformer  
-> 🎬 [Gameplay Video](https://youtu.be/klfbza0nP0Q)
+> 🎬 [Demo Video](https://youtu.be/klfbza0nP0Q)
 
 ![A2 Video Thumbnail](https://img.youtube.com/vi/klfbza0nP0Q/hqdefault.jpg)
 
